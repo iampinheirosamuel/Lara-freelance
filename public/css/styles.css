@@ -1,0 +1,7 @@
+body {
+  min-height: 75rem; /* Can be removed; just added for demo purposes */
+}
+
+p.teaser {
+    text-indent: 30px; 
+    }
