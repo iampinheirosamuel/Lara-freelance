@@ -18,7 +18,7 @@ Route::get('/', 'PostController@home')->name('home');
 
 Route::get('/posts', 'PostController@index');
 
-Route::get('profile/{id}', 'PostController@updateUser');
+Route::get('profile/{id}', 'UserController@update');
 
 
 Route::resource('users', 'UserController');
