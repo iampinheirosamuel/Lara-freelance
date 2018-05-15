@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use Illuminate\Http\Request;
-
 use App\User;
 use Auth;
 
@@ -17,7 +17,8 @@ use Session;
 class UserController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        // $this->middleware(['auth',  'clearance']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        // $this->middleware(['auth', 'clearance'])->except('update');
     }
 
     /**
@@ -50,30 +51,30 @@ class UserController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function store(Request $request) {
-    //Validate name, email and password fields
+   //Validate name, email and password fields  
         $this->validate($request, [
             'name'=>'required|max:120',
-            'email'=>'required|email|unique:users',
+            'email'=>'required|email|unique:users,email',
             'password'=>'required|min:6|confirmed'
-            
-
         ]);
+                
+                        $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
+                    
+                        $roles = $request['roles']; //Retrieving the roles field
+                       //Checking if a role was selected
+                        if (isset($roles)) {
 
-        $user = User::create($request->only('email', 'name', 'password')); //Retrieving only the email and password data
+                            foreach ($roles as $role) {
+                            $role_r = Role::where('name', '=', $role)->firstOrFail();            
+                            $user->assignRole($role_r); //Assigning role to user
+                            }
+                        }        
+                    $user->fill($user)->save();
 
-        $roles = $request['roles']; //Retrieving the roles field
-    //Checking if a role was selected
-        if (isset($roles)) {
-
-            foreach ($roles as $role) {
-            $role_r = Role::where('id', '=', $role)->firstOrFail();            
-            $user->assignRole($role_r); //Assigning role to user
-            }
-        }        
-    //Redirect to the users.index view and display message
-        return redirect()->route('users.index')
-            ->with('flash_message',
-             'User successfully added.');
+                    //Redirect to the users.index view and display message
+                    return redirect()->route('/') ->with('flash_message', 'Welcome on board.');
+                        
+                
     }
 
     /**
@@ -114,22 +115,39 @@ class UserController extends Controller {
     //Validate name, email and password fields  
         $this->validate($request, [
             'name'=>'required|max:120',
-            'email'=>'required|email|unique:users,email,'.$id,
-            'password'=>'required|min:6|confirmed'
+            'email'=>'required|email',      
+            'service'=>'required',
+            'address'=>'required',            
+            'state'=>'required',            
+            'phone'=>'required|min:11',
+            'about'=>'required|min:60',
+            'image'=> 'required'
         ]);
-        $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
-        $roles = $request['roles']; //Retreive all roles
-        $user->fill($input)->save();
 
-        if (isset($roles)) {        
-            $user->roles()->sync($roles);  //If one or more role is selected associate user to roles          
-        }        
-        else {
-            $user->roles()->detach(); //If no role is selected remove exisiting role associated to a user
-        }
-        return redirect()->route('users.index')
-            ->with('flash_message',
-             'User successfully edited.');
+       if ($request->input('image'))
+                 {
+                    $name = time().'.'.$request->input('image');
+                    // $request->image->move('public/images',$name);
+
+
+                    
+                        $user->name = $request->input('name');
+                        $user->email = $request->input('email');
+                        $user->service = $request->input('service');
+                        $user->phone = $request->input('phone');
+                        $user->about = $request->input('about');
+                        $user->address = $request->input('address');
+                        $user->image = $name;
+                        $user->save();
+                        
+                        
+                        
+                    
+                }
+
+        
+         return view('/home')->with('flash_message', 'User successfully edited.');      
+       
     }
 
     /**
