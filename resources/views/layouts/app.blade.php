@@ -18,6 +18,7 @@
     <title>Home ||</title>
 
     <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css"></link>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
@@ -99,31 +100,31 @@
 																	<span class="m-nav__section-text">
 																		Section
 																	</span>
-                                                                </li>
-                                                                 @role('Admin') {{-- Laravel-permission blade helper --}}
-                                                                 <li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">
-																					Visit Admin Dashboard
-																				</span>
-																				<span class="m-nav__link-badge">
-																					<span class="m-badge m-badge--success">
-																						
-																					</span>
-																				</span>
-																			</span>
-																		</span>
-																	</a>
-                                                                </li>
-                                                                <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                                @endrole
+                                  </li>
+                                    @role('Admin') {{-- Laravel-permission blade helper --}}
+                                    <li class="m-nav__item">
+                                      <a href="../../header/profile.html" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <span class="m-nav__link-title">
+                                          <span class="m-nav__link-wrap">
+                                            <span class="m-nav__link-text">
+                                              Visit Admin Dashboard
+                                            </span>
+                                            <span class="m-nav__link-badge">
+                                              <span class="m-badge m-badge--success">
+                                                
+                                              </span>
+                                            </span>
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    @endrole
                                                                 
 																<li class="m-nav__item">
                                                                     
-																	<a href=" profile/ {{ Auth::user()->id }}" class="m-nav__link">
+																	<a href=" {{ route('profile.show', Auth::user()->id ) }}" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -185,20 +186,24 @@
             </nav>
         </div>
 
-         @if(Session::has('flash_message'))
-            <div class="container">      
-                <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
-                </div>
-            </div>
-        @endif  
-        <div class="container"> 
+       
+         <div class="container-fluid" style="padding-top: 90px;">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">              
-                    @include ('errors.list') {{-- Including error file --}}
+               @if(Session::has('flash_message'))
+                    <div class="container">      
+                        <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+                        </div>
+                    </div>
+                @endif  
+                <div class="container"> 
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">              
+                            @include ('errors.list') {{-- Including error file --}}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-         <div class="container-fluid"> 
+
             <div class="row">
               @yield('content')
             </div>
@@ -301,19 +306,26 @@
     <script src="js/lem_counter.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
       crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.js"></script>
    
 
 
       <script>
-        $('.count').lemCounter({
+        // $('.count').lemCounter({
 
-          locale: false, // e.g. 'en-US'
+        //   locale: false, // e.g. 'en-US'
 
-          value_to_from_content: true,
+        //   value_to_from_content: true,
 
-          animate_duration: 2
+        //   animate_duration: 2
 
+        // });
+
+
+        $(document).ready(function(){
+            $("#summernote").summernote();
         });
+    
 
         
       </script>

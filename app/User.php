@@ -16,6 +16,10 @@ class User extends Authenticatable
         {   
             $this->attributes['password'] = bcrypt($password);
         }
+        
+    public function profile(){
+        return $this->hasOne('App\Profile');
+    }
 
     /**
      * The attributes that are mass assignable.

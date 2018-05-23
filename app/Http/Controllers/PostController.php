@@ -13,7 +13,7 @@ use App\User;
 class PostController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index', 'show', 'showUser','home','updateUser');
+        $this->middleware(['auth', 'clearance'])->except('index','home','showUser','show');
     }
 
     /**
@@ -32,46 +32,46 @@ class PostController extends Controller {
         return view('users.show')->with('users', $user); 
     }
 
-    public function updateUser (Request $request, $id){
-          $user = User::findOrFail($id);
-          return view('users.update')->with('user', $user);
-    }
+    // public function updateUser (Request $request, $id){
+    //       $user = User::findOrFail($id);
+    //       return view('users.update')->with('user', $user);
+    // }
 
-    public function updateUserRequest(Request $request, $id) {
-        $user = User::findOrFail($id); //Get user specified by id
+    // public function updateUserRequest(Request $request, $id) {
+    //     $user = User::findOrFail($id); //Get user specified by id
 
-    //Validate name, email and password fields  
-        $this->validate($request, [
-            'name'=>'required|max:120',
-            'email'=>'required|email|unique:users,email,'.$id,
-            'password'=>'required|min:6|confirmed',
-            'service'=>'required',
-            'address'=>'required',            
-            'state'=>'required',            
-            'phone'=>'required|min:11',
-            'about'=>'required|min:60',
-            'image'=> 'required'
-        ]);
+    // //Validate name, email and password fields  
+    //     $this->validate($request, [
+    //         'name'=>'required|max:120',
+    //         'email'=>'required|email|unique:users,email,'.$id,
+    //         'password'=>'required|min:6|confirmed',
+    //         'service'=>'required',
+    //         'address'=>'required',            
+    //         'state'=>'required',            
+    //         'phone'=>'required|min:11',
+    //         'about'=>'required|min:60',
+    //         'image'=> 'required'
+    //     ]);
 
         		
-			if($request->input('image'))
-                 {
+	// 		if($request->input('image'))
+    //              {
                             
-                    $image = $request->input('image');
-                    $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-                    \Image::make($request->input('image'))->save(public_path('image').$name);		
-                    $input->image = 'image'.$name;
-                    $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
-                    $user->fill($input)->save();
+    //                 $image = $request->input('image');
+    //                 $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+    //                 \Image::make($request->input('image'))->save(public_path('image').$name);		
+    //                 $input->image = 'image'.$name;
+    //                 $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
+    //                 $user->fill($input)->save();
 
-                    return redirect()->route('users.index') ->with('flash_message', 'User successfully edited.');
+    //                 return redirect()->route('users.index') ->with('flash_message', 'User successfully edited.');
                         
-                }
+    //             }
 
         
 
         
-            }
+    //         }
     
 
     public function index() {

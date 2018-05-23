@@ -17,8 +17,8 @@ use Session;
 class UserController extends Controller {
 
     public function __construct() {
-        // $this->middleware(['auth',  'clearance']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
-        // $this->middleware(['auth', 'clearance'])->except('update');
+        $this->middleware(['auth',  'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+    
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends Controller {
                         if (isset($roles)) {
 
                             foreach ($roles as $role) {
-                            $role_r = Role::where('name', '=', $role)->firstOrFail();            
+                            $role_r = Role::where('id', '=', $role)->firstOrFail();            
                             $user->assignRole($role_r); //Assigning role to user
                             }
                         }        
@@ -115,38 +115,44 @@ class UserController extends Controller {
     //Validate name, email and password fields  
         $this->validate($request, [
             'name'=>'required|max:120',
-            'email'=>'required|email',      
-            'service'=>'required',
-            'address'=>'required',            
-            'state'=>'required',            
-            'phone'=>'required|min:11',
-            'about'=>'required|min:60',
-            'image'=> 'required'
+            'email'=>'required|email'      
+           
         ]);
 
-       if ($request->input('image'))
-                 {
-                    $name = time().'.'.$request->input('image');
-                    // $request->image->move('public/images',$name);
+    //    if ($request->input('image'))
+    //              {
+    //                 $name = time().'.'.$request->input('image');
+    //                 // $request->image->move('public/images',$name);
 
 
                     
-                        $user->name = $request->input('name');
-                        $user->email = $request->input('email');
-                        $user->service = $request->input('service');
-                        $user->phone = $request->input('phone');
-                        $user->about = $request->input('about');
-                        $user->address = $request->input('address');
-                        $user->image = $name;
-                        $user->save();
+                        
+    //                     $user->service = $request->input('service');
+    //                     $user->phone = $request->input('phone');
+    //                     $user->about = $request->input('about');
+    //                     $user->address = $request->input('address');
+    //                     $user->image = $name;
+    //                     $user->save();
                         
                         
                         
                     
-                }
+    //             }
+         
+       $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
+                    
+         $roles = $request['roles']; //Retrieving the roles field
+                       //Checking if a role was selected
+                        if (isset($roles)) {
 
+                            foreach ($roles as $role) {
+                            $role_r = Role::where('id', '=', $role)->firstOrFail();            
+                            $user->assignRole($role_r); //Assigning role to user
+                            }
+                        }   
+         $user->save();
         
-         return view('/home')->with('flash_message', 'User successfully edited.');      
+         return  redirect()->route('/') ->with('flash_message', 'User successfully edited.');      
        
     }
 

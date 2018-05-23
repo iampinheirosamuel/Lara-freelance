@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
  <div class="row">
-    
+     <br><br><br><br><br>
   <div class="m-content">
     
         <div class="row">
@@ -24,10 +24,10 @@
                             </div>
                             <div class="m-card-profile__details">
                                 <span class="m-card-profile__name">
-                                      {{ $user->name }}
+                                      {{-- {{ $users->name }} --}}
                                 </span>
                                 <a href="" class="m-card-profile__email m-link">
-                                      {{ $user->email }}
+                                      {{-- {{ $users->email }} --}}
                                 </a>
                             </div>
                         </div>
@@ -46,8 +46,8 @@
                             <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
                                 <li class="nav-item m-tabs__item">
                                     <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_user_profile_tab_1" role="tab" aria-selected="true">
-                                        <i class="flaticon-edit "></i>
-                                        Update Profile
+                                        <i class="flaticon-share m--hide"></i>
+                                        FaceWorka Profile
                                     </a>
                                 </li>
                                
@@ -77,14 +77,13 @@
                                             Name
                                         </label>
                                         <div class="col-5">
-                                           <input class="form-control m-input" type="text" value="{{ $user->name }}">
+                                         
                                         </div>
-                                        <div class="col-7">
-                                             <label for="example-text-input" class="col-2 col-form-label">
-                                                E-mail
-                                            </label>
-                                            <input class="form-control m-input" type="text" value="{{ $user->email }}">
-                                           
+                                        <div class="col-5">
+                                            <input class="form-control m-input" type="text" value="Andre">
+                                            <span class="m-form__help">
+                                               Skills
+                                            </span>
                                         </div>
                                     </div>
                                     
@@ -94,7 +93,9 @@
                                         <label for="example-text-input" class="col-2 col-form-label">
                                             Phone No.
                                         </label>
-                                        c
+                                        <div class="col-7">
+                                            <input class="form-control m-input" type="text" value="0803129887">
+                                        </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
@@ -104,9 +105,7 @@
                                             <input class="form-control m-input" type="text" value="1276">
                                         </div>
                                     </div>
-
                                     <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-                                   
                                     <div class="form-group m-form__group row">
                                         <div class="col-10 ml-auto">
                                             <h3 class="m-form__section">
@@ -127,7 +126,6 @@
                                             <input class="form-control m-input" type="text" value="">
                                         </div>
                                     </div>
-
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
                                             Relationship
@@ -139,7 +137,6 @@
                                             <input class="form-control m-input" type="text" value="">
                                         </div>
                                     </div>
-
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
                                             Portion
@@ -151,7 +148,6 @@
                                             <input class="form-control m-input" type="text" value="">
                                         </div>
                                     </div>
-
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
                                            
@@ -180,8 +176,6 @@
                                     </div>
 
                                 </div>
-
-
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions">
                                         <div class="row">

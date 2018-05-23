@@ -18,14 +18,13 @@ Route::get('/', 'PostController@home')->name('home');
 
 Route::get('/posts', 'PostController@index');
 
-Route::get('profile/{id}', 'UserController@update');
-
-
 Route::resource('users', 'UserController');
 
 Route::get('/verified-profile/{id}', 'PostController@showUser');
 
 Route::resource('roles', 'RoleController');
+
+Route::resource('profile', 'ProfileController');
 
 Route::resource('permissions', 'PermissionController');
 
