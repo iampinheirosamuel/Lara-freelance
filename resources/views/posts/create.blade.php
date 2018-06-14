@@ -18,17 +18,26 @@
 							</div>
 							<!--begin::Form-->
 							
-                                 {{ Form::open(array('route' => 'posts.store' , 'class' => 'm-form m-form--fit m-form--label-align-right')) }}
-								<div class="m-portlet__body">
+                                 {{ Form::open(array('route' => 'posts.store' , 'enctype' => 'multipart/form-data', 'class' => 'm-form m-form--fit m-form--label-align-right')) }}
+								 {{ csrf_field() }}
+								 <div class="m-portlet__body">
+									<div class="form-group m-form__group  row">
+                                        {{ Form::label('title', 'Title', array('style'=> 'padding-left:0px','class' => 'col-form-label text-left col-lg-2-offset-1 col-sm-12')) }}
+                                       {{ Form::text('title', null, array('class' => 'form-control col-lg-6 col-sm-12')) }}       
+										
+									<input type="hidden" value="{{ Auth::user()->profile->id }}" name="profile_id" >
+									</div>
+
 									<div class="form-group m-form__group row">
-                                        {{ Form::label('title', 'Title', array('class' => 'col-form-label col-lg-3 col-sm-12')) }}
-                                       {{ Form::text('title', null, array('class' => 'form-control col-lg-3 col-sm-12')) }}       
+                                        {{ Form::label('featured', 'Featured Image', array('style'=> 'padding-left:0px','class' => 'col-form-label text-left col-lg-2-offset-1 col-sm-12')) }}
+
+										{{ Form::file('featured', array('class' => 'form-control-file col-lg-6 col-sm-12')) }}  
 										
 										
 									</div>
 									<div class="form-group m-form__group row">
-                                         {{ Form::label('body', 'Post Body', array('class' => 'col-form-label col-lg-3 col-sm-12')) }}
-                                          {{ Form::textarea('body', null, array('class' => 'form-control','id' =>'summernote')) }}
+                                         {{ Form::label('body', 'Post Body', array('style'=> 'padding-left:0px','class' => 'col-form-label text-left col-lg-2-offset-1 col-sm-12')) }}
+                                         {{ Form::textarea('body', null, array('class' => 'form-control col-lg-6')) }}
             
 										
 									</div>
@@ -64,77 +73,27 @@
 									</div>
 									  <div class="m-portlet__body" style="padding:1.0rem;">
 										<div class="m-widget4">
-											<div class="m-widget4__item">
+											@foreach($posts as $singlePost)
+										<a href="{{ route('posts.show', $singlePost->id ) }}">
+											<div class="m-widget4__item" style="border-bottom: 0.07rem dashed #ebedf2;">
 												<div class="m-widget4__img m-widget4__img--logo">
-													<img src="../../assets/app/media/img/client-logos/logo5.png" alt="">
+												<img  style="border-radius:5%" src="{{ $singlePost->featured }}" alt="">
 												</div>
 												<div class="m-widget4__info">
 													<span class="m-widget4__title">
-														Trump Themes
+														{{ $singlePost->title }}
 													</span>
 													<br>
 													<span class="m-widget4__sub">
-														Make Metronic Great Again
+														{{ str_limit( $singlePost->body, 40) }}
 													</span>
 												</div>
 												<span class="m-widget4__ext">
 													<i class="flaticon-m"></i>
 												</span>
-                                            </div>
-                                            
-                                            <div class="m-widget4__item">
-												<div class="m-widget4__img m-widget4__img--logo">
-													<img src="../../assets/app/media/img/client-logos/logo5.png" alt="">
-												</div>
-												<div class="m-widget4__info">
-													<span class="m-widget4__title">
-														Trump Themes
-													</span>
-													<br>
-													<span class="m-widget4__sub">
-														Make Metronic Great Again
-													</span>
-												</div>
-												<span class="m-widget4__ext">
-													<i class="flaticon-left-arrow"></i>
-												</span>
-                                            </div>
-                                            
-                                            <div class="m-widget4__item">
-												<div class="m-widget4__img m-widget4__img--logo">
-													<img src="../../assets/app/media/img/client-logos/logo5.png" alt="">
-												</div>
-												<div class="m-widget4__info">
-													<span class="m-widget4__title">
-														Trump Themes
-													</span>
-													<br>
-													<span class="m-widget4__sub">
-														Make Metronic Great Again
-													</span>
-												</div>
-												<span class="m-widget4__ext">
-													<i class="flaticon-left-arrow"></i>
-												</span>
-                                            </div>
-                                            
-                                            <div class="m-widget4__item">
-												<div class="m-widget4__img m-widget4__img--logo">
-													<img src="../../assets/app/media/img/client-logos/logo5.png" alt="">
-												</div>
-												<div class="m-widget4__info">
-													<span class="m-widget4__title">
-														Trump Themes
-													</span>
-													<br>
-													<span class="m-widget4__sub">
-														Make Metronic Great Again
-													</span>
-												</div>
-												<span class="m-widget4__ext">
-													<i class="flaticon-left-arrow"></i>
-												</span>
 											</div>
+										</a>
+											@endforeach
 											
 										</div>
 									</div>

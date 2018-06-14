@@ -24,10 +24,10 @@
                             </div>
                             <div class="m-card-profile__details">
                                 <span class="m-card-profile__name">
-                                      {{-- {{ $user->name }} --}}
+                                      {{ $profile->name }}
                                 </span>
                                 <a href="" class="m-card-profile__email m-link">
-                                      {{-- {{ $user->email }} --}}
+                                      {{ $profile->email }}
                                 </a>
                             </div>
                         </div>
@@ -104,7 +104,9 @@
                                             <input class="form-control m-input" type="text" value="1276">
                                         </div>
                                     </div>
+
                                     <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+                                   
                                     <div class="form-group m-form__group row">
                                         <div class="col-10 ml-auto">
                                             <h3 class="m-form__section">
@@ -125,6 +127,7 @@
                                             <input class="form-control m-input" type="text" value="">
                                         </div>
                                     </div>
+
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
                                             Relationship
@@ -136,6 +139,7 @@
                                             <input class="form-control m-input" type="text" value="">
                                         </div>
                                     </div>
+
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
                                             Portion
@@ -147,6 +151,7 @@
                                             <input class="form-control m-input" type="text" value="">
                                         </div>
                                     </div>
+
                                     <div class="form-group m-form__group row">
                                         <label for="example-text-input" class="col-2 col-form-label">
                                            
@@ -175,6 +180,8 @@
                                     </div>
 
                                 </div>
+
+
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions">
                                         <div class="row">

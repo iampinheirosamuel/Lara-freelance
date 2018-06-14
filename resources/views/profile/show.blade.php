@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
- <div class="row">
-     <br><br><br><br><br>
-  <div class="m-content">
+
+  {{-- <div class="m-content"> --}}
     
-        <div class="row">
+        {{-- <div class="row"> --}}
             <div class="col-xl-3 col-lg-4">
                 <div class="m-portlet m-portlet--full-height  ">
                     <div class="m-portlet__body">
@@ -18,17 +16,22 @@
                                 
                                 <div class="m-card-profile__pic-wrapper">
                                     <span class="m-topbar__userpic">
-                                        <img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+                                        <img src=" {{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
                                     </span>
                                 </div>
                             </div>
                             <div class="m-card-profile__details">
                                 <span class="m-card-profile__name">
-                                      {{-- {{ $users->name }} --}}
+                                      {{ $profile->name }}
                                 </span>
                                 <a href="" class="m-card-profile__email m-link">
-                                      {{-- {{ $users->email }} --}}
+                                     {{ $profile->service }}
                                 </a>
+                            </div>
+                            <div class="m-card-profile__details">
+                                <h5>
+                                    
+                                </h5>
                             </div>
                         </div>
 
@@ -43,17 +46,8 @@
                     <div class="m-portlet__head">
 
                         <div class="m-portlet__head-tools">
-                            <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
-                                <li class="nav-item m-tabs__item">
-                                    <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_user_profile_tab_1" role="tab" aria-selected="true">
-                                        <i class="flaticon-share m--hide"></i>
-                                        FaceWorka Profile
-                                    </a>
-                                </li>
-                               
-                               
-                            </ul>
-                        </div>
+                            
+                          
 
                     </div>
                     <div class="tab-content">
@@ -62,143 +56,189 @@
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group m--margin-top-10 m--hide">
                                         <div class="alert m-alert m-alert--default" role="alert">
+                                           
                                          </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        <div class="col-10 ml-auto">
-                                            <h3 class="m-form__section">
+                                        <div class="col-6">
+                                            <h3 class="">
                                                 Personal Details
                                             </h3>
                                         </div>
+                                        <div class="col-6">
+                                             <button type="button" class="btn btn-focus float-right" data-toggle="modal" data-target="#m_modal_4">
+												Send me a Task
+											</button>
+                                        </div>
                                     </div>
+                                      <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
                                     
                                     <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Name
-                                        </label>
-                                        <div class="col-5">
-                                         
+                                        
+                                        <div class="col-lg-6">
+                                        <label for="example-text-input" class=" col-form-label">
+                                            Fullname
+                                          </label>
+                                            <h6 class="">
+                                                {{ $profile->name }}
+                                            </h6>
                                         </div>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="Andre">
-                                            <span class="m-form__help">
-                                               Skills
-                                            </span>
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                   
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Phone No.
-                                        </label>
-                                        <div class="col-7">
-                                            <input class="form-control m-input" type="text" value="0803129887">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Ext.
-                                        </label>
-                                        <div class="col-7">
-                                            <input class="form-control m-input" type="text" value="1276">
-                                        </div>
-                                    </div>
-                                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-10 ml-auto">
-                                            <h3 class="m-form__section">
-                                                2. Next of Kin(s)
-                                            </h3>
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Address
-                                        </label>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="">
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Relationship
-                                        </label>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="">
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Portion
-                                        </label>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="">
-                                        </div>
-                                        <div class="col-5">
-                                            <input class="form-control m-input" type="text" value="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
+                                       
+                                        <div class="col-lg-6">
                                            
-                                        </label>
-                                        <div class="col-7">
-                                            <label class="m-option">
-                                                <span class="m-option__control">
-                                                    <span class="m-checkbox m-checkbox--primary m-radio--check-bold">
-                                                        <input type="checkbox" name="chkAgree">
-                                                        <span></span>
-                                                    </span>
-                                                </span>
-                                                <span class="m-option__label">
-                                                    <span class="m-option__head">
-                                                        <span class="m-option__title">
-                                                            Agree to Terms
-                                                        </span>
-                                                        
-                                                    </span>
-                                                    <span class="m-option__body">
-                                                        By clicking this box, I declare that the information given above correct to the best of my knowledge and belief. I agree to abide by the fineprint of the society
-                                                    </span>
-                                                </span>
-                                            </label>
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="m-portlet__foot m-portlet__foot--fit">
-                                    <div class="m-form__actions">
-                                        <div class="row">
-                                            <div class="col-2"></div>
-                                            <div class="col-7">
-                                                <button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-                                                    Save changes
-                                                </button>
-                                                &nbsp;&nbsp;
-                                                <button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-                                                    Cancel
-                                                </button>
-                                            </div>
+                                    <div class="form-group m-form__group row">
+                                        
+                                        <div class="col-lg-6">
+                                        <label for="example-text-input" class=" col-form-label">
+                                            Skill sets
+                                          </label>
+                                            <h6 class="">
+                                                {{ $profile->service }}
+                                            </h6>
+                                        </div>
+                                       
+                                        <div class="col-lg-6">
+                                            <label for="example-text-input" class=" col-form-label">
+                                            City
+                                           </label>
+                                            <h6 class="">
+                                                {{ $profile->state }}
+                                            </h6>
                                         </div>
                                     </div>
+
+                                   
+
+                                    <div class="form-group m-form__group row">
+                                         <div class="col-lg-12">
+                                            <label for="example-text-input" class=" col-form-label">
+                                            Bio
+                                           </label>
+                                            <h6 class="">
+                                                {{ $profile->about }}
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                  
+                                    
+                                   
+                                    
+                                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+                                   
+                                    
+
+                                </div>
+                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                  
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div> 
+         </div>
+   
  </div>
- </div>
+
+ <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+							<div class="modal-dialog modal-md" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">
+											Request a New Task
+										</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">
+												×
+											</span>
+										</button>
+									</div>
+									<div class="modal-body">
+                                    <form method="post" action="{{ route('task.store') }}">
+                                          {{ csrf_field() }} 
+                                          @if(Auth::user()) 
+                                           <div class="form-group">
+												<label for="recipient-name" class="form-control-label">
+													Your name:
+												</label>
+                                            <input type="text" name="client_name" value="{{ Auth::user()->name }}" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+												<label for="recipient-name" class="form-control-label">
+													Your phone:
+												</label>
+												<input type="text" name="phone" value="{{ Auth::user()->profile->phone }}" class="form-control" id="recipient-name">
+                                                 <input type="hidden" name="user_id" value="{{  Auth::user()->profile->id }}" class="form-control" id="recipient-name">
+                                            </div>
+                                            @else
+                                            
+                                            <div class="form-group">
+												<label for="recipient-name" class="form-control-label">
+													Your name:
+												</label>
+												<input type="text" name="client_name" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+												<label for="recipient-name" class="form-control-label">
+													Your phone:
+												</label>
+												<input type="text" name="phone" class="form-control" id="recipient-name">
+                                            <input type="hidden" name="user_id" value="{{  $profile->id }}" class="form-control" id="recipient-name">
+
+                                            </div>
+                                            @endif
+
+
+                                            <div class="form-group">
+												<label for="recipient-name" class="form-control-label">
+													Your request:
+												</label>
+                                                <input type="text" name="title" class="form-control" id="recipient-name">
+                                                <small class="form-helper">Give it a title or short description</small>
+											</div>
+											<div class="form-group">
+												<label for="message-text" class="form-control-label">
+													Give more details about your request:
+												</label>
+												<textarea class="form-control" name="description" id="message-text"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                            <div class="form-group row">
+                                                <div class="col-6">
+                                                   <label for="recipient-name" class="form-control-label">
+													When do you want it done?
+                                                  </label>
+                                                  
+                                                    <div class="input-group date">
+                                                        <input type="text" name="date" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
+                                                       
+                                                    </div>
+                                                			 
+                                                </div>
+												<div class="col-6">
+                                                   <label for="recipient-name" class="form-control-label">
+													Where do want it done?
+												  </label>
+												  <input type="text" name="location" class="form-control" id="recipient-name">
+                                                </div>
+												
+											</div>
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">
+											Cancel
+										</button>
+										<button type="submit" class="btn btn-primary">
+											Create Tasks
+										</button>
+                                    </div>
+                                 </form>
+								</div>
+							</div>
+						</div>
 @endsection

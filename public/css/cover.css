@@ -9,11 +9,15 @@ a:hover {
   color: #fff;
 }
 
+.nav-item {
+  padding-top: 0px;
+}
 .bg-dark {
   /* background: rgba(0, 51, 102, 0.8392156862)!important; */
   background:  #fff!important;
   color:#065CB3;
   padding-bottom: 15px;
+  padding-top: 0px;
   box-shadow: 0 3px 4px 0px rgba(0, 0, 0, 0.08), 0 0px 0px 0 rgba(0, 0, 0, 0.12);
 }
 .bg-dark a {
@@ -95,8 +99,7 @@ button {
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .jumbo {
   display: block;
-  padding-top: 10px;
-  padding: 0px;
+  margin-top: -5px;
   background: linear-gradient(to right, rgba(45, 44, 152, 0.92), rgba(57, 56, 177, 0.89));
   margin-bottom: 0;
   padding-bottom: 50px; 
@@ -126,6 +129,7 @@ button {
   list-style-type: none;
   padding-bottom: 15px;
   text-align: left;
+  padding-right:30px;
 }
 
 .support li a:hover {
@@ -146,8 +150,8 @@ button {
 }
 
 .text-title {
-    padding-top: 60px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 .placeholder h4 {
@@ -214,7 +218,7 @@ button {
 }
 .placeholders-counter {
   padding-top: 20px;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 
 .placeholders{
@@ -334,12 +338,18 @@ h1 {
 }
 
 .footer  {
-  background: #3f3f95 !important;
-  padding: 40px;
+  background: #383888 !important;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer a {
+  color: #fff;
 }
 
 .footer p {
-  color: #fff;
+    color: #fff;
+    margin-bottom: 0px;
 }
 
 
