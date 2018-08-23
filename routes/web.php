@@ -12,6 +12,10 @@
 */
 
 
+Route::get('/test', function(){
+   return App\User::find(2)->task;
+});
+
 Auth::routes();
 
 Route::get('/', 'PostController@home')->name('home');
@@ -26,6 +30,18 @@ Route::resource('roles', 'RoleController');
 
 Route::resource('profile', 'ProfileController');
 
+Route::post('/profile/update/{id}',[
+    'uses' => 'ProfileController@update',
+    'as' => 'profile.update'
+]);
+
 Route::resource('permissions', 'PermissionController');
 
 Route::resource('posts', 'PostController');
+
+Route::resource('task', 'TaskController');
+
+Route::post('/posts/create',[
+    'uses' => 'PostController@store',
+    'as' => 'posts.store'
+]);

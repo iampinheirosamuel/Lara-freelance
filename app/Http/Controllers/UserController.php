@@ -152,7 +152,7 @@ class UserController extends Controller {
                         }   
          $user->save();
         
-         return  redirect()->route('/') ->with('flash_message', 'User successfully edited.');      
+         return  redirect()->route('users.index') ->with('flash_message', 'User successfully edited.');      
        
     }
 

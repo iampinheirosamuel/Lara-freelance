@@ -8,7 +8,7 @@
                        </style>
                        <div class="m-login__signup">
 							<div class="m-login__head">
-								<h3 class="m-login__title">
+								<h3 style="    color: #3e3f94" class="m-login__title">
 									Sign Up
 								</h3>
 								<div class="m-login__desc">
@@ -18,7 +18,7 @@
                             <form class="m-login__form m-form"  method="POST" action="{{ route('register') }}">
                                 {{ csrf_field() }}
 								<div class="form-group m-form__group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <input class="form-control m-input" type="text" placeholder="Name" name="name">
+                                    <input style="    border: 1px solid #3f3f95;" class="form-control m-input" type="text" placeholder="Name" name="name">
                                      @if ($errors->has('name'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -26,7 +26,7 @@
                                      @endif
 								</div>
 								<div class="form-group m-form__group{{ $errors->has('email') ? ' has-error' : '' }}">
-									<input class="form-control m-input" type="text" placeholder="Email"  name="email" autocomplete="off">
+									<input style="    border: 1px solid #3f3f95;" class="form-control m-input" type="text" placeholder="Email"  name="email" autocomplete="off">
                                       @if ($errors->has('email'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -34,7 +34,7 @@
                                      @endif
                                 </div>
 								<div class="form-group m-form__group{{ $errors->has('password') ? ' has-error' : '' }}">
-									<input class="form-control m-input" type="password" placeholder="Password"  name="password">
+									<input style="    border: 1px solid #3f3f95;" class="form-control m-input" type="password" placeholder="Password"  name="password">
                                      @if ($errors->has('password'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('password') }}</strong>
@@ -42,13 +42,13 @@
                                      @endif
                                 </div>
 								<div class="form-group m-form__group">
-									<input class="form-control m-input m-login__form-input--last" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation">
+									<input style="    border: 1px solid #3f3f95;" class="form-control m-input m-login__form-input--last" id="password-confirm" type="password" placeholder="Confirm Password" name="password_confirmation">
 								</div>
 								<div class="row form-group m-form__group m-login__form-sub">
 									<div class="col m--align-left">
-										<label class="m-checkbox m-checkbox--light">
+										<label class="m-checkbox m-checkbox">
 											<input type="checkbox" name="agree">
-											I Agree the
+											I Agree to the
 											<a href="#" class="m-link m-link--focus">
 												terms and conditions
 											</a>
@@ -59,7 +59,7 @@
 									</div>
 								</div>
 								<div class="m-login__form-action">
-									<button type="submit"  class="btn m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+									<button style="color:#fff; background:#3d3e91;"  type="submit"  class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">
 										Sign Up
 									</button>
 									&nbsp;&nbsp;

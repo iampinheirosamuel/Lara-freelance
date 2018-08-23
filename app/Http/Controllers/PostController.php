@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Profile;
 use App\Post;
 use Auth;
 use Session;
@@ -13,7 +14,7 @@ use App\User;
 class PostController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index','home','showUser','show');
+        $this->middleware(['auth', 'clearance'])->except('index','home','show','create','store','edit','destroy');
     }
 
     /**
@@ -23,8 +24,9 @@ class PostController extends Controller {
      */
 
     public function home(){
-        $users = User::orderby('id', 'desc')->paginate(5); 
-        return view('index')->with('users', $users);
+        $profile = Profile::all();
+        $users = User::all();
+        return view('index' , compact('users'));
     }
 
     public function showUser($id) {
@@ -75,8 +77,7 @@ class PostController extends Controller {
     
 
     public function index() {
-        $posts = Post::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
-
+        $posts = Post::orderby('id', 'desc')->paginate(15); //show only 15 items at a time in descending order
         return view('posts.index', compact('posts'));
     }
 
@@ -86,7 +87,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('posts.create');
+        $profile = Profile::all();
+         $posts = Post::orderby('id', 'desc')->paginate(10);
+         return view('posts.create', compact('profile','posts'));
     }
 
     /**
@@ -99,14 +102,31 @@ class PostController extends Controller {
 
     //Validating title and body field
         $this->validate($request, [
-            'title'=>'required|max:100',
-            'body' =>'required',
-            ]);
+           
+        'title' => 'required|max:255',
+        'featured' => 'required|image',
+        'body' => 'required'
+        
+        ]);
 
-        $title = $request['title'];
-        $body = $request['body'];
+        $featured = $request->featured;
 
-        $post = Post::create($request->only('title', 'body'));
+        $featured_new_name = time().$featured->getClientOriginalName();
+
+        $featured->move('uploads/posts',$featured_new_name);
+
+        $post = Post::create([
+         
+
+            'title' => $request->title,
+
+            'profile_id' => $request->profile_id,
+
+            'body' => $request->body,
+
+            'featured' => '/uploads/posts/'.$featured_new_name,
+
+        ]);
 
     //Display a successful message upon save
         return redirect()->route('posts.index')
@@ -121,9 +141,10 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $post = Post::findOrFail($id); //Find post of id = $id
-
-        return view ('posts.show', compact('post'));
+         $post = Post::findOrFail($id); //Find post of id = $id
+         $profile = Profile::all();
+         $posts = Post::orderby('id', 'desc')->paginate(10);
+        return view ('posts.show', compact('post','profile','posts'));
     }
 
     /**
@@ -146,15 +167,29 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        $this->validate($request, [
-            'title'=>'required|max:100',
-            'body'=>'required',
+        
+         $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+            
         ]);
 
-        $post = Post::findOrFail($id);
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->save();
+        $post = Post::find($id);
+
+        if($request->hasFile('featured')){
+           
+            $featured = $request->featured;
+
+            $featured_new_name = time().$featured->getCientOriginalName();
+
+            $featured = move('uploads/posts/', $featured_new_name);
+
+            $post->title = $request->title;
+
+            $post->body = $request->body;
+               
+            $post->save();
+        }
 
         return redirect()->route('posts.show', 
             $post->id)->with('flash_message', 

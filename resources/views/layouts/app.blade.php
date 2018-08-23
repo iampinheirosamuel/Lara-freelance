@@ -12,10 +12,11 @@
     <link rel="icon" href="../../../../favicon.ico">
     <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <!--end::Base Styles -->
     <link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
 
-    <title>Home ||</title>
+    <title></title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css"></link>
@@ -31,7 +32,27 @@
     
     <!-- Custom styles for this template -->
     <link href="../../css/cover.css" rel="stylesheet">
-        
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102627835-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102627835-1');
+</script>
+
+     <!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-102627835-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->   
     
   </head>
     <!-- Scripts -->
@@ -46,10 +67,10 @@
   <body>
     <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#"><img src="../../images/logo.png" alt=""></a>
+      <a class="navbar-brand" href="{{ url('/') }}"><img src="../../images/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
         aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i style=" color: #222;" class="flaticon-grid-menu"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -57,23 +78,26 @@
   
           
             <li class="nav-item"><a href="{{ url('/') }}">Home</a></li>
-            @if (!Auth::guest())
-                <li class="nav-item"><a href="{{ route('posts.create') }}">New Article</a></li>
-            @endif
+           
+                <li class="nav-item"><a href="{{ route('posts.index') }}">News Feed</a></li>
+          
           
            @if (Auth::guest())
-                            <li class=""><a  class="btn btn-secondary" href="{{ route('login') }}">Login</a></li>
+                            <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
                             {{-- <li class="nav-item"><a class="btn btn-secondary" href="{{ route('register') }}">Register</a></li> --}}
                         @else
-                            
-                            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+                        @role('Active')
+                             <li class="nav-item"><a href="{{ route('posts.create') }}">Create Post</a></li>
+                         @endrole
+                  <li style="margin-top: 10px; " class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img style="height: 50px;" src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+                        <img style="margin-top:10px;     border: 1px solid rgba(16, 224, 64, 0.78); height: 40px; width:42px;" alt="click_me" src="{{ Auth::user()->profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
 												<span class="m-topbar__username m--hide">
 													
-												</span>
+                        </span>
+                      
 											</a>
 											<div class="m-dropdown__wrapper">
 												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -81,7 +105,7 @@
 													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
 														<div class="m-card-user m-card-user--skin-dark">
 															<div class="m-card-user__pic">
-																<img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+                              <img src="" class="m--img-rounded m--marginless" alt=""/>
 															</div>
 															<div class="m-card-user__details">
 																<span style="color:#fff; font-size:12px;" class="m-card-user__name m--font-weight-500">
@@ -103,7 +127,7 @@
                                   </li>
                                     @role('Admin') {{-- Laravel-permission blade helper --}}
                                     <li class="m-nav__item">
-                                      <a href="../../header/profile.html" class="m-nav__link">
+                                      <a href="/users" class="m-nav__link">
                                         <i class="m-nav__link-icon flaticon-profile-1"></i>
                                         <span class="m-nav__link-title">
                                           <span class="m-nav__link-wrap">
@@ -124,38 +148,43 @@
                                                                 
 																<li class="m-nav__item">
                                                                     
-																	<a href=" {{ route('profile.show', Auth::user()->id ) }}" class="m-nav__link">
+																	<a href=" {{ route('profile.edit', Auth::user()->id ) }}" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
 																					My Profile
 																				</span>
-																				<span class="m-nav__link-badge">
-																					<span class="m-badge m-badge--success">
-																						*
-																					</span>
-																				</span>
+																				
 																			</span>
 																		</span>
 																	</a>
                                                                 </li>
                                                                 <li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
+																	<a href="#" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-share"></i>
 																		<span class="m-nav__link-text">
 																			Activity
 																		</span>
 																	</a>
-                                                                </li>
-                                                                <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    </li>
+                                  <li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-chat-1"></i>
+                                <a href="{{ route('task.show', Auth::user()->profile->id) }}" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                    <span class="m-nav__link-title">
+																			<span class="m-nav__link-wrap">
 																		<span class="m-nav__link-text">
 																			Messages
-																		</span>
+                                    </span>
+                                    <span class="m-nav__link-badge">
+																					<span class="m-badge m-badge--success">
+																						{{ Auth::user()->task->count() }}
+																					</span>
+                                        </span>
+                                      </span>
+                                    </span>
 																	</a>
                                                                 </li>
                                                                 
@@ -204,40 +233,39 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="">
               @yield('content')
             </div>
          </div>
              <div class="container-fluid support">
                 <div class="row">
                   <div class="col-lg-4  col-sm-6 ">
-                    <p><h6>Contact Us</h6></p>
+                    <h6>Contact Us</h6>
                     <br>
                     <ul class="">
-                       <li class="nav-item"><i class="fa fa-location"></i> 2145B Havrey Road, Port Harcourt</li>
-                       <li class="nav-item"><i class="fa fa-phone"></i> +234 890 345 4545</li>
-                      <li class="nav-item"><i class="fa fa-envelope"></i> contact@facework.com.ng</li>
+                      
+                       <li class=""><i class="fa fa-phone"></i> +234 802 279 0906</li>
+                      <li class=""><i class="fa fa-envelope"></i> contact@facework.com.ng</li>
                        
                     </ul>
                     
                   </div>
                   <div class="col-lg-4  col-sm-6 ">
-                  <p><h6>Follow us</h6></p>
+                  <h6>Follow us</h6>
                    <br>
-                    <ul class="" style="display:inline-block;">
-                       <li class="nav-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                       <li class="nav-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <ul class="" style="display:inline-flex; padding-right:10px;">
+                       <li class=""><a href="#"><i class="fa fa-facebook fa-3x"></i></a></li>
+                       <li class=""><a href="#"><i class="fa fa-twitter fa-3x"></i></a></li>
                       
                        
                     </ul>
                     </div>
                   <div class="col-lg-4  col-sm-6 ">
-                      <p><h6>Support</h6></p>
-                   
-                    <br>
+                      <h6>Support</h6>
+                      <br>
                     <ul class="">
-                       <li class="nav-item"><a href="#">How it Works</a></li>
-                       <li class="nav-item"><a href="#">Join Us</a></li>
+                       <li class=""><a href="#">How it Works</a></li>
+                       <li class=""><a href="/register">Join Us</a></li>
                      
                        
                     </ul>
@@ -247,7 +275,7 @@
 
            
               <div class="footer"> <p>
-                2018 © Designed & Suported by <a class="m-link" href="https://">
+                2018 © Designed & Supported by <a class="m-link" href="https://">
                                 Evolve Tech
                             </a></p>
               </div>
@@ -322,19 +350,19 @@
         // });
 
 
-        $(document).ready(function(){
-            $("#summernote").summernote();
-        });
+       
     
 
         
       </script>
       <!--begin::Base Scripts -->
 		<script src="../../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="../../../assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->   
         <!--begin::Page Snippets -->
 		<script src="../../assets/app/js/dashboard.js" type="text/javascript"></script>
-		<!--end::Page Snippets -->
+    <!--end::Page Snippets -->
+    <script id="dsq-count-scr" src="//facework-com-ng.disqus.com/count.js" async></script>
   </body>
 </html>

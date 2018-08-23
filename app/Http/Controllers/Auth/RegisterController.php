@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,10 +63,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
+
+        Profile::create([
+             'user_id' => $user->id,
+             'name' => $user->name,
+             'email' => $user->email,
+             'service' => '',
+             'about' => '',
+             'phone' => '',
+             'state' => '',
+             'address' => '',
+             'image' => '\uploads\userprofile\1527438963welcome-aebcdc.png'
+        ]);
+
+        return $user;
     }
 }

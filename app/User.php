@@ -21,13 +21,18 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile');
     }
 
+    public function task(){
+        return $this->hasMany('App\Task');
+    }
+
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'title', 'body',
+        'name', 'email', 'password', 'title', 'user_id'
     ];
 
     /**
