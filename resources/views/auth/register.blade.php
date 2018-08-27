@@ -17,7 +17,7 @@
 							</div>
                             <form class="m-login__form m-form"  method="POST" action="{{ route('register') }}">
                                 {{ csrf_field() }}
-								<div class="form-group m-form__group{{ $errors->has('name') ? ' has-error' : '' }}">
+								<div class="form-group m-form__group {{ $errors->has('name') ? ' has-error' : '' }}">
                                     <input style="    border: 1px solid #3f3f95;" class="form-control m-input" type="text" placeholder="Name" name="name">
                                      @if ($errors->has('name'))
                                             <span class="help-block">

@@ -1,49 +1,67 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', '| Roles')
 
 @section('content')
 
-<div class="col-lg-10 col-lg-offset-1">
-    <h1><i class="fa fa-key"></i> Roles
+  <div class="m-portlet">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<h3 class="m-portlet__head-text">
+											Roles
+										</h3>
+									</div>
+                                </div>
+                                 <div class="m-portlet__head-tools">
+                                    <ul class="m-portlet__nav">
+                                        <li class="m-portlet__nav-item">
+                                                <a href="{{ URL::to('roles/create') }}" class="m-portlet__nav-link btn btn-success m-btn m-btn--pill m-btn--air"><i class="flaticon-add"></i> Add Role</a>                                
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </div>
+                              
+							<div class="m-portlet__body">
+								<!--begin::Section-->
+								<div class="m-section">
+									<div class="m-section__content">
+										<table class="table table-striped m-table">
+											<thead>
+                                                <tr>
+                                                    <th>Role</th>
+                                                    <th>Permissions</th>
+                                                    <th>Operation</th>
+                                                </tr>
+											</thead>
+											<tbody>
+												 @foreach ($roles as $role)
+                                                    <tr>
 
-    <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Users</a>
-    <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right">Permissions</a></h1>
-    <hr>
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Role</th>
-                    <th>Permissions</th>
-                    <th>Operation</th>
-                </tr>
-            </thead>
+                                                        <td>{{ $role->name }}</td>
 
-            <tbody>
-                @foreach ($roles as $role)
-                <tr>
+                                                        <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>{{-- Retrieve array of permissions associated to a role and convert to string --}}
+                                                        <td>
+                                                        <a href="{{ URL::to('roles/'.$role->id.'/edit') }}" class="btn btn-info pull-left" style="margin-right: 3px;"><i class="flaticon-edit-1"></i>Edit</a>
 
-                    <td>{{ $role->name }}</td>
+                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id] ]) !!}
+                                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                                        {!! Form::close() !!}
 
-                    <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>{{-- Retrieve array of permissions associated to a role and convert to string --}}
-                    <td>
-                    <a href="{{ URL::to('roles/'.$role->id.'/edit') }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+                                                        </td>
+                                                    </tr>
+                                                      
+                                                    @endforeach							
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<!--end::Section-->
+							</div>
+							<!--end::Form-->
+						</div>
 
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id] ]) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
 
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-
-        </table>
-    </div>
-
-    <a href="{{ URL::to('roles/create') }}" class="btn btn-success">Add Role</a>
-
-</div>
 
 @endsection

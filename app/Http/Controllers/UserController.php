@@ -6,6 +6,7 @@ use Image;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\Profile;
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -61,6 +62,24 @@ class UserController extends Controller {
                         $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
                     
                         $roles = $request['roles']; //Retrieving the roles field
+
+                          $user = User::create([
+                                'name' => $request->input('name'),
+                                'email' => $request->input('email'),
+                                'password' => $request->input('password'),
+                            ]);
+
+                            Profile::create([
+                                'user_id' => $user->id,
+                                'name' => $user->name,
+                                'email' => $user->email,
+                                'service' => '',
+                                'about' => '',
+                                'phone' => '',
+                                'state' => '',
+                                'address' => '',
+                                'image' => '\uploads\userprofile\1527438963welcome-aebcdc.png'
+                            ]);
                        //Checking if a role was selected
                         if (isset($roles)) {
 
@@ -69,10 +88,10 @@ class UserController extends Controller {
                             $user->assignRole($role_r); //Assigning role to user
                             }
                         }        
-                    $user->fill($user)->save();
+                    // $user->fill($user)->save();
 
                     //Redirect to the users.index view and display message
-                    return redirect()->route('/') ->with('flash_message', 'Welcome on board.');
+                    return redirect()->back()->with('flash_message', 'Welcome on board.');
                         
                 
     }

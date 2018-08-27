@@ -1,21 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
- <div class="" style="margin-top: -15px">
+ 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       
          @if(Auth::user())
             @if( Auth::user()->roles()->pluck('name')->implode('') != 'Active')
-              <div class="container">      
+              <div class="container-fluid">      
               <div class="alert alert-info"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->profile->id) }}">here</a>
 
-                        </div>
+              </div>
               </div>
             @endif
           @endif
-            <div class="">
-                <div class="">
-                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" height="453px">
     <div class="carousel-item active">
       <img class="d-block w-100" height="453px" src="{{ asset('images/slider1.png') }}" alt="First slide">
@@ -42,11 +41,8 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-                </div>
-              </div>
+                
              
-        
-    </div>
 
 
             <div class="container-fluid">
@@ -99,69 +95,41 @@
 <div class="container-fluid">
   <div class="row">
   <div class="col-lg-5">
-    <h3></h3>
-  
-    <!--begin:: Widgets/Blog-->
-								<div class="m-portlet m-portlet--head-overlay m-portlet--full-height   m-portlet--rounded-force">
-									<div class="m-portlet__head m-portlet__head--fit">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text m--font-light">
-												Freelancers on Facework
-												</h3>
-											</div>
-                    </div>
-                  </div>
-                  
-                  <div class="m-portlet__body">
-										<div class="m-widget28">
-											<div class="m-widget28__pic m-widget28__pic--primary m-portlet-fit--sides"></div>
-											<div class="m-widget28__container" >
-												<!-- begin::Nav pills -->
-												<ul class="m-widget28__nav-items nav nav-pills nav-fill" role="tablist">
-													<li class="m-widget28__nav-item nav-item">
-														<a class="nav-link active" data-toggle="pill" href="#menu11">
-															<span>
-																<i class="fa flaticon-rocket"></i>
-															</span>
-															<span>
-																Available
-															</span>
-														</a>
-													</li>
-													<li class="m-widget28__nav-item nav-item">
-														<a class="nav-link" data-toggle="pill" href="#menu21">
-															<span>
-																<i class="fa flaticon-clipboard"></i>
-															</span>
-															<span>
-																Secure
-															</span>
-														</a>
-													</li>
-													<li class="m-widget28__nav-item nav-item">
-														<a class="nav-link" data-toggle="pill" href="#menu31">
-															<span>
-																<i class="fa flaticon-clipboard"></i>
-															</span>
-															<span>
-																Reliant
-															</span>
-														</a>
-													</li>
-                        </ul>
-                      </div>
-                      
-                    </div>
-                  </div>
-								</div>
-    
-   
+  <div class="resCarousel ResSlid2" data-items="2-3-4-5" data-slide="5" data-speed="900" data-interval="none" data-load="3" data-animator="lazy" data-value="0">
+                    <div class="resCarousel-inner" id="eventLoad">
+                        @foreach ($users as $user)
+                        @if( $user->roles()->pluck('name')->implode('') === 'Active')
+                        <div class="item">
+                          <a href="{{ route('profile.show', $user->profile->id ) }} " >
+																
+															
+                            <div class="tile">
+                                <div>
+                                    <img src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}" class="img-fluid img-rounded" data-toggle="modal" data-target="#exampleModalLong">
+                                </div>
 
+                                 <h6>{{ $user->name }}</h6>
+                                 <p>{{ $user->profile->service }}</p>
+                                 
+                            </div>
+
+                            </a>
+                        </div>
+                        @endif
+												@endforeach
+
+                      
+
+                    </div>
+                    <button class="btn btn-default leftRs"><i class="fa fa-chevron-left"></i></button>
+                    <button class="btn btn-default rightRs"><i class="fa fa-chevron-right"></i></button>
+               
+
+  </div>
   </div>
 
  
-     <div class="col-xl-7">
+     <div class="col-lg-7">
 								<!--begin:: Widgets/User Progress -->
 								<div class="m-portlet m-portlet--full-height ">
 									<div class="m-portlet__head">
@@ -237,10 +205,14 @@
               <div class="row">
                 <div class=" col action">
 
-                  <h1 class="float-left">Join us now</h1>
+                  
 
-                  <div class="float-right">
-                    <a href="{{ url('/register') }}" class="btn btn-secondary btn-large"><h4>GET STARTED</h4></a>
+                  <div class="text-center"><br><br>
+                    <h3>Join us now</h3>
+                    <hr>
+                    <p>Meet other professionals on FaceWork. It is a platform for the right collaborations.</p>
+                    <br>
+                    <a href="{{ url('/register') }}" class="btn btn-secondary ">Get Started</a>
                   </div>
                 </div>
               </div>

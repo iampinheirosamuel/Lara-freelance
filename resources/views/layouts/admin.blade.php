@@ -19,7 +19,7 @@
     <title></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css"></link>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css" />
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
@@ -77,7 +77,7 @@ ga('send', 'pageview');
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
 									<a href="index.html" class="m-brand__logo-wrapper">
-										<img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
+										<img alt="" src="../assets/demo/default/media/img/logo/logo_default_dark.png"/>
 									</a>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -390,7 +390,7 @@ ga('send', 'pageview');
 										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+													<img src="../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
 												<span class="m-topbar__username m--hide">
 													Nick
@@ -399,10 +399,10 @@ ga('send', 'pageview');
 											<div class="m-dropdown__wrapper">
 												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
 												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
+													<div class="m-dropdown__header m--align-center" style="background: url(../assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
 														<div class="m-card-user m-card-user--skin-dark">
 															<div class="m-card-user__pic">
-																<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+																<img src="../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
 															</div>
 															<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
@@ -509,24 +509,65 @@ ga('send', 'pageview');
 		 m-menu-scrollable="0" m-menu-dropdown-timeout="500"  
 		>
 						<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-              
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
-                  <a href="{{ route('roles.index') }}" class="m-menu__link">
-                  <i class="m-menu__link-icon flaticon-user-settings"></i>
-									<span class="m-menu__link-text">
-									 Roles
-									</span>   
-                  </a>   
-              </li>
-              <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
-                  <a href="{{ route('permissions.index') }}" class="m-menu__link">
-                  <i class="m-menu__link-icon flaticon-user-settings"></i>
-									<span class="m-menu__link-text">
-									 Permissions
+              <li class="m-menu__item " aria-haspopup="true">
+								<a href="{{'/users'}}" class="m-menu__link ">
+									<i class="m-menu__link-icon flaticon-line-graph"></i>
+									<span class="m-menu__link-title">
+										<span class="m-menu__link-wrap">
+											<span class="m-menu__link-text">
+												Dashboard
+											</span>
+											<span class="m-menu__link-badge">
+												<span class="m-badge m-badge--danger">
+													
+												</span>
+											</span>
+										</span>
 									</span>
-                  </a>   
-              </li>
+								</a>
+							</li>
 
+                         <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+								<a href="javascript:;" class="m-menu__link m-menu__toggle">
+									<i class="m-menu__link-icon flaticon-share"></i>
+									<span class="m-menu__link-text">
+										User Management
+									</span>
+									<i class="m-menu__ver-arrow la la-angle-right"></i>
+								</a>
+								<div class="m-menu__submenu " m-hidden-height="160" style="">
+									<span class="m-menu__arrow"></span>
+									<ul class="m-menu__subnav">
+										 <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+											<a href="{{ route('roles.index') }}" class="m-menu__link">
+											<i class="m-menu__link-icon flaticon-user-settings"></i>
+											<span class="m-menu__link-text">
+											Roles
+											</span>   
+											</a>   
+										</li>
+										<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+											<a href="{{ route('permissions.index') }}" class="m-menu__link">
+											<i class="m-menu__link-icon flaticon-user-settings"></i>
+											<span class="m-menu__link-text">
+											Permissions
+											</span>
+											</a>   
+										</li>
+
+									</ul>
+								</div>
+							</li>
+							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+								<a href="{{ route('settings') }}" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-user-settings"></i>
+								<span class="m-menu__link-text">
+								Settings
+								</span>
+								</a>   
+							</li>
+              
+             
 						</ul>
 					</div>
 					<!-- END: Aside Menu -->
@@ -564,7 +605,21 @@ ga('send', 'pageview');
 						<div class="row">
 							
 							<div class="col-md-12">
-								<!--begin:: Packages-->
+                <!--begin:: Packages-->
+                
+                  @if(Session::has('flash_message'))
+                    <div class="container">      
+                        <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+                        </div>
+                    </div>
+				@endif 
+				 <div class="container"> 
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">              
+                            @include ('errors.list') {{-- Including error file --}}
+                        </div>
+                    </div>
+                </div>
                  
                 @yield('content')
                 
@@ -588,13 +643,11 @@ ga('send', 'pageview');
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
-								2017 &copy; Metronic theme by
-								<a href="https://keenthemes.com" class="m-link">
-									Keenthemes
-								</a>
+								2017 &copy; Facework
+								
 							</span>
 						</div>
-						<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+						{{-- <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
 							<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
 								<li class="m-nav__item">
 									<a href="#" class="m-nav__link">
@@ -630,7 +683,7 @@ ga('send', 'pageview');
 									</a>
 								</li>
 							</ul>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</footer>
@@ -638,7 +691,7 @@ ga('send', 'pageview');
 		</div>
 		<!-- end:: Page -->
     		        <!-- begin::Quick Sidebar -->
-		<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
+		{{-- <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
 			<div class="m-quick-sidebar__content m--hide">
 				<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
 					<i class="la la-close"></i>
@@ -1238,7 +1291,7 @@ ga('send', 'pageview');
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 		<!-- end::Quick Sidebar -->		    
 	    <!-- begin::Scroll Top -->
 		<div id="m_scroll_top" class="m-scroll-top">
@@ -1276,14 +1329,14 @@ ga('send', 'pageview');
 		</ul>
 		<!-- begin::Quick Nav -->	
     	<!--begin::Base Scripts -->
-		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+		<script src="../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+		<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->   
         <!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<script src="../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<!--end::Page Vendors -->  
         <!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+		<script src="../assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
 	</body>
 	<!-- end::Body -->

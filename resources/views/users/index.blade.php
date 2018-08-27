@@ -120,10 +120,12 @@
 									</div>
 								</div>
 							</div>
-						</div>
-
-    <h1><i class="fa fa-users"></i> User Administration 
-   </h1>
+                        </div>
+                        
+    <h3 class="m-subheader__title ">
+        <i class="fa fa-users"></i> User Administration
+    </h3>
+  
    <hr>
 
         <div class="m-portlet">

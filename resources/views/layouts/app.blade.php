@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="../../images/favicon.png">
     <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
@@ -19,7 +19,7 @@
     <title></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css"></link>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css">
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
       crossorigin="anonymous">
     <link rel="stylesheeet" href="css/fontawesome-all.css">
+    <link rel="stylesheeet" href="../../css/resCarousel.css">
     
     <!-- Custom styles for this template -->
     <link href="../../css/cover.css" rel="stylesheet">
@@ -65,9 +66,10 @@ ga('send', 'pageview');
 </head>
 
   <body>
-    <div class="container">
+  <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="{{ url('/') }}"><img src="../../images/logo.png" alt=""></a>
+      
+          <a class="navbar-brand" href="{{ url('/') }}"><img src="../../images/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
         aria-expanded="false" aria-label="Toggle navigation">
         <i style=" color: #222;" class="flaticon-grid-menu"></i>
@@ -180,7 +182,7 @@ ga('send', 'pageview');
                                     </span>
                                     <span class="m-nav__link-badge">
 																					<span class="m-badge m-badge--success">
-																						{{ Auth::user()->task->count() }}
+																						{{-- {{ Auth::user()->task->count() }} --}}
 																					</span>
                                         </span>
                                       </span>
@@ -212,12 +214,14 @@ ga('send', 'pageview');
                     </ul>
                     
                 </div>
-            </nav>
-        </div>
+      
+    </nav>
+   </div> 
+        
 
        
-         <div class="container-fluid" style="padding-top: 90px;">
-            <div class="row">
+         <div  style="padding-top: 90px;">
+          
                @if(Session::has('flash_message'))
                     <div class="container">      
                         <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
@@ -230,37 +234,34 @@ ga('send', 'pageview');
                             @include ('errors.list') {{-- Including error file --}}
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="">
+                </div>     
+           </div>
               @yield('content')
-            </div>
-         </div>
              <div class="container-fluid support">
                 <div class="row">
-                  <div class="col-lg-4  col-sm-6 ">
+                  <div class="col-md-4  col-sm-4 ">
                     <h6>Contact Us</h6>
                     <br>
                     <ul class="">
-                      
-                       <li class=""><i class="fa fa-phone"></i> +234 802 279 0906</li>
-                      <li class=""><i class="fa fa-envelope"></i> contact@facework.com.ng</li>
-                       
+                       <li class=""><i class="fa fa-phone"></i>
+                        <a href="{{ $settings->contact_number }}"> {{ $settings->contact_number }}</a></li>
+                      <li class=""><i class="fa fa-envelope"></i>
+                        <a href="mailto:{{ $settings->contact_email }}"> {{ $settings->contact_email }}</a></li>                
                     </ul>
                     
                   </div>
-                  <div class="col-lg-4  col-sm-6 ">
+                  <div class="col-md-4  col-sm-4 ">
                   <h6>Follow us</h6>
                    <br>
                     <ul class="" style="display:inline-flex; padding-right:10px;">
-                       <li class=""><a href="#"><i class="fa fa-facebook fa-3x"></i></a></li>
-                       <li class=""><a href="#"><i class="fa fa-twitter fa-3x"></i></a></li>
+                       <li class=""><a href="{{ $settings->facebook }}"><i class="fa fa-facebook fa-3x"></i></a></li><br>
+                       <li class=""><a href="{{ $settings->twitter }}"><i class="fa fa-twitter fa-3x"></i></a></li><br>
+                       <li class=""><a href="{{ $settings->instagram }}"><i class="fa fa-instagram fa-3x"></i></a></li><br>
                       
                        
                     </ul>
                     </div>
-                  <div class="col-lg-4  col-sm-6 ">
+                  <div class="col-md-4  col-sm-4 ">
                       <h6>Support</h6>
                       <br>
                     <ul class="">
@@ -359,7 +360,8 @@ ga('send', 'pageview');
 		<script src="../../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
     <script src="../../../assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
+    <!--end::Base Scripts -->   
+    <script src="../../js/resCarousel.js"></script>
         <!--begin::Page Snippets -->
 		<script src="../../assets/app/js/dashboard.js" type="text/javascript"></script>
     <!--end::Page Snippets -->

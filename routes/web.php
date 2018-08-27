@@ -45,3 +45,20 @@ Route::post('/posts/create',[
     'uses' => 'PostController@store',
     'as' => 'posts.store'
 ]);
+
+
+  //Settings
+        Route::get('/site/settings',[
+        'uses' => 'SettingController@index',
+        'as' => 'settings'
+        ]);
+
+        Route::post('/site/settings/create',[
+        'uses' => 'SettingController@store',
+        'as' => 'settings.store'
+        ]);
+
+         Route::post('/site/settings/update',[
+        'uses' => 'SettingController@update',
+        'as' => 'settings.update'
+        ]);

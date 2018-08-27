@@ -10,6 +10,7 @@ use App\Post;
 use Auth;
 use Session;
 use App\User;
+use App\Setting;
 
 class PostController extends Controller {
 
@@ -26,7 +27,8 @@ class PostController extends Controller {
     public function home(){
         $profile = Profile::all();
         $users = User::all();
-        return view('index' , compact('users'));
+        $setting = Setting::first();
+        return view('index')->with('users', $users)->with('settings', $setting);
     }
 
     public function showUser($id) {

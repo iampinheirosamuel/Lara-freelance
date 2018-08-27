@@ -1,19 +1,34 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', '| Permissions')
 
 @section('content')
 
-<div class="col-lg-10 col-lg-offset-1">
-    <h1><i class="fa fa-key"></i>Available Permissions
-
-    <a href="{{ route('users.index') }}" class="btn btn-default pull-right">Users</a>
-    <a href="{{ route('roles.index') }}" class="btn btn-default pull-right">Roles</a></h1>
-    <hr>
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-
-            <thead>
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    Roles
+                </h3>
+            </div>
+        </div>
+            <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                        <a href="{{ URL::to('permissions/create') }}" class="m-portlet__nav-link btn btn-success m-btn m-btn--pill m-btn--air"><i class="flaticon-add"></i> Add Permission</a>                                
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+        
+    <div class="m-portlet__body">
+        <!--begin::Section-->
+        <div class="m-section">
+            <div class="m-section__content">
+                <table class="table table-striped m-table">
+                    <thead>
                 <tr>
                     <th>Permissions</th>
                     <th>Operation</th>
@@ -34,11 +49,12 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        	</table>
+        </div>
     </div>
-
-    <a href="{{ URL::to('permissions/create') }}" class="btn btn-success">Add Permission</a>
-
+    <!--end::Section-->
+</div>
+<!--end::Form-->
 </div>
 
 @endsection
