@@ -5,18 +5,26 @@ namespace App\Http\Controllers;
 use Session;
 use App\User;
 use App\Profile;
+use App\Post;
 use Illuminate\Http\Request;
 
+//Importing laravel-permission models
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class ProfileController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard($id)
     {
         //
+        $profile = User::findOrFail($id)->profile; //Find profile of user with id = $id
+        $posts = Post::orderby('id', 'desc')->paginate(5);
+        return view('profile.index')->with('profile', $profile)->with('posts', $posts);
 
     }
 
@@ -50,8 +58,7 @@ class ProfileController extends Controller
     public function show(Request $request, $id)
     {
         //
-        $profile = User::findOrFail($id)->profile; //Find profile of user with id = $id
-
+        $profile = User::findOrFail($id)->profile; //Find profile of user with id = $id    
         return view('profile.show', compact('profile'));
     }
 
@@ -65,7 +72,7 @@ class ProfileController extends Controller
     {
         //
         $profile = User::findOrFail($id)->profile; //Find a profile based on a user
-
+        $roles = Role::get();
         return view('profile.edit', compact('profile'));
     }
 
@@ -82,20 +89,11 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
-            'service' => 'required',
-            'image' => 'required|image'
+            'service' => 'required'
         ]);
 
-        $profile = Profile::find($id);
-
-        if($request->hasFile('image')){
-           
-            $image = $request->image;
-
-            $image_new_name = time().$image->getClientOriginalName();
-
-            $image->move('uploads/userprofile/', $image_new_name);
-
+            $profile = Profile::find($id);
+            
             $profile->name = $request->name;
 
             $profile->about = $request->about;
@@ -108,16 +106,76 @@ class ProfileController extends Controller
             
             $profile->service = $request->service;
             
-
-            $profile->image = '/uploads/userprofile/'.$image_new_name; 
+            if($request->role != 'Active'){
+               $profile->user->assignRole('Active');
+            }
+            
                
-            $profile->save();
+            $profile->save();            
 
             Session::flash('success','You have successfully updated your profile');
 
             return redirect()->back();
                 
-            }
+            
+    }
+
+    public function changeProfileImage(Request $request,Profile $profile, $id){
+          
+        $this->validate($request, [
+            'image' => 'required|image'
+        ]);
+
+         $profile = Profile::find($id);
+
+        if($request->hasFile('image')){
+           
+            $image = $request->image;
+
+            $image_new_name = time().$image->getClientOriginalName();
+
+            $image->move('uploads/userprofile/', $image_new_name);
+
+
+            $profile->image = '/uploads/userprofile/'.$image_new_name; 
+               
+            $profile->save();
+            
+        }
+
+            Session::flash('success','You have successfully updated your profile image');
+
+            return redirect()->back();
+
+    }
+
+      public function changeCoverImage(Request $request,Profile $profile, $id){
+          
+        $this->validate($request, [
+            'coverImage' => 'required|image'
+        ]);
+
+         $profile = Profile::find($id);
+
+        if($request->hasFile('coverImage')){
+           
+            $image = $request->coverImage;
+
+            $image_new_name = time().$image->getClientOriginalName();
+
+            $image->move('uploads/usercover/', $image_new_name);
+
+
+            $profile->coverImage = '/uploads/usercover/'.$image_new_name; 
+               
+            $profile->save();
+            
+        }
+
+            Session::flash('success','You have successfully updated your profile  cover image');
+
+            return redirect()->back();
+
     }
 
     /**

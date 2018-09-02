@@ -30,6 +30,24 @@ Route::resource('roles', 'RoleController');
 
 Route::resource('profile', 'ProfileController');
 
+
+//Profile
+Route::post('/profile/changeProfileImage/{id}',[
+    'uses' => 'ProfileController@changeProfileImage',
+    'as' => 'profileImage.update'
+]);
+
+//Profile
+Route::get('/profile/dashboard/{id}',[
+    'uses' => 'ProfileController@dashboard',
+    'as' => 'profile.index'
+]);
+
+Route::post('/profile/changeCoverImage/{id}',[
+    'uses' => 'ProfileController@changeCoverImage',
+    'as' => 'CoverImage.update'
+]);
+
 Route::post('/profile/update/{id}',[
     'uses' => 'ProfileController@update',
     'as' => 'profile.update'
@@ -62,3 +80,5 @@ Route::post('/posts/create',[
         'uses' => 'SettingController@update',
         'as' => 'settings.update'
         ]);
+
+    

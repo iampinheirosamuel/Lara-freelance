@@ -6,45 +6,120 @@
       
          @if(Auth::user())
             @if( Auth::user()->roles()->pluck('name')->implode('') != 'Active')
-              <div class="container-fluid">      
-              <div class="alert alert-info"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->profile->id) }}">here</a>
+              <div class="container">      
+              <div class="alert alert-info"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->id) }}">here</a>
 
               </div>
               </div>
             @endif
           @endif
+           <div class="container-fluid">
+             <div class="row ">
+               <div class="col-12 jumbotron"  style="height:400px; background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('../../images/slider5.png');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
+                <br> 
+                <h1 class="text-left text-white">Discover and get quick job done</h1>
+                 <h4 class="text-left text-white">Your one number freelance platform</h4>
+                 <br>
+                 <div class="row">
+                   <div class="col-md-12 text-center" style="display:inline-flex; ">
 
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" height="453px">
-    <div class="carousel-item active">
-      <img class="d-block w-100" height="453px" src="{{ asset('images/slider1.png') }}" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" height="453px" src="{{ asset('images/slider2.png') }}" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" height="453px" src="/images/slider5.png" alt="Third slide">
-    </div>
-     <div class="carousel-item">
-      <img class="d-block w-100" height="453px" src="/images/slider4.png" alt="Third slide">
-    </div>
-     <div class="carousel-item">
-      <img class="d-block w-100" height="453px" src="/images/slider5.png" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+                    <div class="form-group m-form__group" style="padding-right:10px;">
+										
+											<div class="m-input-icon m-input-icon--left">
+												<input type="text" class="form-control form-control-lg m-input" placeholder="Profession e.g UI Designer">
+												<span class="m-input-icon__icon m-input-icon__icon--left">
+													<span>
+														<i class="flaticon-suitcase"></i>
+													</span>
+												</span>
+											</div>
+                    </div>
+                    
+                      <div class="form-group m-form__group">
+                      
+                        <div class="m-input-icon m-input-icon--left">
+                          <input type="text" class="form-control form-control-lg m-input" placeholder="Location e.g Lagos">
+                          <span class="m-input-icon__icon m-input-icon__icon--left">
+                            <span>
+                              <i class="la la-map-marker"></i>
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="form-group m-form__group">
+                        <button type="button" class="btn m-btn m-btn--air  btn-primary btn-lg">
+                          Search
+                        </button>
+                      </div>
+
+                      
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+        <div class="container-fluid">
+             <div class="row ">
+                <div class="col">
+                    <h1 class="text-center text-title">Recent Works</h1>
+                </div> 
+              </div>
+              <div class="row">
+               <div class="owl-carousel owl-theme">
+                  @foreach ($posts as $post)
+                  
+                  <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
+                    <a href="{{ route('posts.show', $post->id ) }}">
+                     	<div class="m-portlet__body">
+										<div class="m-widget19">
+											<div class="m-widget19__pic m-portlet-fit--top m-portlet-fit--sides" style="max-height: 286px">
+											<img src="{{ $post->featured }}" alt="">
+												<h6 class="m-widget19__title m--font-light" style="padding-left:0.8rem !important; padding-bottom:0 !important;">
+													{{ $post->title }}
+												</h6>
+												<div class="m-widget19__shadow"></div>
+											</div>
+											<div class="m-widget19__content">
+												<div class="m-widget19__header" style="margin-top:0.5rem !important; margin-bottom:0rem !important; padding: 0 7px">
+												<a href="{{ route('profile.show', $post->profile->id ) }}">
+													<div class="m-widget19__user-img">
+													<img style="width:3.2rem; height:3.0rem" class="m-widget19__img" src="{{ $post->profile->image }}" alt="">
+													</div>
+													<div class="m-widget19__info">
+														<span class="m-widget19__username" style="color:#222; margin-bottom:1.0rem;">
+															{{ $post->profile->name }}
+														</span>
+														<br>
+														<span class="m-widget19__time" >
+														<i class="flaticon-suitcase" style="font-size: 12px;"></i>	{{ $post->profile->service }}
+                            </span>
+                            
+                            <span class="m-widget19__time" >
+                             <i class="la la-map-marker" style="font-size: 12px;"></i> {{ $post->profile->state }}
+                            </span>
+                             
+                          </div>
+                         
+												</a>
+													
+												</div>
+											</div>
+											
+										</div>
+                  </div> 
+                  </a>
+               </div>
+                
+                  @endforeach 
+                
+                    
+                </div>
+              </div>
+        </div>
                 
              
-
-
             <div class="container-fluid">
               <div class="row ">
                 <div class="col">
@@ -93,113 +168,61 @@
             
 
 <div class="container-fluid">
-  <div class="row">
-  <div class="col-lg-5">
-  <div class="resCarousel ResSlid2" data-items="2-3-4-5" data-slide="5" data-speed="900" data-interval="none" data-load="3" data-animator="lazy" data-value="0">
-                    <div class="resCarousel-inner" id="eventLoad">
+  <div class="row ">
+                <div class="col">
+                    <h3 class="text-left text-title">Talents on FaceWork</h3>
+                </div> 
+              </div>
+              <div class="row">
+               <div class="owl-carousel owl-theme">
                         @foreach ($users as $user)
+
                         @if( $user->roles()->pluck('name')->implode('') === 'Active')
-                        <div class="item">
-                          <a href="{{ route('profile.show', $user->profile->id ) }} " >
-																
-															
-                            <div class="tile">
-                                <div>
-                                    <img src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}" class="img-fluid img-rounded" data-toggle="modal" data-target="#exampleModalLong">
-                                </div>
 
-                                 <h6>{{ $user->name }}</h6>
-                                 <p>{{ $user->profile->service }}</p>
+                              <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
+                                <div class="m-widget4">
+                                <a href="{{ route('profile.show',  Auth::user()->id ) }}" >	
+                                  <img src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}" class="img-fluid img-rounded" >
+                                <div class="m-widget4__item">
+                                   
                                  
-                            </div>
-
-                            </a>
-                        </div>
+                                  <br>
+                                  <div class="m-widget4__info">
+                                    <span class="m-widget4__title">
+                                      {{ $user->name }}
+                                    </span>
+                                    <br>
+                                    <span class="m-widget4__sub">
+                                     {{ $user->profile->service }}
+                                    </span>
+                                  </div>
+                                  
+                                </div>
+                                	
+                                  
+                                  </a>
+                                </div>
+                              </div>
                         @endif
 												@endforeach
 
                       
 
                     </div>
-                    <button class="btn btn-default leftRs"><i class="fa fa-chevron-left"></i></button>
-                    <button class="btn btn-default rightRs"><i class="fa fa-chevron-right"></i></button>
+                  
                
 
   </div>
+  <div class="row ">
+                <div class="col">
+                   <div class="m-separator m-separator--dashed"></div>
+                </div>
+               </div>
+
   </div>
 
  
-     <div class="col-lg-7">
-								<!--begin:: Widgets/User Progress -->
-								<div class="m-portlet m-portlet--full-height ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Find the best FaceWorka
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-											
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body" style="padding:10px">
-										<div class="tab-content">
-											<div class="tab-pane active" id="m_widget4_tab1_content">
-												<div class="m-widget4 m-widget4--progress">
-                        
-                       @foreach ($users as $user)
-                        @if( $user->roles()->pluck('name')->implode('') === 'Active')
-													<div class="m-widget4__item" style="padding-top:10px">
-													<div class="m-widget4__img m-widget4__img--pic">
-															<img style="height:3.4rem" src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}">
-														</div>
-														<div class="m-widget4__info" style="padding:10px">
-															<span class="m-widget4__title">
-																{{ $user->name }}
-															</span>
-															<br>
-															<span class="m-widget4__sub">
-																{{ $user->profile->service }}
-															</span>
-														</div>
-														{{-- <div class="m-widget4__progress hidden-sm-up">
-															<div class="m-widget4__progress-wrapper">
-																<span class="m-widget17__progress-number">
-																	93%
-																</span>
-																<span class="m-widget17__progress-label">
-																	{{ $user->profile->state }}
-																</span>
-																 <div class="progress m-progress--sm">
-																	<div class="progress-bar bg-danger" role="progressbar" style="width: 63%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="63"></div>
-																</div>
-															</div>
-                            </div> --}}
-                            <div class="m-widget4__progress hidden-md-down">
-                              {{ $user->profile->state }}
-                            </div>
-														<div class="m-widget4__ext">
-															<a href="{{ route('profile.show', $user->profile->id ) }} " class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">
-																view
-															</a>
-														</div>
-                          </div>
-                          @endif
-													@endforeach
-												</div>
-											</div>
-										
-										</div>
-									</div>
-								</div>
-								<!--end:: Widgets/User Progress -->
-							</div>
-  </div>
-</div>
+  
             
             <div class="container-fluid">
               <div class="row">
@@ -207,13 +230,14 @@
 
                   
 
-                  <div class="text-center"><br><br>
+                  <div class="text-center">
                     <h3>Join us now</h3>
                     <hr>
                     <p>Meet other professionals on FaceWork. It is a platform for the right collaborations.</p>
                     <br>
                     <a href="{{ url('/register') }}" class="btn btn-secondary ">Get Started</a>
                   </div>
+                 
                 </div>
               </div>
             </div>

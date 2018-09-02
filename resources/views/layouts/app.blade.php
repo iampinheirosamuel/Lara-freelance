@@ -29,7 +29,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
       crossorigin="anonymous">
     <link rel="stylesheeet" href="css/fontawesome-all.css">
-    <link rel="stylesheeet" href="../../css/resCarousel.css">
+     <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
     
     <!-- Custom styles for this template -->
     <link href="../../css/cover.css" rel="stylesheet">
@@ -89,7 +91,7 @@ ga('send', 'pageview');
                             {{-- <li class="nav-item"><a class="btn btn-secondary" href="{{ route('register') }}">Register</a></li> --}}
                         @else
                         @role('Active')
-                             <li class="nav-item"><a href="{{ route('posts.create') }}">Create Post</a></li>
+                             <li class="nav-item"><a href="{{ route('posts.create') }}">Upload Work</a></li>
                          @endrole
                   <li style="margin-top: 10px; " class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
@@ -149,20 +151,21 @@ ga('send', 'pageview');
                                     @endrole
                                                                 
 																<li class="m-nav__item">
-                                                                    
-																	<a href=" {{ route('profile.edit', Auth::user()->id ) }}" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">
-																					My Profile
-																				</span>
-																				
-																			</span>
-																		</span>
-																	</a>
-                                                                </li>
-                                                                <li class="m-nav__separator m-nav__separator--fit"></li>
+                                      <a href="{{ route('profile.index', Auth::user()->id ) }}" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <span class="m-nav__link-title">
+                                          <span class="m-nav__link-wrap">
+                                            <span class="m-nav__link-text">
+                                               Dashboard
+                                            </span>
+                                            <span class="m-nav__link-badge">
+                                             
+                                            </span>
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </li>
+                                <li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
 																	<a href="#" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-share"></i>
@@ -220,14 +223,9 @@ ga('send', 'pageview');
         
 
        
-         <div  style="padding-top: 90px;">
+         <div  style="padding-top: 70px;">
           
-               @if(Session::has('flash_message'))
-                    <div class="container">      
-                        <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
-                        </div>
-                    </div>
-                @endif  
+                
                 <div class="container"> 
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">              
@@ -235,31 +233,39 @@ ga('send', 'pageview');
                         </div>
                     </div>
                 </div>     
+           
+           <div class="container-fluid" >
+             <div class="row">
+               @if(Session::has('flash_message'))
+                    
+                  <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+                  </div>
+              
+                @endif 
+                @yield('content')
+             </div>
            </div>
-              @yield('content')
              <div class="container-fluid support">
                 <div class="row">
                   <div class="col-md-4  col-sm-4 ">
                     <h6>Contact Us</h6>
                     <br>
-                    <ul class="">
+                     {{--<ul class="">
                        <li class=""><i class="fa fa-phone"></i>
                         <a href="{{ $settings->contact_number }}"> {{ $settings->contact_number }}</a></li>
                       <li class=""><i class="fa fa-envelope"></i>
                         <a href="mailto:{{ $settings->contact_email }}"> {{ $settings->contact_email }}</a></li>                
-                    </ul>
+                    </ul> --}}
                     
                   </div>
                   <div class="col-md-4  col-sm-4 ">
                   <h6>Follow us</h6>
                    <br>
                     <ul class="" style="display:inline-flex; padding-right:10px;">
-                       <li class=""><a href="{{ $settings->facebook }}"><i class="fa fa-facebook fa-3x"></i></a></li><br>
+                       {{-- <li class=""><a href="{{ $settings->facebook }}"><i class="fa fa-facebook fa-3x"></i></a></li><br>
                        <li class=""><a href="{{ $settings->twitter }}"><i class="fa fa-twitter fa-3x"></i></a></li><br>
-                       <li class=""><a href="{{ $settings->instagram }}"><i class="fa fa-instagram fa-3x"></i></a></li><br>
-                      
-                       
-                    </ul>
+                       <li class=""><a href="{{ $settings->instagram }}"><i class="fa fa-instagram fa-3x"></i></a></li><br>       
+                    </ul> --}}
                     </div>
                   <div class="col-md-4  col-sm-4 ">
                       <h6>Support</h6>
@@ -279,6 +285,7 @@ ga('send', 'pageview');
                 2018 © Designed & Supported by <a class="m-link" href="https://">
                                 Evolve Tech
                             </a></p>
+              </div>
               </div>
 
 
@@ -336,32 +343,35 @@ ga('send', 'pageview');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.js"></script>
-   
-
-
-      <script>
-        // $('.count').lemCounter({
-
-        //   locale: false, // e.g. 'en-US'
-
-        //   value_to_from_content: true,
-
-        //   animate_duration: 2
-
-        // });
-
-
-       
-    
-
-        
-      </script>
       <!--begin::Base Scripts -->
 		<script src="../../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
     <script src="../../../assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!--end::Base Scripts -->   
-    <script src="../../js/resCarousel.js"></script>
+    <!--end::Base Scripts -->  
+    {{-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  --}}
+    <script src="../../js/owl.carousel.js"></script>
+  
+
+    <script>
+        $(document).ready(function() {
+              var owl = $('.owl-carousel');
+              owl.owlCarousel({
+                items: 4,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+              });
+              $('.play').on('click', function() {
+                owl.trigger('play.owl.autoplay', [1000])
+              })
+              $('.stop').on('click', function() {
+                owl.trigger('stop.owl.autoplay')
+              })
+            });        
+      </script>
+    
         <!--begin::Page Snippets -->
 		<script src="../../assets/app/js/dashboard.js" type="text/javascript"></script>
     <!--end::Page Snippets -->

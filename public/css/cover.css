@@ -449,6 +449,7 @@ h1 {
 .support li {
   list-style-type: none;
   padding-bottom: 15px;
+  padding-right: 25px;
   text-align: center;
 }
 

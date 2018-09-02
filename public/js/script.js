@@ -1,4 +1,8 @@
     (function(){
+
+      //Thumbnail Slider
+    
+
  
  //Sign up transitions
 
@@ -23,4 +27,4 @@
                 
                });
 
-                 })();
+  })();

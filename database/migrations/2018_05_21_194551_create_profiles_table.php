@@ -21,9 +21,10 @@ class CreateProfilesTable extends Migration
             $table->string('service');
             $table->string('address');
             $table->string('state');
-            $table->text('about');
+            $table->text('about')->nullable();
             $table->string('phone');
             $table->string('image');
+            $table->string('coverImage')->nullable();
             $table->timestamps();
         });
     }

@@ -79,7 +79,8 @@ class RegisterController extends Controller
              'phone' => '',
              'state' => '',
              'address' => '',
-             'image' => '\uploads\userprofile\1527438963welcome-aebcdc.png'
+             'image' => '\uploads\userprofile\1527438963welcome-aebcdc.png',
+             'coverImage' => ''
         ]);
 
         return $user;

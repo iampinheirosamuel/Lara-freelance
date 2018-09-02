@@ -158,7 +158,7 @@ class UserController extends Controller {
                     
     //             }
          
-       $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
+         $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
                     
          $roles = $request['roles']; //Retrieving the roles field
                        //Checking if a role was selected

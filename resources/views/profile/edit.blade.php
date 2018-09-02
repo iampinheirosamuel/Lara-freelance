@@ -2,8 +2,9 @@
 
 @section('content')
 
-            <div class="col-xl-3 col-lg-4">
-                <div class="m-portlet m-portlet--full-height  ">
+
+           <div class="col-lg-12">
+           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
                     <div class="m-portlet__body">
                         <div class="m-card-profile">
                             <div class="m-card-profile__title m--hide">
@@ -17,18 +18,140 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="m-card-profile__details">
-                                <span class="m-card-profile__name">
+                            <div class="m-card-profile__details text-white">
+                                <span class="m-card-profile__name text-white">
                                       {{ $profile->name }}
                                 </span>
-                                <a href="" class="m-card-profile__email m-link">
+                                <a href="" class="m-card-profile__email m-link text-white">
                                       {{ $profile->email }}
                                 </a>
                             </div>
                         </div>
 
-                        <div class="m-portlet__body-separator"></div>
+                      
+                         
+                    </div>
+                </div>
+            </div>
 
+
+            <div class="col-xl-3 col-lg-4">
+                <div class="m-portlet m-portlet--full-height  ">
+                    <div class="m-portlet__body">
+                       
+                         <div class="m-card-profile-details">
+                          <ul class="m-nav m-nav--skin-light">
+                            <li class="m-nav__section m--hide">
+                                <span class="m-nav__section-text">
+                                    Section
+                                </span>
+                                  </li>
+                                  <li class="m-nav__item">
+                                      <a href="{{ route('profile.index', Auth::user()->id ) }}" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <span class="m-nav__link-title">
+                                          <span class="m-nav__link-wrap">
+                                            <span class="m-nav__link-text">
+                                               Dashboard
+                                            </span>
+                                            <span class="m-nav__link-badge">
+                                             
+                                            </span>
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    @role('Admin') {{-- Laravel-permission blade helper --}}
+                                    <li class="m-nav__item">
+                                      <a href="/users" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <span class="m-nav__link-title">
+                                          <span class="m-nav__link-wrap">
+                                            <span class="m-nav__link-text">
+                                              Visit Admin Dashboard
+                                            </span>
+                                            <span class="m-nav__link-badge">
+                                              <span class="m-badge m-badge--success">
+                                                
+                                              </span>
+                                            </span>
+                                          </span>
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    @endrole
+                                    
+                                    <li class="m-nav__item">
+                                        
+                                        <a href=" {{ route('profile.edit', Auth::user()->id ) }}" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                            <span class="m-nav__link-title">
+                                                <span class="m-nav__link-wrap">
+                                                    <span class="m-nav__link-text">
+                                                        Edit Profile
+                                                    </span>
+                                                    
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    <li class="m-nav__item">
+                                        
+                                        <a href="  {{ route('posts.create') }}" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                            <span class="m-nav__link-title">
+                                                <span class="m-nav__link-wrap">
+                                                    <span class="m-nav__link-text">
+                                                        Upload Work
+                                                    </span>
+                                                    
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                   
+
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                   
+                                    
+                                    <li class="m-nav__item">
+                                            <a href="{{ route('task.show', Auth::user()->profile->id) }}" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                <span class="m-nav__link-title">
+                                                <span class="m-nav__link-wrap">
+                                                    <span class="m-nav__link-text">
+                                                    Messages
+                                                    </span>
+                                                <span class="m-nav__link-badge">
+                                                        <span class="m-badge m-badge--success">
+                                                            {{-- {{ Auth::user()->task->count() }} --}}
+                                                        </span>
+                                                </span>
+                                            </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    <li class="m-nav__item">
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-logout"></i>
+                                            <span class="m-nav__link-text">
+                                                Log out
+                                            </span>
+                                        </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -42,36 +165,26 @@
                                 <li class="nav-item m-tabs__item">
                                    
                                      <i class="flaticon-edit "></i>
-                                        Update Profile
-                                    
-                                </li>
-                               
-                               
+                                        Update Profile    
+                                </li>                      
                             </ul>
                         </div>
 
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane active show" id="m_user_profile_tab_1">
-                        <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/update/{{ $profile->id }}">
+                        <form class="m-form m-form--fit m-form--label-align-right" method="post"  action="/profile/update/{{ $profile->id }}">
                             {{ csrf_field() }}    
                             <div class="m-portlet__body">
                                     <div class="form-group m-form__group m--margin-top-10 m--hide">
                                         <div class="alert m-alert m-alert--default" role="alert">
                                          </div>
                                     </div>
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-10 ml-auto">
+                                   <div class="col-12">
                                             <h3 class="m-form__section">
                                                 Personal Details
                                             </h3>
                                         </div>
-                                    </div>
-                                    
-                                
-
-                                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-                                   
                                     <div class="form-group m-form__group row">
                                         <div class="col-10 ml-auto">
                                             <h3 class="m-form__section">
@@ -95,6 +208,7 @@
                                             Email
                                            </label>
                                             <input class="form-control m-input" type="text" name="email" value="{{ $profile->email }}">
+                                            <input class="form-control m-input" type="hidden" name="role" value="{{ $profile->user->roles()->pluck('name')->implode('') }}">
                                         </div>
                                     </div>
 
@@ -126,7 +240,7 @@
                                        
                                         <div class="col-lg-6">
                                             <label for="example-text-input" class=" col-form-label">
-                                            Services (e.g. Web Developer, UI/UX Designer)
+                                            Services (e.g. Web Developer, UI/UX Designer, Photographer)
                                            </label>
                                             <input class="form-control m-input" type="text" name="service" value="{{ $profile->service }}">
                                         </div>
@@ -141,19 +255,10 @@
                                         <textarea class="form-control m-input" type="textarea" cols="3" name="about" value="{{ $profile->about }}"></textarea>
                                         </div>
 
-                                        <div class="col-lg-6">
-                                            <label for="example-text-input" class=" col-form-label">
-                                            Change Avatar
-                                           </label>
-                                            <input class="form-control-file m-input" type="file" name="image">
-                                        </div>
+                                        
                                        
                                     </div>
-
-                                    
-
                                    
-
                                 </div>
 
 
@@ -162,7 +267,7 @@
                                         <div class="row">
                                             <div class="col-2"></div>
                                             <div class="col-8 text-center">
-                                                <button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+                                                <button type="submit" class="btn btn-brand m-btn m-btn--air m-btn--custom">
                                                     Update
                                                 </button>
                                                
@@ -171,9 +276,63 @@
                                     </div>
                                 </div>
                             </form>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/changeProfileImage/{{ $profile->id }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label for="example-text-input" class=" col-form-label">
+                                            Change Avatar
+                                            </label>
+                                            <input class="form-control-file m-input" type="file" name="image">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                    
+                                        <div class="m-form__actions">
+                                                
+                                            <button type="submit" class="btn btn-brand m-btn m-btn--air">
+                                                Update Profile Image
+                                            </button>
+                                        
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/changeCoverImage/{{ $profile->id }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label for="example-text-input" class=" col-form-label">
+                                            Change Cover Image
+                                            </label>
+                                            <input class="form-control-file m-input" type="file" name="coverImage">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                    
+                                        <div class="m-form__actions">
+                                    
+                                            <button type="submit" class="btn btn-brand m-btn m-btn--air ">
+                                                Update Cover Image
+                                            </button>
+                                         
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div> 
+                            
+                            
                         </div>
                     </div>
+
+                    
                 </div>
-    
- </div>
+            </div>
+
 @endsection

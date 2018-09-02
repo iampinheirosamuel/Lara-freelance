@@ -26,9 +26,10 @@ class PostController extends Controller {
 
     public function home(){
         $profile = Profile::all();
+        $posts = Post::all();
         $users = User::all();
         $setting = Setting::first();
-        return view('index')->with('users', $users)->with('settings', $setting);
+        return view('index')->with('users', $users)->with('settings', $setting)->with('posts', $posts);
     }
 
     public function showUser($id) {
