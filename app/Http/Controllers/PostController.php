@@ -25,9 +25,9 @@ class PostController extends Controller {
      */
 
     public function home(){
-        $profile = Profile::all();
-        $posts = Post::all();
-        $users = User::all();
+        $profile = Profile::orderby('id', 'desc')->paginate(7);
+        $posts = Post::orderby('id', 'desc')->paginate(7);
+        $users = User::orderby('id', 'desc')->paginate(7);
         $setting = Setting::first();
         return view('index')->with('users', $users)->with('settings', $setting)->with('posts', $posts);
     }

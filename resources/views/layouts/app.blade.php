@@ -14,9 +14,9 @@
     <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <!--end::Base Styles -->
-    <link rel="shortcut icon" href="../../assets/demo/default/media/img/logo/favicon.ico" />
+    <link rel="shortcut icon" href="../images/favicon.png" />
 
-    <title></title>
+    <title>FaceWork </title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css">
@@ -229,8 +229,9 @@ ga('send', 'pageview');
            <div class="container-fluid" >
              <div class="row">
                @if(Session::has('flash_message'))
-                    
-                  <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+                  <div class="container-fluid">  
+                    <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+                    </div>
                   </div>
               
                 @endif 
@@ -254,9 +255,9 @@ ga('send', 'pageview');
                   <h6>Follow us</h6>
                    <br>
                     <ul class="" style="display:inline-flex; padding-right:10px;">
-                       <li class=""><a href=""><i class="fa fa-facebook fa-3x"></i></a></li><br>
-                       <li class=""><a href=""><i class="fa fa-twitter fa-3x"></i></a></li><br>
-                       <li class=""><a href=""><i class="fa fa-instagram fa-3x"></i></a></li><br>       
+                       <li class="" style="padding-right: 15px;"><a href=""><i class="fa fa-facebook fa-3x"></i></a></li><br>
+                       <li class="" style="padding-right: 15px;"><a href=""><i class="fa fa-twitter fa-3x"></i></a></li><br>
+                       <li class="" style="padding-right: 15px;"><a href=""><i class="fa fa-instagram fa-3x"></i></a></li><br>       
                     </ul>
                     </div>
                   <div class="col-md-4  col-sm-4 ">
@@ -274,7 +275,7 @@ ga('send', 'pageview');
 
            
               <div class="footer"> <p>
-                2018 © Designed & Supported by <a class="m-link" href="https://">
+                <script>document.write(new Date().getFullYear())</script> © Designed & Supported by <a class="m-link" href="https://github.com/iampinheirosamuel/">
                                 Evolve Tech
                             </a></p>
               </div>
@@ -305,7 +306,7 @@ ga('send', 'pageview');
     <script src="../../../assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
     <!--end::Base Scripts -->  
     {{-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  --}}
-    <script src="../../js/owl.carousel.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
   
 
     <script>
@@ -322,7 +323,7 @@ ga('send', 'pageview');
                 responsive:{
                     0:{
                         items:1,
-                        nav:true
+                        nav:false
                     },
                     600:{
                         items:2,
@@ -330,7 +331,7 @@ ga('send', 'pageview');
                     },
                     1000:{
                         items:4,
-                        nav:true,
+                        nav:false,
                         loop:false
                     }
                 }

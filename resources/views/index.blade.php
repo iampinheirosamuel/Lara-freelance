@@ -13,10 +13,10 @@
       
          @if(Auth::user())
             @if( Auth::user()->roles()->pluck('name')->implode('') != 'Active')
-              <div class="container">      
-              <div class="alert alert-info"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->id) }}">here</a>
+              <div class="container-fluid" style="padding:0">      
+                <div class="alert alert-info" style="margin-bottom:0px"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->id) }}">here</a>
 
-              </div>
+                </div>
               </div>
             @endif
           @endif
