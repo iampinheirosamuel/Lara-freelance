@@ -83,7 +83,7 @@ ga('send', 'pageview');
           
             <li class="nav-item"><a href="{{ url('/') }}">Home</a></li>
            
-                <li class="nav-item"><a href="{{ route('posts.index') }}">News Feed</a></li>
+                <li class="nav-item"><a href="{{ route('posts.index') }}">Show Case</a></li>
           
           
            @if (Auth::guest())
