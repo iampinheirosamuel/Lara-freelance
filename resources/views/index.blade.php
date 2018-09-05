@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
- 
+ <style>
+   @media(max-width:576px){
+      .form_search{
+         display: inline-block;
+       }
+   }
+   
+  </style>
       <!-- Main jumbotron for a primary marketing message or call to action -->
       
          @if(Auth::user())
@@ -15,18 +22,20 @@
           @endif
            <div class="container-fluid">
              <div class="row ">
-               <div class="col-12 jumbotron"  style="height:400px; background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('../../images/slider5.png');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
+               <div class="col-12 jumbo"  style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('../../images/slider5.png');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
                 <br> 
+                 
                 <h1 class="text-left text-white">Discover and get quick job done</h1>
                  <h4 class="text-left text-white">Your one number freelance platform</h4>
                  <br>
-                 <div class="row">
-                   <div class="col-md-12 text-center" style="display:inline-flex; ">
-
-                    <div class="form-group m-form__group" style="padding-right:10px;">
+                 <div class="row" >
+                   
+                    <form class="form_search"  action="/search" method="get">
+                    
+                      <div class="form-group m-form__group" style="padding-right:10px;">
 										
 											<div class="m-input-icon m-input-icon--left">
-												<input type="text" class="form-control form-control-lg m-input" placeholder="Profession e.g UI Designer">
+												<input type="text" class="form-control form-control-lg m-input" required name="query_service" placeholder="Profession e.g UI Designer">
 												<span class="m-input-icon__icon m-input-icon__icon--left">
 													<span>
 														<i class="flaticon-suitcase"></i>
@@ -35,10 +44,10 @@
 											</div>
                     </div>
                     
-                      <div class="form-group m-form__group">
+                      <div class="form-group m-form__group  ">
                       
                         <div class="m-input-icon m-input-icon--left">
-                          <input type="text" class="form-control form-control-lg m-input" placeholder="Location e.g Lagos">
+                          <input type="text" class="form-control form-control-lg m-input" required name="query_location" placeholder="Location e.g Lagos">
                           <span class="m-input-icon__icon m-input-icon__icon--left">
                             <span>
                               <i class="la la-map-marker"></i>
@@ -47,14 +56,14 @@
                         </div>
                       </div>
 
-                      <div class="form-group m-form__group">
-                        <button type="button" class="btn m-btn m-btn--air  btn-primary btn-lg">
-                          Search
+                      <div class="form-group m-form__group  ">
+                        <button type="submit" class="btn m-btn m-btn--air  btn-primary btn-lg">
+                          <i class="flaticon-search"></i>
                         </button>
                       </div>
-
+                      </form>
                       
-                   </div>
+                  
                  </div>
                </div>
              </div>
@@ -63,7 +72,7 @@
         <div class="container-fluid">
              <div class="row ">
                 <div class="col">
-                    <h1 class="text-center text-title">Recent Works</h1>
+                    <h4 class="text-center text-title">Featured Works</h4>
                 </div> 
               </div>
               <div class="row">
@@ -181,37 +190,34 @@
 
                               <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
                                 <div class="m-widget4">
-                                <a href="{{ route('profile.show',  Auth::user()->id ) }}" >	
-                                  <img src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}" class="img-fluid img-rounded" >
-                                <div class="m-widget4__item">
-                                   
-                                 
+                                <a href="{{ Route('profile.show',  $user->id) }}" >	
+                                  <img src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}" style="padding:15px" class=" img-round" >
+                                <div class="m-widget4__item">                                 
                                   <br>
                                   <div class="m-widget4__info">
                                     <span class="m-widget4__title">
                                       {{ $user->name }}
                                     </span>
+                                    
                                     <br>
-                                    <span class="m-widget4__sub">
-                                     {{ $user->profile->service }}
+                                    <span class="m-widget4__sub" >
+                                    <i class="flaticon-suitcase" style="font-size: 12px;"></i>	{{ $user->profile->service }}
                                     </span>
+                                    
+                                    <span class="m-widget4__sub" >
+                                    <i class="la la-map-marker" style="font-size: 12px;"></i> {{ $user->profile->state }}
+                                    </span>
+                             
                                   </div>
                                   
-                                </div>
-                                	
-                                  
+                                </div>                                 
                                   </a>
                                 </div>
                               </div>
                         @endif
 												@endforeach
-
-                      
-
                     </div>
-                  
-               
-
+          
   </div>
   <div class="row ">
                 <div class="col">
@@ -242,75 +248,7 @@
               </div>
             </div>
 
-              {{-- <div class="loan-bg">
-              <div class="container-fluid ">
-              
-                <div class="row ">
-                  <div class="col">
-                    <h1 class="text-center text-title">Our Loan Plans</h1>
-                  </div>
-                </div>
-
-                <section class="row placeholders-counter">
-
-                  <div class="col-lg-4  col-sm-6 ">
-                    <div class="card">
-                      <div class="card-img-top card-bg pink">
-                        <h3 class="text-center">One Time Loan</h3>
-                      </div>
-                      <div class="card-body">
-                        <br>
-                        <h6 class="card-title text-left" style="font-weight:bold;"> Get a One Time Loan now </h6>
-
-                        <p class="card-text text-left" style="font-size:14px; color:#222;"> This loan comes with a loan term of 3 Months @3% interest rate </p>
-                          <br><br><br><br><hr>
-                        <button class="btn  pink" >Get Started</button>
-                      </div>
-                    </div>
-                    
-                  </div>
-
-                  <div class="col-lg-4  col-sm-6 ">
-                    <div class="card">
-                      <div class="card-bg green">
-                        <h3 class="text-center">Normal Loan</h3>
-                      </div>
-                      <div class="card-body">
-                        <br>
-                        <h6 class="card-title text-left" style="font-weight:bold;">Get a Normal Loan of 18 Months </h6>
-
-                        <p class="card-text text-left" style="font-size:14px; color:#222;">This loan comes with a loan term of 18 Months 10.5% interest rate </p>
-                        <br>
-                        <h6 class="card-title text-left" style="font-weight:bold;">Get a Normal Loan of 12 Months </h6>
-
-                        <p class="card-text text-left" style="font-size:14px; color:#222;">This loan comes with a loan term of 12 Months 7% interest rate </p>
-                        <hr>
-                        <button class="btn  green">Get Started</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-4  col-sm-6 ">
-                    <div class="card">
-                      <div class="card-bg orange">
-                        <h3 class="text-center">Appliance Loan</h3>
-                      </div>
-                      <div class="card-body">
-                        <br>
-                        <h6 class="card-title text-left" style="font-weight:bold;"> Get an Appliance Loan </h6>
-
-                        <p class="card-text text-left" style="font-size:14px; color:#222;"> This loan comes with a loan term of 6 Months 5% interest rate  </p>
-                        <br> <br> <br><br><hr>
-                        <button class="btn  orange">Get Started</button>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-             
-            </div>
-             --}}
-
+          
            
 
               <div class="container-fluid">

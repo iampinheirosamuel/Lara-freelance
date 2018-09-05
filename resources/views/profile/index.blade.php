@@ -116,7 +116,7 @@
                                    
                                     <li class="m-nav__separator m-nav__separator--fit"></li>
                                     <li class="m-nav__item">
-                                            <a href="{{ route('task.show', Auth::user()->profile->id) }}" class="m-nav__link">
+                                            <a href="{{ route('task.show', Auth::user()->id) }}" class="m-nav__link">
                                                 <i class="m-nav__link-icon flaticon-chat-1"></i>
                                                 <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
@@ -125,7 +125,7 @@
                                                     </span>
                                                 <span class="m-nav__link-badge">
                                                         <span class="m-badge m-badge--success">
-                                                            {{-- {{ Auth::user()->task->count() }} --}}
+                                                            {{ Auth::user()->task->count() }}
                                                         </span>
                                                 </span>
                                             </span>
@@ -173,7 +173,11 @@
                         
                             <div class="m-portlet__body">
 										<div class="m-widget3">
-                                             @foreach ($posts as $post)
+                                            @if(count($profile->post) !== 0)
+                                            <h4 class="text-left">Your recent job</h4>
+                                            <br>
+                                             @foreach ($profile->post as $post)
+                                             
                                            <a href="{{ route('posts.show', $post->id ) }}">
 											<div class="m-widget3__item" style="border-bottom: 0.07rem dashed #ebedf2;">
 												<div class="m-widget3__header">
@@ -203,7 +207,9 @@
                                            </a>
                                            <br>
                                              @endforeach
-											
+                                             @else
+                                              <h6 class="text-center">You have no recent work to show case</h6>
+											 @endif
 										</div>
 									</div>
                             

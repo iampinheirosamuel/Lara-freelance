@@ -166,17 +166,9 @@ ga('send', 'pageview');
                                       </a>
                                     </li>
                                 <li class="m-nav__separator m-nav__separator--fit"></li>
+																
 																<li class="m-nav__item">
-																	<a href="#" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-share"></i>
-																		<span class="m-nav__link-text">
-																			Activity
-																		</span>
-																	</a>
-                                    </li>
-                                  <li class="m-nav__separator m-nav__separator--fit"></li>
-																<li class="m-nav__item">
-                                <a href="{{ route('task.show', Auth::user()->profile->id) }}" class="m-nav__link">
+                                <a href="{{ route('task.show', Auth::user()->id) }}" class="m-nav__link">
                                     <i class="m-nav__link-icon flaticon-chat-1"></i>
                                     <span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -185,7 +177,7 @@ ga('send', 'pageview');
                                     </span>
                                     <span class="m-nav__link-badge">
 																					<span class="m-badge m-badge--success">
-																						{{-- {{ Auth::user()->task->count() }} --}}
+																						{{ Auth::user()->task->count() }}
 																					</span>
                                         </span>
                                       </span>
@@ -250,22 +242,22 @@ ga('send', 'pageview');
                   <div class="col-md-4  col-sm-4 ">
                     <h6>Contact Us</h6>
                     <br>
-                     {{--<ul class="">
+                     <ul class="">
                        <li class=""><i class="fa fa-phone"></i>
-                        <a href="{{ $settings->contact_number }}"> {{ $settings->contact_number }}</a></li>
+                        <a href="tel:08022790906"> 08022790906</a></li>
                       <li class=""><i class="fa fa-envelope"></i>
-                        <a href="mailto:{{ $settings->contact_email }}"> {{ $settings->contact_email }}</a></li>                
-                    </ul> --}}
+                        <a href="mailto:contact@facework.com.ng"> contact@facework.com.ng</a></li>                
+                    </ul>
                     
                   </div>
                   <div class="col-md-4  col-sm-4 ">
                   <h6>Follow us</h6>
                    <br>
                     <ul class="" style="display:inline-flex; padding-right:10px;">
-                       {{-- <li class=""><a href="{{ $settings->facebook }}"><i class="fa fa-facebook fa-3x"></i></a></li><br>
-                       <li class=""><a href="{{ $settings->twitter }}"><i class="fa fa-twitter fa-3x"></i></a></li><br>
-                       <li class=""><a href="{{ $settings->instagram }}"><i class="fa fa-instagram fa-3x"></i></a></li><br>       
-                    </ul> --}}
+                       <li class=""><a href=""><i class="fa fa-facebook fa-3x"></i></a></li><br>
+                       <li class=""><a href=""><i class="fa fa-twitter fa-3x"></i></a></li><br>
+                       <li class=""><a href=""><i class="fa fa-instagram fa-3x"></i></a></li><br>       
+                    </ul>
                     </div>
                   <div class="col-md-4  col-sm-4 ">
                       <h6>Support</h6>
@@ -291,43 +283,7 @@ ga('send', 'pageview');
 
 
 
-              <!-- Button trigger modal -->
-         
-              <!-- Modal -->
-              {{-- <div class="modal fade" id="signin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Sign in</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container">
-
-                        <form class="form-signin">
-                          <h2 class="form-signin-heading">Please sign in</h2>
-                          <label for="inputEmail" class="sr-only">Email address</label>
-                          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                          <label for="inputPassword" class="sr-only">Password</label>
-                          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                          <div class="checkbox">
-                            <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-                          </div>
-                          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                        </form>
-
-                      </div>
-                    </div>
-                   
-                  </div>
-                </div>
-              </div> --}}
-    
-              
+             
           
 
     <!-- Bootstrap core JavaScript
@@ -361,14 +317,25 @@ ga('send', 'pageview');
                 margin: 10,
                 autoplay: true,
                 autoplayTimeout: 5000,
-                autoplayHoverPause: true
+                autoplayHoverPause: true,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
+                    },
+                    600:{
+                        items:2,
+                        nav:false
+                    },
+                    1000:{
+                        items:4,
+                        nav:true,
+                        loop:false
+                    }
+                }
               });
-              $('.play').on('click', function() {
-                owl.trigger('play.owl.autoplay', [1000])
-              })
-              $('.stop').on('click', function() {
-                owl.trigger('stop.owl.autoplay')
-              })
+            
             });        
       </script>
     

@@ -335,6 +335,16 @@ h1 {
   font-weight: bold;
 }
 
+.form_search {
+  display: inherit;
+  padding-left: 20px;
+}
+
+.jumbo {
+  box-sizing: border-box;
+  padding: 50px;
+}
+
 
 /*
  * Footer
@@ -433,6 +443,12 @@ h1 {
 
 /* media query */
 @media(max-width:571px) and (min-width:200px){
+  .form_search{
+         display: inline-flex;
+         text-align: center;
+         margin: 20px;
+       }
+  
   .support 
 {
    background: rgb(45, 45, 45);;

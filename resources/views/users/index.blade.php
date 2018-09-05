@@ -11,24 +11,24 @@
 										<div class="m-widget24">
 											<div class="m-widget24__item">
 												<h4 class="m-widget24__title">
-													Total rofit
+													All Active Members
 												</h4>
 												<br>
 												<span class="m-widget24__desc">
-													All Customs Value
+													Active Members
 												</span>
 												<span class="m-widget24__stats m--font-brand">
-													$18M
+													{{-- {{ count($user->roles()->pluck('name')->implode('') != 'Active') }} --}}
 												</span>
 												<div class="m--space-10"></div>
 												<div class="progress m-progress--sm">
 													<div class="progress-bar m--bg-brand" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 												<span class="m-widget24__change">
-													Change
+												
 												</span>
 												<span class="m-widget24__number">
-													78%
+													
 												</span>
 											</div>
 										</div>
@@ -39,14 +39,14 @@
 										<div class="m-widget24">
 											<div class="m-widget24__item">
 												<h4 class="m-widget24__title">
-													New Feedbacks
+													Uploaded Works
 												</h4>
 												<br>
 												<span class="m-widget24__desc">
-													Customer Review
+													Member Posts
 												</span>
 												<span class="m-widget24__stats m--font-info">
-													1349
+													{{ count($posts) }}
 												</span>
 												<div class="m--space-10"></div>
 												<div class="progress m-progress--sm">
@@ -67,14 +67,15 @@
 										<div class="m-widget24">
 											<div class="m-widget24__item">
 												<h4 class="m-widget24__title">
-													New Orders
+													New Users
 												</h4>
 												<br>
 												<span class="m-widget24__desc">
-													Fresh Order Amount
+													Newly Joined
 												</span>
 												<span class="m-widget24__stats m--font-danger">
-													567
+													
+													{{-- {{ count($users) - count($user->roles()->pluck('name')->implode('') != 'Active') }} --}}
 												</span>
 												<div class="m--space-10"></div>
 												<div class="progress m-progress--sm">
@@ -95,24 +96,24 @@
 										<div class="m-widget24">
 											<div class="m-widget24__item">
 												<h4 class="m-widget24__title">
-													New Users
+													All Users
 												</h4>
 												<br>
 												<span class="m-widget24__desc">
-													Joined New User
+													All Members 
 												</span>
 												<span class="m-widget24__stats m--font-success">
-													276
+													{{count($users)}}
 												</span>
 												<div class="m--space-10"></div>
 												<div class="progress m-progress--sm">
-													<div class="progress-bar m--bg-success" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+													<div class="progress-bar m--bg-success" role="progressbar" style="width: 10%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 												</div>
 												<span class="m-widget24__change">
 													Change
 												</span>
 												<span class="m-widget24__number">
-													90%
+													10%
 												</span>
 											</div>
 										</div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Profile;
+use App\Post;
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -29,9 +30,9 @@ class UserController extends Controller {
     */
     public function index() {
     //Get all users and pass it to the view
-    
+        $posts = Post::all();
         $users = User::all();
-        return view('users.index')->with('users', $users);
+        return view('users.index')->with('users', $users)->with('posts', $posts);
     }
 
     /**

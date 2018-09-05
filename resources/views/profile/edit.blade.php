@@ -119,7 +119,7 @@
                                    
                                     
                                     <li class="m-nav__item">
-                                            <a href="{{ route('task.show', Auth::user()->profile->id) }}" class="m-nav__link">
+                                            <a href="{{ route('task.show', Auth::user()->id) }}" class="m-nav__link">
                                                 <i class="m-nav__link-icon flaticon-chat-1"></i>
                                                 <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
@@ -128,7 +128,7 @@
                                                     </span>
                                                 <span class="m-nav__link-badge">
                                                         <span class="m-badge m-badge--success">
-                                                            {{-- {{ Auth::user()->task->count() }} --}}
+                                                            {{ Auth::user()->task->count() }}
                                                         </span>
                                                 </span>
                                             </span>

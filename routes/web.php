@@ -13,12 +13,17 @@
 
 
 Route::get('/test', function(){
-   return App\User::find(2)->task;
+   return App\User::find(5)->task;
 });
 
-Auth::routes();
+Route::get('/search', function(){
+     $results = \App\Profile::where('service','like','%'. request('query_service') . '%')
+                            ->orWhere('state','like','%'. request('query_location') . '%' )->get();      
+     return view('search.search')->with('results',$results);
+});
 
-Route::get('/', 'PostController@home')->name('home');
+Route::get('/', 'PostController@home');
+Auth::routes();
 
 Route::get('/posts', 'PostController@index');
 
