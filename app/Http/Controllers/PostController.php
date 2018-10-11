@@ -37,47 +37,7 @@ class PostController extends Controller {
         return view('users.show')->with('users', $user); 
     }
 
-    // public function updateUser (Request $request, $id){
-    //       $user = User::findOrFail($id);
-    //       return view('users.update')->with('user', $user);
-    // }
-
-    // public function updateUserRequest(Request $request, $id) {
-    //     $user = User::findOrFail($id); //Get user specified by id
-
-    // //Validate name, email and password fields  
-    //     $this->validate($request, [
-    //         'name'=>'required|max:120',
-    //         'email'=>'required|email|unique:users,email,'.$id,
-    //         'password'=>'required|min:6|confirmed',
-    //         'service'=>'required',
-    //         'address'=>'required',            
-    //         'state'=>'required',            
-    //         'phone'=>'required|min:11',
-    //         'about'=>'required|min:60',
-    //         'image'=> 'required'
-    //     ]);
-
-        		
-	// 		if($request->input('image'))
-    //              {
-                            
-    //                 $image = $request->input('image');
-    //                 $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-    //                 \Image::make($request->input('image'))->save(public_path('image').$name);		
-    //                 $input->image = 'image'.$name;
-    //                 $input = $request->only(['name', 'email', 'password']); //Retreive the name, email and password fields
-    //                 $user->fill($input)->save();
-
-    //                 return redirect()->route('users.index') ->with('flash_message', 'User successfully edited.');
-                        
-    //             }
-
-        
-
-        
-    //         }
-    
+   
 
     public function index() {
         $posts = Post::orderby('id', 'desc')->paginate(15); //show only 15 items at a time in descending order
@@ -144,10 +104,11 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
+         $like = false;
          $post = Post::findOrFail($id); //Find post of id = $id
          $profile = Profile::all();
          $posts = Post::orderby('id', 'desc')->paginate(10);
-        return view ('posts.show', compact('post','profile','posts'));
+        return view ('posts.show', compact('post','profile','posts','like'));
     }
 
     /**
@@ -158,7 +119,6 @@ class PostController extends Controller {
      */
     public function edit($id) {
         $post = Post::findOrFail($id);
-
         return view('posts.edit', compact('post'));
     }
 

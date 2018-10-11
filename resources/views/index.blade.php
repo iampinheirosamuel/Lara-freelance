@@ -35,7 +35,7 @@
                       <div class="form-group m-form__group" style="padding-right:10px;">
 										
 											<div class="m-input-icon m-input-icon--left">
-												<input type="text" class="form-control form-control-lg m-input" required name="query_service" placeholder="Profession e.g UI Designer">
+												<input type="text" id="autocomplete" class="form-control form-control-lg m-input" required name="query_service" placeholder="Profession e.g UI Designer">
 												<span class="m-input-icon__icon m-input-icon__icon--left">
 													<span>
 														<i class="flaticon-suitcase"></i>
@@ -92,7 +92,7 @@
 											</div>
 											<div class="m-widget19__content">
 												<div class="m-widget19__header" style="margin-top:0.5rem !important; margin-bottom:0rem !important; padding: 0 7px">
-												<a href="{{ route('profile.show', $post->profile->id ) }}">
+												<a href="{{ route('profile.show', $post->profile->user->id ) }}">
 													<div class="m-widget19__user-img">
 													<img style="width:3.2rem; height:3.0rem" class="m-widget19__img" src="{{ $post->profile->image }}" alt="">
 													</div>
@@ -232,7 +232,7 @@
             
             <div class="container-fluid">
               <div class="row">
-                <div class=" col action">
+                <div class="col action pt-5 pb-3">
 
                   
 

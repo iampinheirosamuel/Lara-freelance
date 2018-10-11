@@ -379,8 +379,8 @@
 
             
             <div class="container-fluid">
-              <div class="row">
-                <div class=" col action">
+              <div class="row ">
+                <div class=" col action pt-5 pb-3">
 
                   <h1 class="float-left">Join us now</h1>
 

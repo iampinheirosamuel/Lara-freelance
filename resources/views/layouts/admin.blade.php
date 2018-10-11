@@ -207,7 +207,7 @@ ga('send', 'pageview');
                                     </span>
                                     <span class="m-nav__link-badge">
 																					<span class="m-badge m-badge--success">
-																						{{ Auth::user()->task->count() }}
+																						{{-- {{ Auth::user()->task->count() }} --}}
 																					</span>
                                         </span>
                                       </span>

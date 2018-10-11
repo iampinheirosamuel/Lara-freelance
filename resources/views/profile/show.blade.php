@@ -266,9 +266,9 @@
 													Your phone:
 												</label>
 												<input type="text" name="phone" value="{{ Auth::user()->profile->phone }}" class="form-control" id="recipient-name">
-                                                 <input type="hidden" name="user_id" value="{{  Auth::user()->id }}" class="form-control" id="recipient-name">
+                                                 <input type="hidden" name="user_id" value="{{  $profile->user->id }}" class="form-control" id="recipient-name">
                                             </div>
-                                            @else
+                                           @else
                                             
                                             <div class="form-group">
 												<label for="recipient-name" class="form-control-label">

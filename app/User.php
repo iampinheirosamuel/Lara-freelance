@@ -5,12 +5,15 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
+use Cog\Laravel\Love\Liker\Models\Traits\Liker;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements LikerContract
 {
     use Notifiable;
     use HasRoles;
-
+    use Liker;
 
     public function setPasswordAttribute($password)
         {   

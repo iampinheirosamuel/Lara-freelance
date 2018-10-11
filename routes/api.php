@@ -21,10 +21,14 @@ Route::post('/quote',[
         'uses'       =>      'QuoteController@postQuote',
         'as'         =>      'post-quote'
     ]);
+
+
 Route::get('/quotes',[
         'uses'       =>      'QuoteController@getQuotes',
         'as'         =>      'get-quotes'
     ]);
+
+
 Route::get('/quotes/{id}',[
         'uses'       =>      'QuoteController@getQuote',
         'as'         =>      'get-quote'
@@ -37,3 +41,8 @@ Route::delete('/quote/{id}',[
         'uses'       =>      'QuoteController@deleteQuote',
         'as'         =>      'delete-quote'
 ]);
+
+Route::get('/skills',[
+        'uses'       =>      'Query@getSkills',
+        'as'         =>      'get-skills'
+    ]);

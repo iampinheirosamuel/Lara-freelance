@@ -47,9 +47,13 @@
 												</div>
 											</div>
 											<div class="m-widget19__action">
-												
+
+													 
+													 
 													{!! Form::open(['method' => 'DELETE', 'route' => ['posts.destroy', $post->id] ]) !!}
                                                     <a href="{{ url()->previous() }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">Back</a>
+                                                    <a href="" onclick="{{ Auth::user()-> Like($post) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom"><span>{{$post->likesCount }}</span> <i class="fa fa-thumbs-up pl-2 pb-1"></i></a>
+              
                                                     @can('Edit Post')
                                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom" role="button">Edit</a>
                                                     @endcan
@@ -82,8 +86,8 @@
 										})();
 										</script>
 										<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-								</div>
-								</div>
+									</div>
+									</div>
 
 								<!--end:: Widgets/Blog-->
 

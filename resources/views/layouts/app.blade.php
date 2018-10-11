@@ -32,6 +32,7 @@
      <!-- Owl Stylesheets -->
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/easy-autocomplete.min.css">
     
     <!-- Custom styles for this template -->
     <link href="../../css/cover.css" rel="stylesheet">
@@ -177,7 +178,7 @@ ga('send', 'pageview');
                                     </span>
                                     <span class="m-nav__link-badge">
 																					<span class="m-badge m-badge--success">
-																						{{ Auth::user()->task->count() }}
+																						{{-- {{ Auth::user()->task->count() }}  --}}
 																					</span>
                                         </span>
                                       </span>
@@ -230,7 +231,7 @@ ga('send', 'pageview');
              <div class="row">
                @if(Session::has('flash_message'))
                   <div class="container-fluid">  
-                    <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+                    <div class="alert alert-success"><em> {!! session('flash_message') !!} </em>
                     </div>
                   </div>
               
@@ -238,8 +239,10 @@ ga('send', 'pageview');
                 @yield('content')
              </div>
            </div>
-             <div class="container-fluid support">
-                <div class="row">
+            
+           
+           <div class="container-fluid support">
+                <div class="row  pt-4 pb-3">
                   <div class="col-md-4  col-sm-4 ">
                     <h6>Contact Us</h6>
                     <br>
@@ -341,8 +344,11 @@ ga('send', 'pageview');
       </script>
     
         <!--begin::Page Snippets -->
+  
+		<script src="../../js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
 		<script src="../../assets/app/js/dashboard.js" type="text/javascript"></script>
-    <!--end::Page Snippets -->
+		<script src="../../js/script.js" type="text/javascript"></script>
+	 <!--end::Page Snippets -->
     <script id="dsq-count-scr" src="//facework-com-ng.disqus.com/count.js" async></script>
   </body>
 </html>

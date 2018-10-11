@@ -1,30 +1,36 @@
-    (function(){
+(function(){
+    //Sign up transitions
+      $(document).ready(function(){
+          //make an ajax call
+          const baseUrl = 'http://localhost:8000';
+          $.ajax({
+            type: "get",
+            url: `${baseUrl}/api/skills`,
+            success: function(data){
+              const servicesArray = data;
+              
+              //autocomplete
+              const options = {
+                url: servicesArray.data
+              };
 
-      //Thumbnail Slider
-    
+              $('#autocomplete').easyAutocomplete(options);
+            }
+          })
+      });
 
  
- //Sign up transitions
 
-               //default state of the sign up page -- hide it
-               $("#signup_anchor").hide();
-                
-               //show sign up
-               $("#show_signup").click(function(){
-                 
-                  $("#login_anchor").hide();
 
-                  $("#signup_anchor").show();
-                
-               });
 
-               //show login
-               $("#show_login").click(function(){
-                 
-                  $("#signup_anchor").hide();
+ 
 
-                  $("#login_anchor").show();
-                
-               });
+  
 
-  })();
+ 
+})();
+
+
+/*jslint  browser: true, white: true, plusplus: true */
+/*global $, countries */
+
