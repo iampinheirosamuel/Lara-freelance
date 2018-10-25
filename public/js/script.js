@@ -7,26 +7,31 @@
             type: "get",
             url: `${baseUrl}/api/skills`,
             success: function(data){
-              const servicesArray = data;
-              
-              //autocomplete
-              const options = {
-                url: servicesArray.data
-              };
-
-              $('#autocomplete').easyAutocomplete(options);
+              autocompleteInit(data.data);              
             }
-          })
+          });
       });
+      
+ function autocompleteInit(data) {
+   // constructs the suggestion engine
+   var services = new Bloodhound({
+     datumTokenizer: Bloodhound.tokenizers.whitespace,
+     queryTokenizer: Bloodhound.tokenizers.whitespace,
+     // `states` is an array of state names defined in "The Basics"
+     local: data
+   });
 
- 
+   $('#bloodhound .typeahead').typeahead({
+     hint: true,
+     highlight: true,
+     minLength: 1
+   },
+     {
+       name: 'services',
+       source: services
+     });
 
-
-
- 
-
-  
-
+ }
  
 })();
 

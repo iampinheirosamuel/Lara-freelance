@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../images/favicon.png">
     <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="../../assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="../../build/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <!--end::Base Styles -->
     <link rel="shortcut icon" href="../images/favicon.png" />
@@ -25,17 +25,17 @@
     crossorigin="anonymous">
 
     <!-- Animate CSS -->
-    <link rel="stylesheeet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
       crossorigin="anonymous">
     <link rel="stylesheeet" href="css/fontawesome-all.css">
      <!-- Owl Stylesheets -->
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../css/easy-autocomplete.min.css">
+
+   
     
     <!-- Custom styles for this template -->
-    <link href="../../css/cover.css" rel="stylesheet">
+    <link href="../../build/css/cover.css" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102627835-1"></script>
 <script>
@@ -56,8 +56,19 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-102627835-1', 'auto');
 ga('send', 'pageview');
 </script>
-<!-- End Google Analytics -->   
+<!-- End Google Analytics --> 
+
+{{-- Facework comments --}}
     
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=861102744055300&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
   </head>
     <!-- Scripts -->
     <script>
@@ -178,7 +189,7 @@ ga('send', 'pageview');
                                     </span>
                                     <span class="m-nav__link-badge">
 																					<span class="m-badge m-badge--success">
-																						{{-- {{ Auth::user()->task->count() }}  --}}
+																						{{ Auth::user()->task->count() }} 
 																					</span>
                                         </span>
                                       </span>
@@ -195,10 +206,10 @@ ga('send', 'pageview');
 																		<span class="m-nav__link-text">
 																			Log out
 																		</span>
-                                                                    </a>
-                                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                        {{ csrf_field() }}
-                                                                    </form>
+                                        </a>
+                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
 																</li>
 															</ul>
 														</div>
@@ -299,14 +310,14 @@ ga('send', 'pageview');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenLite.min.js"></script>
-    <script src="js/lem_counter.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.js"></script>
       <!--begin::Base Scripts -->
-		<script src="../../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-    <script src="../../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
-    <script src="../../../assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
+		<script src="../../build/js/vendors.bundle.js" type="text/javascript"></script>
+    <script src="../../build/js/scripts.bundle.js" type="text/javascript"></script>
+    
     <!--end::Base Scripts -->  
     {{-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  --}}
     <script src="../../js/owl.carousel.min.js"></script>
@@ -344,10 +355,11 @@ ga('send', 'pageview');
       </script>
     
         <!--begin::Page Snippets -->
-  
-		<script src="../../js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
+    <!-- jQuery CDN -->
+		<script src="../../build/js/typeahead.js" type="text/javascript"></script>
 		<script src="../../assets/app/js/dashboard.js" type="text/javascript"></script>
-		<script src="../../js/script.js" type="text/javascript"></script>
+		<script src="../../assets/app/js/bootstrap-datepicker.js" type="text/javascript"></script>
+		<script src="../../build/js/script.js" type="text/javascript"></script>
 	 <!--end::Page Snippets -->
     <script id="dsq-count-scr" src="//facework-com-ng.disqus.com/count.js" async></script>
   </body>

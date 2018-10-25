@@ -259,7 +259,7 @@
 												<label for="recipient-name" class="form-control-label">
 													Your name:
 												</label>
-                                            <input type="text" name="client_name" value="{{ Auth::user()->name }}" class="form-control" id="recipient-name">
+                                            <input type="text" name="client_name" value="{{ Auth::user()->profile->name }}" class="form-control" id="recipient-name">
                                             </div>
                                             <div class="form-group">
 												<label for="recipient-name" class="form-control-label">
@@ -315,7 +315,7 @@
                                                 </div>
 												<div class="col-6">
                                                    <label for="recipient-name" class="form-control-label">
-													Your location?
+													Your location:
 												  </label>
 												  <input type="text" name="location" class="form-control" id="recipient-name">
                                                 </div>

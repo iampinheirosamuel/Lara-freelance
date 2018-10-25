@@ -86,4 +86,16 @@ Route::post('/posts/create',[
         'as' => 'settings.update'
         ]);
 
+
+
+Route::middleware('auth')->get('/post/like/{id}',[
+'uses' => 'PostController@like',
+'as' => 'post.like'
+]);
+
+Route::middleware('auth')->get('/post/unlike/{id}',[
+'uses' => 'PostController@unlike',
+'as' => 'post.unlike'
+]);
+
     

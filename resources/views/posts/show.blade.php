@@ -1,11 +1,53 @@
 @extends('layouts.app')
 
 @section('title', '| View Post')
-
+<br>
 @section('content')
 
+                            <div class="col-md-3 hidden-md-down">
+								<div class="m-portlet">
+									<div class="m-portlet__head">
+										<div class="m-portlet__head-caption">
+											<div class="m-portlet__head-title">
+												<h3 class="m-portlet__head-text">
+													Talent's Profile
+												</h3>
+											</div>
+										</div>
+									</div>
+									
+										<!--begin::Section-->
+										
+                                     <div class="m-portlet__body" style="padding:1.0rem;">
+										<div class="m-widget4">										
+										<a href="{{ route('profile.show', $post->profile->id ) }}">
+											<div class="m-widget4__item" style="border-bottom: 0.07rem dashed #ebedf2;">
+												<div class="m-widget4__img m-widget4__img--logo">
+												
+												</div>
+												<div class="m-widget4__info">
+													<span class="m-widget4__title">
+														View profile 
+													</span>
+													<br>
+													<span class="m-widget4__sub">
+														
+													</span>
+												</div>
+												
+											</div>
+										</a>
+											
+                                            
+										</div>
+									</div>
 
-							<div class="col-sm-8">
+                                    
+										<!--end::Section-->
+										<div class="m-separator m-separator--dashed"></div>
+									</div>
+							</div>
+							<div class="col-md-5">
 								<!--begin:: Widgets/Blog-->
 								<div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force">
 									<div class="m-portlet__head m-portlet__head--fit">
@@ -36,7 +78,10 @@
 														</span>
 														<br>
 														<span class="m-widget19__time">
-															{{ $post->profile->service }}, {{ $post->profile->state }}
+															{{ $post->profile->service }}
+														</span>
+														<span class="m-widget19__time">
+															{{ $post->profile->state }}
 														</span>
 													</div>
 												</a>
@@ -50,10 +95,13 @@
 
 													 
 													 
-													{!! Form::open(['method' => 'DELETE', 'route' => ['posts.destroy', $post->id] ]) !!}
-                                                    <a href="{{ url()->previous() }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">Back</a>
-                                                    <a href="" onclick="{{ Auth::user()-> Like($post) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom"><span>{{$post->likesCount }}</span> <i class="fa fa-thumbs-up pl-2 pb-1"></i></a>
-              
+													{!! Form::open(['method' => 'DELETE', 'route' => ['posts.destroy', $post->id] ]) !!}                  
+                                                    
+                                                    @if($post->is_liked_by_auth_user())
+											        <a href="{{ route('post.unlike',  $post->id ) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand "><i class="fa fa-thumbs-down p-1"></i> <span class="badge">{{ $post->likes->count() }}</span></a>
+													@else
+								                       <a href="{{ route('post.like', $post->id ) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand "><i class="fa fa-thumbs-up p-1"></i>  <span class="badge">{{  ($post->likes->count() == 0 ? '' : $post->likes->count()) }}</span></a>
+													@endif
                                                     @can('Edit Post')
                                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom" role="button">Edit</a>
                                                     @endcan
@@ -65,36 +113,26 @@
 											</div>
 										</div>
 									</div>
-									<div class="disqus">
-									<div id="disqus_thread"></div>
-										<script>
-
-										/**
-										*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-										*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-										/*
-										var disqus_config = function () {
-										this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-										this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-										};
-										*/
-										(function() { // DON'T EDIT BELOW THIS LINE
-										var d = document, s = d.createElement('script');
-										s.src = 'https://facework-com-ng.disqus.com/embed.js';
-										s.setAttribute('data-timestamp', +new Date());
-										(d.head || d.body).appendChild(s);
-										})();
-										</script>
-										<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-									</div>
-									</div>
+								
+									
+								
 
 								<!--end:: Widgets/Blog-->
-
+							
 								
 							</div>
+							
+							<div class="m-portlet__body" style="padding:0rem;">
+
+								<div class="col-12 p-3">
+									<div class="fb-comments" data-href="http://facework.com.ng" data-numposts="10"></div>
+								</div>
+
+							</div>
+
+							</div>
                                 
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
 		                          <div class="m-portlet">
 									<div class="m-portlet__head">
 										<div class="m-portlet__head-caption">
@@ -108,7 +146,7 @@
 									
 										<!--begin::Section-->
 										
-                                           <div class="m-portlet__body" style="padding:1.0rem;">
+                                     <div class="m-portlet__body" style="padding:1.0rem;">
 										<div class="m-widget4">
 											@foreach($posts as $singlePost)
 										<a href="{{ route('posts.show', $singlePost->id ) }}">

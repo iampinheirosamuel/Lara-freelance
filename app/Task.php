@@ -12,6 +12,6 @@ class Task extends Model
     }
 
     protected $fillable = [
-        'client_name','description','title', 'phone', 'location', 'date', 'user_id'
+        'client_name','description','title', 'phone', 'location', 'date', 'user_id',
     ];
 }

@@ -10,12 +10,13 @@ use App\Post;
 use Auth;
 use Session;
 use App\User;
+use App\Like;
 use App\Setting;
 
 class PostController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index','home','show','create','store','edit','destroy');
+        $this->middleware(['auth', 'clearance'])->except('index','home','show','create','store','edit','destroy', 'like', 'unlike');
     }
 
     /**
@@ -93,8 +94,30 @@ class PostController extends Controller {
 
     //Display a successful message upon save
         return redirect()->route('posts.index')
-            ->with('flash_message', 'Article,
+            ->with('flash_message', '
              '. $post->title.' created');
+    }
+    
+
+    // Like system
+    public function like($id){
+      Like::create([
+          'post_id' => $id,
+          'user_id' => Auth::id()
+      ]);
+
+      Session::flash('session', 'You liked');
+
+      return redirect()->back();
+    }
+
+    public function unlike($id){
+      $like = Like::where('post_id', $id)->where('user_id', Auth::id())->first();
+      $like->delete();
+
+      Session::flash('session', 'You unliked');
+
+      return redirect()->back();
     }
 
     /**
@@ -156,7 +179,7 @@ class PostController extends Controller {
 
         return redirect()->route('posts.show', 
             $post->id)->with('flash_message', 
-            'Article, '. $post->title.' updated');
+            ''. $post->title.' updated');
 
     }
 
@@ -172,7 +195,7 @@ class PostController extends Controller {
 
         return redirect()->route('posts.index')
             ->with('flash_message',
-             'Article successfully deleted');
+             'successfully deleted');
 
     }
 }

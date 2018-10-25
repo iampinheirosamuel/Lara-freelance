@@ -1,0 +1,1 @@
+!function(){$(document).ready(function(){$.ajax({type:"get",url:"http://localhost:8000/api/skills",success:function(e){!function(e){var o=new Bloodhound({datumTokenizer:Bloodhound.tokenizers.whitespace,queryTokenizer:Bloodhound.tokenizers.whitespace,local:e});$("#bloodhound .typeahead").typeahead({hint:!0,highlight:!0,minLength:1},{name:"services",source:o})}(e.data)}})})}();
