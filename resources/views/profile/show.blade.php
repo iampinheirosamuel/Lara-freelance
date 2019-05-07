@@ -2,25 +2,36 @@
 
 @section('content')
 
-<div class="col-lg-12">
-           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
-                    <div class="m-portlet__body">
+ <div class="col-lg-12">
+           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url((unknown));
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+            width: 100%;
+            padding: 20px 15px;
+            margin: 15px 0;">
+                    <div class="card_body __body text-center" style="padding:40px 0 ">
                         <div class="m-card-profile">
                             <div class="m-card-profile__title m--hide">
-                                Your Profile
+                                
                             </div>
                             <div class="m-card-profile__pic">
                                 
                                 <div class="m-card-profile__pic-wrapper">
                                     <span class="m-topbar__userpic">
-                                    <img src="{{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+                                    <img src="{{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt="" style="    width: 140px;
+    height: 120px;
+    border-radius: 50%;"/>
                                     </span>
                                 </div>
                             </div>
-                            <div class="m-card-profile__details text-white">
-                                <span class="m-card-profile__name text-white">
+                            <div class="card_text_useername text-white" >
+                                <div class="m-card-profile__name text-white" style="    padding: 15px 0 0 0;
+                                font-weight: 500;
+                                font-size: 1.0rem;">
                                       {{ $profile->name }}
-                                </span>
+                                </div>
                                 <a href="" class="m-card-profile__email m-link text-white">
                                       {{ $profile->email }}
                                 </a>
@@ -34,68 +45,7 @@
             </div>
 
 
-            <div class="col-xl-3 col-lg-4">
-                <div class="m-portlet m-portlet--full-height  ">
-                    <div class="m-portlet__body">
-                        <div class="m-card-profile">
-                            <div class="m-card-profile__title m--hide">
-                                Your Profile
-                            </div>
-                            
-                            <div class="m-card-profile__details">
-                              <ul class="m-nav m-nav--skin-light">
-                            <li class="m-nav__section m--hide">
-                                <span class="m-nav__section-text">
-                                    Section
-                                </span>
-                                  </li>
-                                  <li class="m-nav__item">
-                                      <a href="/" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
-                                        <span class="m-nav__link-title">
-                                          <span class="m-nav__link-wrap">
-                                            <span class="m-nav__link-text">
-                                               My Portfolio
-                                            </span>
-                                            <span class="m-nav__link-badge">
-                                             
-                                            </span>
-                                          </span>
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
-                                    @role('Admin') {{-- Laravel-permission blade helper --}}
-                                    <li class="m-nav__item">
-                                      <a href="/users" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
-                                        <span class="m-nav__link-title">
-                                          <span class="m-nav__link-wrap">
-                                            <span class="m-nav__link-text">
-                                              Visit Admin Dashboard
-                                            </span>
-                                            <span class="m-nav__link-badge">
-                                              <span class="m-badge m-badge--success">
-                                                
-                                              </span>
-                                            </span>
-                                          </span>
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
-                                    @endrole
-                                    
-                                    
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="m-portlet__body-separator"></div>
-
-                    </div>
-                </div>
-            </div>
+        
             <div class="col-xl-9 col-lg-8">
                 <div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
                    
@@ -117,9 +67,9 @@
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <div class="col-6">
-                                            <h3 class="">
+                                            <h5 class="">
                                                 Personal Details
-                                            </h3>
+                                            </h5>
                                         </div>
                                         <div class="col-6">
                                              <button type="button" class="btn btn-focus float-right" data-toggle="modal" data-target="#m_modal_4">
@@ -132,12 +82,12 @@
                                     <div class="form-group m-form__group row">
                                         
                                         <div class="col-lg-6">
-                                        <label for="example-text-input" class=" col-form-label">
+                                        <h6 for="example-text-input" class=" col-form-label">
                                             Fullname
-                                          </label>
-                                            <h6 class="">
+                                        </h6>
+                                            <p class="">
                                                 {{ $profile->name }}
-                                            </h6>
+                                            </p>
                                         </div>
                                        
                                         <div class="col-lg-6">
@@ -148,21 +98,21 @@
                                     <div class="form-group m-form__group row">
                                         
                                         <div class="col-lg-6">
-                                        <label for="example-text-input" class=" col-form-label">
+                                        <h6 for="example-text-input" class=" col-form-label">
                                             Skill sets
-                                          </label>
-                                            <h6 class="">
+                                        </h6>
+                                            <p class="">
                                                 {{ $profile->service }}
-                                            </h6>
+                                            </p>
                                         </div>
                                        
                                         <div class="col-lg-6">
-                                            <label for="example-text-input" class=" col-form-label">
+                                            <h6 for="example-text-input" class=" col-form-label">
                                             City
-                                           </label>
-                                            <h6 class="">
-                                                {{ $profile->state }}
                                             </h6>
+                                            <p class="">
+                                                {{ $profile->state }}
+                                            </p>
                                         </div>
                                     </div>
 
@@ -170,12 +120,12 @@
 
                                     <div class="form-group m-form__group row">
                                          <div class="col-lg-12">
-                                            <label for="example-text-input" class=" col-form-label">
+                                            <h6 for="example-text-input" class=" col-form-label">
                                             Bio
-                                           </label>
-                                            <h6 class="">
-                                                {{ $profile->about }}
                                             </h6>
+                                            <p class="">
+                                                {{ $profile->about }}
+                                            </p>
                                         </div>
                                     </div>
 
@@ -185,43 +135,42 @@
                                     
                                     <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
                                    
-                                    <div class="m-widget3">
+                                    <div class="pt-5 pb-5">
                                             @if(count($profile->post) !== 0)
-                                            <h4 class="text-left">{{$profile->user->name}} recent job</h4>
+                                            <h6 class="text-left">{{$profile->user->name}}'s recent job</h6>
                                             <br>
-                                             @foreach ($profile->post as $post)
-                                             
-                                           <a href="{{ route('posts.show', $post->id ) }}">
-											<div class="m-widget3__item" style="border-bottom: 0.07rem dashed #ebedf2;">
-												<div class="m-widget3__header">
-													<div class="m-widget3__user-img">
-                                                    <img class="m-widget3__img" style="width:4.2rem; height:4.0rem" src="{{ $post->profile->image }}" alt="">
-													</div>
-													<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															{{ $post->profile->name }}
-														</span>
-														<br>
-														<span style="color:#222" class="m-widget3__time">
-															{{ $post->created_at->diffForHumans() }}
-														</span>
-													</div>
-													<span class="m-widget3__status m--font-info">
-														
-													</span>
-												</div>
-												<div class="m-widget3__body">
-													<p class="m-widget3__text">
-                                                         
-														 {{ str_limit($post->body, 200) }} {{-- Limit teaser to 100 characters --}}
-													</p>
-												</div>
-                                            </div>
-                                           </a>
-                                           <br>
-                                             @endforeach
+                                            <div class="row">
+                                                @foreach ($profile->post as $post)
+  
+                                                  <div class="col-md-4 p-3" >
+                                                      <a href="{{ route('posts.show', $post->id ) }}">
+  
+                                                      <div class="card">
+                                                      <div class="card-img-top img-fluid" style="height: 200px; background: url({{ $post->featured }}) no-repeat;     background-size: cover;" >
+                                                          
+                                                          </div>
+                                                          
+                                                          <div class="card-body">
+                                                          <h6 class="text-dark">	{{ $post->title }}</h6>
+                                                          <p class="card-text"> </p>
+                                                          <div class="full row">
+                                                              <div class="col-2 pr-0"><img src="{{ $post->profile->image }}" class="img-rounded" alt="" srcset=""></div>
+                                                              <div class="col-7 pl-2 mb-0"><p class="card-text"><small class="text-dark">{{ $post->profile->name }}</small></p>
+                                                          </div>
+                                                              <div class="col-3"><p class="card-text"><small class="text-muted"><i class="fa fa-thumbs-up pl-2"></i> <strong>{{ $post->likes->count() }}</strong></small></p></div>
+                                                      </div>
+                                                          
+                                                          </div>
+                                                      </div>
+  
+                                                      </a>
+                                                  </div>
+  
+                                                  @endforeach
+                                              
+                                          </div>
                                              @else
-                                              <h6 class="text-center">{{$profile->user->name}} no recent work to show case</h6>
+                                              <h6 class="text-center">{{$profile->user->name}} has no recent work to show case</h6>
 											 @endif
 										</div>
 
@@ -243,7 +192,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<h5 class="modal-title" id="exampleModalLabel">
-											Request a New Task
+											Send Task
 										</h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">
@@ -253,7 +202,8 @@
 									</div>
 									<div class="modal-body">
                                     <form method="post" action="{{ route('task.store') }}">
-                                          {{ csrf_field() }} 
+                                          {{ csrf_field() }}
+
                                           @if(Auth::user()) 
                                            <div class="form-group">
 												<label for="recipient-name" class="form-control-label">
@@ -281,7 +231,7 @@
 													Your phone:
 												</label>
 												<input type="text" name="phone" class="form-control" id="recipient-name">
-                                            <input type="hidden" name="user_id" value="{{  $profile->user->id }}" class="form-control" id="recipient-name">
+                                                <input type="hidden" name="user_id" value="" class="form-control" id="recipient-name">
 
                                             </div>
                                             @endif
@@ -302,18 +252,18 @@
                                             </div>
                                             <div class="form-group">
                                             <div class="form-group row">
-                                                <div class="col-6">
+                                                <div class="col-md-6">
                                                    <label for="recipient-name" class="form-control-label">
-													Your timeline:
+													Any deadline:
                                                   </label>
                                                   
                                                     <div class="input-group date">
-                                                        <input type="text" name="date" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
+                                                        <input type="text" name="date" class="form-control m-input" readonly="" placeholder="Select date" id="datepicker">
                                                        
                                                     </div>
                                                 			 
                                                 </div>
-												<div class="col-6">
+												<div class="col-md-6">
                                                    <label for="recipient-name" class="form-control-label">
 													Your location:
 												  </label>

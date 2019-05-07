@@ -4,24 +4,35 @@
 
 
            <div class="col-lg-12">
-           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
-                    <div class="m-portlet__body">
+           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url((unknown));
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+            width: 100%;
+            padding: 20px 15px;
+            margin: 15px 0;">
+                    <div class="card_body __body text-center" style="padding:40px 0 ">
                         <div class="m-card-profile">
                             <div class="m-card-profile__title m--hide">
-                                Your Profile
+                                
                             </div>
                             <div class="m-card-profile__pic">
                                 
                                 <div class="m-card-profile__pic-wrapper">
                                     <span class="m-topbar__userpic">
-                                    <img src="{{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+                                    <img src="{{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt="" style="    width: 140px;
+    height: 120px;
+    border-radius: 50%;"/>
                                     </span>
                                 </div>
                             </div>
-                            <div class="m-card-profile__details text-white">
-                                <span class="m-card-profile__name text-white">
+                            <div class="card_text_useername text-white" >
+                                <div class="m-card-profile__name text-white" style="    padding: 15px 0 0 0;
+                                font-weight: 500;
+                                font-size: 1.0rem;">
                                       {{ $profile->name }}
-                                </span>
+                                </div>
                                 <a href="" class="m-card-profile__email m-link text-white">
                                       {{ $profile->email }}
                                 </a>
@@ -40,15 +51,11 @@
                     <div class="m-portlet__body">
                        
                          <div class="m-card-profile-details">
-                          <ul class="m-nav m-nav--skin-light">
-                            <li class="m-nav__section m--hide">
-                                <span class="m-nav__section-text">
-                                    Section
-                                </span>
-                                  </li>
+                          <ul class="m-nav m-nav--skin-light sidebar_ul">
+                         
                                   <li class="m-nav__item">
                                       <a href="{{ route('profile.index', Auth::user()->id ) }}" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <i class="ion-ios-speedometer-outline"></i>
                                         <span class="m-nav__link-title">
                                           <span class="m-nav__link-wrap">
                                             <span class="m-nav__link-text">
@@ -61,11 +68,11 @@
                                         </span>
                                       </a>
                                     </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                     @role('Admin') {{-- Laravel-permission blade helper --}}
                                     <li class="m-nav__item">
                                       <a href="/users" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <i class="ion-ios-speedometer-outline"></i>
                                         <span class="m-nav__link-title">
                                           <span class="m-nav__link-wrap">
                                             <span class="m-nav__link-text">
@@ -80,13 +87,13 @@
                                         </span>
                                       </a>
                                     </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                             
                                     @endrole
                                     
                                     <li class="m-nav__item">
                                         
                                         <a href=" {{ route('profile.edit', Auth::user()->id ) }}" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                            <i class="ion-ios-compose-outline"></i>
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
                                                     <span class="m-nav__link-text">
@@ -97,11 +104,11 @@
                                             </span>
                                         </a>
                                     </li>
-                                   <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                     <li class="m-nav__item">
                                         
-                                        <a href="  {{ route('posts.create') }}" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <a href="  {{ route('profile.create') }}" class="m-nav__link">
+                                            <i class="ion-ios-upload-outline"></i>
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
                                                     <span class="m-nav__link-text">
@@ -112,12 +119,13 @@
                                             </span>
                                         </a>
                                     </li>
+
+                                
                                    
-                                   
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    
                                     <li class="m-nav__item">
                                             <a href="{{ route('task.show', Auth::user()->id) }}" class="m-nav__link">
-                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                <i class="ion-ios-email-outline"></i>
                                                 <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
                                                     <span class="m-nav__link-text">
@@ -125,7 +133,7 @@
                                                     </span>
                                                 <span class="m-nav__link-badge">
                                                         <span class="m-badge m-badge--success">
-                                                            {{ Auth::user()->task->count() }}
+                                                            {{-- {{ Auth::user()->task->count() }} --}}
                                                         </span>
                                                 </span>
                                             </span>
@@ -135,10 +143,10 @@
                                     
                                     
                                 
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                     <li class="m-nav__item">
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-logout"></i>
+                                            <i class="ion-ios-close-outline"></i>
                                             <span class="m-nav__link-text">
                                                 Log out
                                             </span>
@@ -200,7 +208,7 @@
 												<div class="m-widget3__body">
 													<p class="m-widget3__text">
                                                          
-														 {{ str_limit($post->body, 200) }} {{-- Limit teaser to 100 characters --}}
+														 {{ str_limit($post->body, 200) }} {{-- Limit teaser to 200 characters --}}
 													</p>
 												</div>
                                             </div>

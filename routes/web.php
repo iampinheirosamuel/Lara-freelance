@@ -35,6 +35,9 @@ Route::resource('roles', 'RoleController');
 
 Route::resource('profile', 'ProfileController');
 
+Route::resource('broadcast', 'BroadcastController');
+
+Route::resource('advert', 'AdvertController');
 
 //Profile
 Route::post('/profile/changeProfileImage/{id}',[
@@ -70,24 +73,24 @@ Route::post('/posts/create',[
 ]);
 
 
-  //Settings
-        Route::get('/site/settings',[
-        'uses' => 'SettingController@index',
-        'as' => 'settings'
-        ]);
+//Settings
+Route::get('/site/settings',[
+'uses' => 'SettingController@index',
+'as' => 'settings'
+]);
 
-        Route::post('/site/settings/create',[
-        'uses' => 'SettingController@store',
-        'as' => 'settings.store'
-        ]);
+Route::post('/site/settings/create',[
+'uses' => 'SettingController@store',
+'as' => 'settings.store'
+]);
 
-         Route::post('/site/settings/update',[
-        'uses' => 'SettingController@update',
-        'as' => 'settings.update'
-        ]);
+Route::post('/site/settings/update',[
+'uses' => 'SettingController@update',
+'as' => 'settings.update'
+]);
 
 
-
+//Like middleware
 Route::middleware('auth')->get('/post/like/{id}',[
 'uses' => 'PostController@like',
 'as' => 'post.like'
@@ -98,4 +101,23 @@ Route::middleware('auth')->get('/post/unlike/{id}',[
 'as' => 'post.unlike'
 ]);
 
+// Comment section
+Route::post('/add-comment', [
+   'uses' => 'CommentController@store',
+   'as' => 'comment.post'
+]);
+
+// Explore section
+Route::get('/explore', [
+   'uses' => 'PostController@explore',
+   'as' => 'explore'
+]);
     
+Route::get('/test', function () {
+    event(new App\Events\PostLiked('Someone'));
+    return "Event has been sent!";
+});
+
+Route::get('/push', function () {
+    return view("welcome");
+});

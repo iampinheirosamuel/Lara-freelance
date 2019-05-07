@@ -325,7 +325,7 @@ ga('send', 'pageview');
 									</ul>
 								</div>
 							</li>
-							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+							{{-- <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
 								<a href="{{ route('settings') }}" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-user-settings"></i>
 								<span class="m-menu__link-text">
@@ -333,6 +333,24 @@ ga('send', 'pageview');
 								</span>
 								</a>   
 							</li>
+			   --}}
+			   <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+								<a href="{{ route('broadcast.create') }}" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-user-settings"></i>
+								<span class="m-menu__link-text">
+								Send Broadcast 
+								</span>
+								</a>   
+							</li>
+
+							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+									<a href="{{ route('advert.create') }}" class="m-menu__link">
+									<i class="m-menu__link-icon flaticon-user-settings"></i>
+									<span class="m-menu__link-text">
+									Adverts
+									</span>
+									</a>   
+								</li>
               
              
 						</ul>
@@ -410,7 +428,7 @@ ga('send', 'pageview');
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
-								2017 &copy; Facework
+									<script>document.write(new Date().getFullYear())</script>&copy; Facework
 								
 							</span>
 						</div>

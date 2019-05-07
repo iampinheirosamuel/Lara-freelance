@@ -2,26 +2,36 @@
 
 @section('content')
 
-
            <div class="col-lg-12">
-           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
-                    <div class="m-portlet__body">
+           <div class="m-portlet m-portlet--full-height" style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('{{ $profile->coverImage}}');background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url((unknown));
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+            width: 100%;
+            padding: 20px 15px;
+            margin: 15px 0;">
+                    <div class="card_body __body text-center" style="padding:40px 0 ">
                         <div class="m-card-profile">
                             <div class="m-card-profile__title m--hide">
-                                Your Profile
+                                
                             </div>
                             <div class="m-card-profile__pic">
                                 
                                 <div class="m-card-profile__pic-wrapper">
                                     <span class="m-topbar__userpic">
-                                    <img src="{{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+                                    <img src="{{ $profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt="" style="    width: 140px;
+    height: 120px;
+    border-radius: 50%;"/>
                                     </span>
                                 </div>
                             </div>
-                            <div class="m-card-profile__details text-white">
-                                <span class="m-card-profile__name text-white">
+                            <div class="card_text_useername text-white" >
+                                <div class="m-card-profile__name text-white" style="    padding: 15px 0 0 0;
+                                font-weight: 500;
+                                font-size: 1.0rem;">
                                       {{ $profile->name }}
-                                </span>
+                                </div>
                                 <a href="" class="m-card-profile__email m-link text-white">
                                       {{ $profile->email }}
                                 </a>
@@ -40,15 +50,11 @@
                     <div class="m-portlet__body">
                        
                          <div class="m-card-profile-details">
-                          <ul class="m-nav m-nav--skin-light">
-                            <li class="m-nav__section m--hide">
-                                <span class="m-nav__section-text">
-                                    Section
-                                </span>
-                                  </li>
+                          <ul class="m-nav m-nav--skin-light sidebar_ul">
+                         
                                   <li class="m-nav__item">
                                       <a href="{{ route('profile.index', Auth::user()->id ) }}" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <i class="ion-ios-speedometer-outline"></i>
                                         <span class="m-nav__link-title">
                                           <span class="m-nav__link-wrap">
                                             <span class="m-nav__link-text">
@@ -61,11 +67,11 @@
                                         </span>
                                       </a>
                                     </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                     @role('Admin') {{-- Laravel-permission blade helper --}}
                                     <li class="m-nav__item">
                                       <a href="/users" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <i class="ion-ios-speedometer-outline"></i>
                                         <span class="m-nav__link-title">
                                           <span class="m-nav__link-wrap">
                                             <span class="m-nav__link-text">
@@ -80,13 +86,13 @@
                                         </span>
                                       </a>
                                     </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                             
                                     @endrole
                                     
                                     <li class="m-nav__item">
                                         
                                         <a href=" {{ route('profile.edit', Auth::user()->id ) }}" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                            <i class="ion-ios-compose-outline"></i>
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
                                                     <span class="m-nav__link-text">
@@ -97,11 +103,11 @@
                                             </span>
                                         </a>
                                     </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                     <li class="m-nav__item">
                                         
-                                        <a href="  {{ route('posts.create') }}" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                        <a href="  {{ route('profile.create') }}" class="m-nav__link">
+                                            <i class="ion-ios-upload-outline"></i>
                                             <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
                                                     <span class="m-nav__link-text">
@@ -113,14 +119,12 @@
                                         </a>
                                     </li>
 
-                                   
-
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                    
                                     
                                     <li class="m-nav__item">
                                             <a href="{{ route('task.show', Auth::user()->id) }}" class="m-nav__link">
-                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                <i class="ion-ios-email-outline"></i>
                                                 <span class="m-nav__link-title">
                                                 <span class="m-nav__link-wrap">
                                                     <span class="m-nav__link-text">
@@ -128,7 +132,7 @@
                                                     </span>
                                                 <span class="m-nav__link-badge">
                                                         <span class="m-badge m-badge--success">
-                                                            {{ Auth::user()->task->count() }}
+                                                            {{-- {{ Auth::user()->task->count() }} --}}
                                                         </span>
                                                 </span>
                                             </span>
@@ -138,10 +142,10 @@
                                     
                                     
                                 
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                
                                     <li class="m-nav__item">
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="m-nav__link">
-                                            <i class="m-nav__link-icon flaticon-logout"></i>
+                                            <i class="ion-ios-close-outline"></i>
                                             <span class="m-nav__link-text">
                                                 Log out
                                             </span>
@@ -158,19 +162,7 @@
             <div class="col-xl-9 col-lg-8">
                 <div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
                    
-                    <div class="m-portlet__head">
-
-                        <div class="m-portlet__head-tools">
-                            <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
-                                <li class="nav-item m-tabs__item">
-                                   
-                                     <i class="flaticon-edit "></i>
-                                        Update Profile    
-                                </li>                      
-                            </ul>
-                        </div>
-
-                    </div>
+                   
                     <div class="tab-content">
                         <div class="tab-pane active show" id="m_user_profile_tab_1">
                         <form class="m-form m-form--fit m-form--label-align-right" method="post"  action="/profile/update/{{ $profile->id }}">
@@ -181,9 +173,9 @@
                                          </div>
                                     </div>
                                    <div class="col-12">
-                                            <h3 class="m-form__section">
-                                                Personal Details
-                                            </h3>
+                                            <h5 class="m-form__section">
+                                               Update Profile
+                                            </h5>
                                         </div>
                                     <div class="form-group m-form__group row">
                                         <div class="col-10 ml-auto">
@@ -262,12 +254,12 @@
                                 </div>
 
 
-                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="" style="padding-bottom:70px; padding-top:30px;">
                                     <div class="m-form__actions">
                                         <div class="row">
                                             <div class="col-2"></div>
                                             <div class="col-8 text-center">
-                                                <button type="submit" class="btn btn-brand m-btn m-btn--air m-btn--custom">
+                                                <button type="submit" class="btn btn-primary m-btn m-btn--air m-btn--custom">
                                                     Update
                                                 </button>
                                                
@@ -277,57 +269,64 @@
                                 </div>
                             </form>
 
+                            {{-- Profile --}}
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/changeProfileImage/{{ $profile->id }}">
-                                    {{ csrf_field() }}
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-lg-6">
-                                            <label for="example-text-input" class=" col-form-label">
-                                            Change Avatar
-                                            </label>
-                                            <input class="form-control-file m-input" type="file" name="image">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active text-dark font-weight-bold" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Change Profile Picture</a>
+                                    <a class="nav-item nav-link text-dark font-weight-bold" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"> Change Cover Image</a>
+                                   
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                      <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/changeProfileImage/{{ $profile->id }}">
+                                        {{ csrf_field() }}
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-6 pt-5 pb-5">
+                                                <label for="example-text-input" class=" col-form-label">
+                                                Change Avatar
+                                                </label>
+                                                <input class="form-control-file m-input" type="file" name="image">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                    
-                                        <div class="m-form__actions">
-                                                
-                                            <button type="submit" class="btn btn-brand m-btn m-btn--air">
-                                                Update Profile Image
-                                            </button>
+                                        <div class="form-group m-form__group row">
                                         
+                                            <div class="m-form__actions">
+                                                    
+                                                <button type="submit" class="btn btn-primary m-btn m-btn--air">
+                                                    Update Profile Image
+                                                </button>
+                                            
+                                            </div>
                                         </div>
-                                    </div>
-                                    </form>
+                                       </form>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/changeCoverImage/{{ $profile->id }}">
-                                    {{ csrf_field() }}
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-lg-6">
-                                            <label for="example-text-input" class=" col-form-label">
-                                            Change Cover Image
-                                            </label>
-                                            <input class="form-control-file m-input" type="file" name="coverImage">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                    
-                                        <div class="m-form__actions">
-                                    
-                                            <button type="submit" class="btn btn-brand m-btn m-btn--air ">
-                                                Update Cover Image
-                                            </button>
-                                         
-                                        </div>
-                                    </div>
-                                    </form>
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                        <form class="m-form m-form--fit m-form--label-align-right" method="post" enctype="multipart/form-data" action="/profile/changeCoverImage/{{ $profile->id }}">
+                                            {{ csrf_field() }}
+                                            <div class="form-group m-form__group row">
+                                                <div class="col-lg-6 pt-5 pb-5">
+                                                    <label for="example-text-input" class=" col-form-label">
+                                                    Change Cover Image
+                                                    </label>
+                                                    <input class="form-control-file m-input" type="file" name="coverImage">
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                            
+                                                <div class="m-form__actions">
+                                            
+                                                    <button type="submit" class="btn btn-primary m-btn m-btn--air ">
+                                                        Update Cover Image
+                                                    </button>
+                                                
+                                                </div>
+                                            </div>
+                                         </form>
                                 </div>
-                            </div> 
-                            
+                                
+                            </div>
                             
                         </div>
                     </div>

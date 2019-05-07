@@ -2,7 +2,7 @@
     //Sign up transitions
       $(document).ready(function(){
           //make an ajax call
-          const baseUrl = 'http://localhost:8000';
+          const baseUrl = 'http://facework.com.ng';
           $.ajax({
             type: "get",
             url: `${baseUrl}/api/skills`,
@@ -32,6 +32,11 @@
      });
 
  }
+
+ //date picker
+ $('#datepicker').datepicker({
+  uiLibrary: 'bootstrap4'
+});
  
 })();
 

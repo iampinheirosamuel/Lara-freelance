@@ -7,11 +7,24 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    
+    <meta name="description" content="Freelance job work freelance artisans NIgeria freelence oppportunities"/>
+<link rel="canonical" href="http://facework.com.ng/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Facework - freelance platform" />
+<meta property="og:description" content="Freelance job work freelance artisans NIgeria freelence oppportunities" />
+<meta property="og:url" content="http://facework.com.ng/" />
+<meta property="og:site_name" content="Facework - freeelance Nigeria Jobs" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Freelance job work freelance artisans NIgeria freelence oppportunities" />
+<meta name="twitter:title" content="Facework - freeelance Nigeria Jobs" />
+<meta name="twitter:site" content="@Facework10" />
+<meta name="twitter:image" content="../../images/favicon.png" />
+<meta name="twitter:creator" content="@Facework10" />
+    <meta name="google-site-verification" content="I0a4goaZ-BtjG8BJv6BODcOhaKRixSpEMVGbYscahpw" />
     <link rel="icon" href="../../images/favicon.png">
-    <link href="../../assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="../../build/css/style.bundle.css" rel="stylesheet" type="text/css" />
+ 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <!--end::Base Styles -->
     <link rel="shortcut icon" href="../images/favicon.png" />
@@ -19,19 +32,18 @@
     <title>FaceWork </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.css"> --}}
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
-
-    <!-- Animate CSS -->
    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
-      crossorigin="anonymous">
-    <link rel="stylesheeet" href="css/fontawesome-all.css">
+    <!-- Ioninc Awesome CSS -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" >
+    {{-- <link rel="stylesheeet" href="css/fontawesome-all.css"> --}}
      <!-- Owl Stylesheets -->
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
-
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    
    
     
     <!-- Custom styles for this template -->
@@ -80,143 +92,105 @@ ga('send', 'pageview');
 </head>
 
   <body>
-  <div class="container">
+  <div id="app" class="container">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       
           <a class="navbar-brand" href="{{ url('/') }}"><img src="../../images/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
         aria-expanded="false" aria-label="Toggle navigation">
-        <i style=" color: #222;" class="flaticon-grid-menu"></i>
+        <i style=" color: #222;" class="ion-navicon"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav ml-auto">
   
-          
             <li class="nav-item"><a href="{{ url('/') }}">Home</a></li>
            
                 <li class="nav-item"><a href="{{ route('posts.index') }}">Show Case</a></li>
           
-          
-           @if (Auth::guest())
-                            <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
-                            {{-- <li class="nav-item"><a class="btn btn-secondary" href="{{ route('register') }}">Register</a></li> --}}
-                        @else
-                        @role('Active')
-                             <li class="nav-item"><a href="{{ route('posts.create') }}">Upload Work</a></li>
-                         @endrole
-                  <li style="margin-top: 10px; " class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-topbar__userpic">
-                        <img style="margin-top:10px;     border: 1px solid rgba(16, 224, 64, 0.78); height: 40px; width:42px;" alt="click_me" src="{{ Auth::user()->profile->image }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
-												</span>
-												<span class="m-topbar__username m--hide">
-													
-                        </span>
-                      
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
-														<div class="m-card-user m-card-user--skin-dark">
-															<div class="m-card-user__pic">
-                              <img src="" class="m--img-rounded m--marginless" alt=""/>
-															</div>
-															<div class="m-card-user__details">
-																<span style="color:#fff; font-size:12px;" class="m-card-user__name m--font-weight-500">
-																	 {{ Auth::user()->name }} 
-																</span>
-																<a style="color:#fff; font-size:10px;" href="" class="m-card-user__email m--font-weight-300 m-link">
-																	 {{ Auth::user()->email }} 
-																</a>
-															</div>
-														</div>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-															<ul class="m-nav m-nav--skin-light">
-																<li class="m-nav__section m--hide">
-																	<span class="m-nav__section-text">
-																		Section
-																	</span>
-                                  </li>
-                                    @role('Admin') {{-- Laravel-permission blade helper --}}
-                                    <li class="m-nav__item">
-                                      <a href="/users" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
-                                        <span class="m-nav__link-title">
-                                          <span class="m-nav__link-wrap">
-                                            <span class="m-nav__link-text">
-                                              Visit Admin Dashboard
-                                            </span>
-                                            <span class="m-nav__link-badge">
-                                              <span class="m-badge m-badge--success">
-                                                
-                                              </span>
-                                            </span>
-                                          </span>
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__separator m-nav__separator--fit"></li>
-                                    @endrole
-                                                                
-																<li class="m-nav__item">
-                                      <a href="{{ route('profile.index', Auth::user()->id ) }}" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-profile-1"></i>
-                                        <span class="m-nav__link-title">
-                                          <span class="m-nav__link-wrap">
-                                            <span class="m-nav__link-text">
-                                               Dashboard
-                                            </span>
-                                            <span class="m-nav__link-badge">
-                                             
-                                            </span>
-                                          </span>
-                                        </span>
-                                      </a>
-                                    </li>
-                                <li class="m-nav__separator m-nav__separator--fit"></li>
-																
-																<li class="m-nav__item">
-                                <a href="{{ route('task.show', Auth::user()->id) }}" class="m-nav__link">
-                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                    <span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																		<span class="m-nav__link-text">
-																			Messages
-                                    </span>
-                                    <span class="m-nav__link-badge">
-																					<span class="m-badge m-badge--success">
-																						{{ Auth::user()->task->count() }} 
-																					</span>
+               
+                  @if (Auth::guest())
+                  <li class="nav-item"><a href="{{ route('login') }}">Login</a></li>
+                  {{-- <li class="nav-item"><a class="btn btn-secondary" href="{{ route('register') }}">Register</a></li> --}}
+                    @else
+
+                    @role('Active')
+                     <li class="nav-item"><a href="{{ route('profile.create') }}">Upload Work</a></li>
+                    @endrole
+
+                   <li class="nav-item">
+                      <div class="dropdown ">
+                        <i class="ion-ios-bell-outline dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() }}</span>
+                        </i>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          @if(auth()->user()->unreadNotifications->count() )
+                          @foreach (auth()->user()->unreadNotifications as $notification)
+                               <div>
+                                  <div class="post_img ">
+                                      <a class="dropdown-item m-0 p-1" href="/posts/{{ $notification->data['notifs']['id'] }}" ><img src="{{ $notification->data['notifs']['featured'] }}" style="width:2.0rem; height:2.0rem; border-radius: 50%;
+                                    
+                                  " alt="" class="img-rounded" srcset="">
+                                 <small class="text-muted">  {{ $notification->data['notifs']['title'] }} </small><br>
+                                 {{-- <small class="text-muted">  {{ $notification->data['notifs']['created_at']->diffForHumans() }} </small> --}}
+                                  </a>
+                                  </div>
+                                 
+                              </div>  
+                          @endforeach      
+                          @else
+                          <a class="dropdown-item m-0" href="#">No notifications</a>
+                          @endif
+                          
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="dropdown dropleft">
+                            <a href="#" class="m-nav__link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="m-topbar__userpic">
+                                <img alt="user profile picture" src="{{ Auth::user()->profile->image }}" class="profile_img_user img-rounded m--marginless img-centered" />
+                                </span>                   
+                              </a>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              @role('Admin') {{-- Laravel-permission blade helper --}}
+
+                                <a href="/users" class="dropdown-item m-0">
+                                  
+                                        Visit Admin Dashboard
+                                </a>
+                              @endrole
+                               
+                              <a href="{{ route('profile.index', Auth::user()->id ) }}" class="dropdown-item m-0">
+                                 
+                                         Dashboard
+                              </a>
+
+                              <a href="{{ route('task.show', Auth::user()->id) }}" class="dropdown-item m-0">
+                                  
+                                    Messages
+                                  <span class="badge">
+                                        <span class="badge badge-success">
+                                          {{ Auth::user()->task->count() }} 
                                         </span>
                                       </span>
-                                    </span>
-																	</a>
-                                                                </li>
-                                                                
-                                                                
-															
-																<li class="m-nav__separator m-nav__separator--fit"></li>
-																<li class="m-nav__item">
-																	<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-logout"></i>
-																		<span class="m-nav__link-text">
-																			Log out
+                                </a>
+
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item m-0">
+																		
+																		<span class="">
+                                      	Log out
 																		</span>
-                                        </a>
-                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                          </div>
+                        </div>
+                      </li>
+                       
+                   
                         @endif
                     </ul>
                     
@@ -269,9 +243,9 @@ ga('send', 'pageview');
                   <h6>Follow us</h6>
                    <br>
                     <ul class="" style="display:inline-flex; padding-right:10px;">
-                       <li class="" style="padding-right: 15px;"><a href=""><i class="fa fa-facebook fa-3x"></i></a></li><br>
-                       <li class="" style="padding-right: 15px;"><a href=""><i class="fa fa-twitter fa-3x"></i></a></li><br>
-                       <li class="" style="padding-right: 15px;"><a href=""><i class="fa fa-instagram fa-3x"></i></a></li><br>       
+                       <li class="" style="padding-right: 15px;"><a href=""><i class="ion-social-facebook-outline"></i></a></li><br>
+                       <li class="" style="padding-right: 15px;"><a href=""><i class="ion-social-twitter-outline"></i></a></li><br>
+                       <li class="" style="padding-right: 15px;"><a href=""><i class="ion-social-instagram-outline"></i></a></li><br>       
                     </ul>
                     </div>
                   <div class="col-md-4  col-sm-4 ">
@@ -289,8 +263,8 @@ ga('send', 'pageview');
 
            
               <div class="footer"> <p>
-                <script>document.write(new Date().getFullYear())</script> © Designed & Supported by <a class="m-link" href="https://github.com/iampinheirosamuel/">
-                                Evolve Tech
+                <script>document.write(new Date().getFullYear())</script> © made with <i class="ion-ios-heart-outline text-danger"></i> by <a class="m-link" href="https://github.com/devPinheiro/">
+                                ET
                             </a></p>
               </div>
               </div>
@@ -310,18 +284,27 @@ ga('send', 'pageview');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenLite.min.js"></script>
+
+     <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
       crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.10/dist/summernote.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+      <!--<script>-->
+      <!--$('#summernote').summernote({-->
+      <!--      placeholder: 'Hello stand alone ui',-->
+      <!--      tabsize: 2,-->
+      <!--      height: 100-->
+      <!--    });-->
+      <!--  </script>-->
+
       <!--begin::Base Scripts -->
-		<script src="../../build/js/vendors.bundle.js" type="text/javascript"></script>
-    <script src="../../build/js/scripts.bundle.js" type="text/javascript"></script>
+
     
     <!--end::Base Scripts -->  
-    {{-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  --}}
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
     <script src="../../js/owl.carousel.min.js"></script>
-  
 
     <script>
         $(document).ready(function() {
@@ -357,8 +340,6 @@ ga('send', 'pageview');
         <!--begin::Page Snippets -->
     <!-- jQuery CDN -->
 		<script src="../../build/js/typeahead.js" type="text/javascript"></script>
-		<script src="../../assets/app/js/dashboard.js" type="text/javascript"></script>
-		<script src="../../assets/app/js/bootstrap-datepicker.js" type="text/javascript"></script>
 		<script src="../../build/js/script.js" type="text/javascript"></script>
 	 <!--end::Page Snippets -->
     <script id="dsq-count-scr" src="//facework-com-ng.disqus.com/count.js" async></script>

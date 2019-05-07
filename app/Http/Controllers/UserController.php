@@ -79,7 +79,7 @@ class UserController extends Controller {
                                 'phone' => '',
                                 'state' => '',
                                 'address' => '',
-                                'image' => '\uploads\userprofile\1527438963welcome-aebcdc.png'
+                                'image' => 'https://ui-avatars.com/api/?name='.$user->name.'?&rounded=true&background=FFFFFF'
                             ]);
                        //Checking if a role was selected
                         if (isset($roles)) {

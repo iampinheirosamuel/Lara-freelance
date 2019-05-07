@@ -10,153 +10,100 @@
    
   </style>
       <!-- Main jumbotron for a primary marketing message or call to action -->
+      @if($broadcasts)
+      @foreach($broadcasts as $broadcast)
+        <div class="container-fluid p-0" style="box-radius:0 !important; ">      
+          <div class="alert alert-warning m-0" style="     border-radius: 0 !important;
+          font-size: 12px;
+          padding: 5px;
+          text-align: center;">
+            <em> {{ $broadcast->title }}</em>
+          </div>
+        </div>
+      @endforeach
+      @endif
       
          @if(Auth::user())
             @if( Auth::user()->roles()->pluck('name')->implode('') != 'Active')
-              <div class="container-fluid" style="padding:0">      
-                <div class="alert alert-info" style="margin-bottom:0px"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->id) }}">here</a>
+              <div class="container-fluid p-0" style="padding:0; border-radius:0">      
+                <div class="alert alert-info m-0" style="border-radius:0px"><em>Hi {{ Auth::user()->name }}, update your profile to get hired quickly </em><a href=" {{ Route('profile.edit', Auth::user()->id) }}">here</a>
 
                 </div>
               </div>
             @endif
           @endif
-           <div class="container-fluid">
-             <div class="row ">
-               <div class="col-12 jumbo text-center"  style="background: linear-gradient(to bottom, rgba(22, 22, 22, 0.75) 0%, rgba(22, 22, 22, 0.75) 75%, rgba(22, 22, 22, 0.75) 100%), url('../../images/slider5.png');background-position: center;background-repeat: no-repeat;background-attachment: scroll;background-size: cover; !important">
-                <br> 
-                 
-                <h1 class=" text-white">Discover and get quick job done</h1>
-                 <h4 class=" text-white">Your one number freelance platform</h4>
-                 <br>
-                 <div class="row text-left" >
-                          {{-- <div id="bloodhound">
-                              <input class="typeahead" type="text" placeholder="Profession e.g UI Designer">
-                            </div> --}}
-                   
-                    <form class="form_search"  action="/search" method="get">
-                    
-                      <div class="form-group m-form__group" style="padding-right:10px;">
-										
-                          <div id="bloodhound" class=" m-input-icon m-input-icon--left">
-                            
-                            <input type="text" class="form-control form-control-lg m-input typeahead" required name="query_service" placeholder="Profession e.g UI Designer">
+          
+          {{-- Jumbotron/site hero --}}
+          <div class="container-fluid site-hero">
+             <div class="row pt-5 pb-5">
+                <div class="col-md-6">
+                  <img src="/images/side-edit.png" alt="" class="img-fluid" srcset="">
+                </div>
 
-                            <span class="m-input-icon__icon m-input-icon__icon--left">
-                              <span>
-                                <i class="flaticon-suitcase"></i>
-                              </span>
-                            </span>
-                          </div>
-                        </div>
+                <div class="col-md-6">
+                  <div class="text-center">
+                     <h3 class="headline">
+                       All services on one platform
+                     </h3>
+                     <h5 class="text-muted headline_sub pb-4"> Face Work connects you with local talents in Nigeria.</h5>
+                     <div class="actions">
+                        <a href="{{ Route('explore')}}" class="btn btn-primary headline_btn text-white" type="submit">Explore</a>
+                         <a href="/register" class="btn btn-primary-outline headline_btn_1 action_2 " type="submit">Get Started</a>
+                     </div>
                     
-                      <div class="form-group m-form__group  ">
-                      
-                        <div class="m-input-icon m-input-icon--left">
-                          <input type="text" class="form-control form-control-lg m-input" required name="query_location" placeholder="Location e.g Lagos">
-                          <span class="m-input-icon__icon m-input-icon__icon--left">
-                            <span>
-                              <i class="la la-map-marker"></i>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-
-                      <div class="form-group m-form__group  ">
-                        <button type="submit" class="btn m-btn m-btn--outline  btn-primary btn-lg">
-                          <i class="flaticon-search"></i>
-                        </button>
-                      </div>
-                      </form>
-                      
-                  
-                 </div>
-               </div>
+                  </div>
+                </div>
              </div>
-           </div>
+          </div>
 
-        <div class="container-fluid">
-             <div class="row ">
-                <div class="col pt-3">
-                    <h1 class="text-center text-title">Featured Works</h1>
-                </div> 
-              </div>
-              <div class="row">
-               <div class="owl-carousel owl-theme">
-                  @foreach ($posts as $post)
+          {{-- Features --}}
 
-                  <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
-                    <a href="{{ route('posts.show', $post->id ) }}">
 
-                      <div class="card">
-                        <div >
-                           <img class="card-img-top img-fluid" style="height: 200px" src="{{ $post->featured }}" alt="Card image cap">
-                        </div>
-                        
-                        <div class="card-body">
-                          <h6 class="text-dark">	{{ $post->title }}</h6>
-                          <p class="card-text"> </p>
-                          <div class="full row">
-                            <div class="col-2 pr-0"><img src="{{ $post->profile->image }}" class="img-rounded" alt="" srcset=""></div>
-                            <div class="col-7 pl-2 mb-0"><p class="card-text"><small class="text-dark">{{ $post->profile->name }}</small></p>
-                           </div>
-                            <div class="col-3"><p class="card-text"><small class="text-muted"><i class="fa fa-thumbs-up pl-2"></i> <strong>{{ $post->likes->count() }}</strong></small></p></div>
-                       </div>
-                          
-                        </div>
-                      </div>
+            <div class="container-fluid section_ab">
 
-                    </a>
-                  </div>
-
-                  @endforeach 
-                
-                    
-                </div>
-              </div>
-        </div>
-                
              
-            <div class="container-fluid">
+    
               <div class="row ">
-                <div class="col">
-                    <h1 class="text-center text-title">How It Works</h1>
-                </div> 
-              </div>
-
-              
-        
-              <div class="row ">
-                <div class="col">
-                   <div class="m-separator m-separator--dashed"></div>
-                </div>
-               </div>
-              <section class="row text-center placeholders-counter">
-                <div class="col-12 col-sm-4 placeholder">
-                  <div class="svg">
-                    <i style="font-size:60px;" class="flaticon-rocket"></i>
-                  </div>
-
-                    
-                  <h4>Launch with an Account</h4>
-                  <br>
-                  <p>Create an account to start your journey! </p> </div>
-                <div class="col-12 col-sm-4 placeholder">
-                  <div class="svg">
-                    <i style="font-size:60px;" class="flaticon-cogwheel-1"></i>
-                  </div>
-
-                  <h4>Find a Service</h4><br>
-                  <p>Find competent professionals and send your request. </p>
+                 <div class="col-md-8">
+                  <section class="row placeholders-counter pt-5">
+                  <div class="col-12">
+                    <h2 class="text-center text-title ">How It Works</h2>
+                  </div> 
+                     <div class="col-12 col-sm-4 pl-md-5 pt-5  text-center placeholder">
+                      <div class="svg ">
+                        <i style="font-size:60px;" class="ion-ios-paperplane-outline"></i>
+                      </div>
+    
+                        
+                      <h4>Launch with an Account</h4>
+                     
+                      <p class="p-0">Create an account to start your journey! </p> </div>
+                    <div class="col-12 col-sm-4 text-center p-mdl-5 pt-5 placeholder">
+                      <div class="svg ">
+                        <i style="font-size:60px;" class="ion-ios-search"></i>
+                      </div>
+    
+                      <h4>Find a Service</h4>
+                      <p class="p-0">Find competent professionals and send your request. </p>
+                     </div>
+    
+                    <div class="col-12 col-sm-4 text-center pl-md-5 pt-5 placeholder">
+                      <div class="svg ">
+                        
+                      <i style="font-size:60px;" class="ion-ios-heart-outline"></i>
+                      </div>
+                      <h4>Network</h4>
+                      <p class="p-0">Meet other professionals on FaceWork. It is a platform for the right collaborations.</p> 
+                    </div>
+                    </section>
                  </div>
+                 <div class="col-md-4 text-center">
 
-                <div class="col-12 col-sm-4 placeholder">
-                  <div class="svg">
-                    
-                  <i style="font-size:60px;" class="flaticon-network"></i>
-                  </div>
-                  <h4>Network</h4><br>
-                  <p>Meet other professionals on FaceWork. It is a platform for the right collaborations.</p> </div>
-              </section>
+                  {{-- app img comes here --}}
+                  <img src="/images/phone1.png" class="img-fluid" alt="lady on the job">
+                 </div>
+               </div>
+              
                <div class="row ">
                 <div class="col">
                    <div class="m-separator m-separator--dashed"></div>
@@ -164,7 +111,7 @@
                </div>
             </div>
 
-            <div class="container-fluid">
+            <div class="container-fluid section_c">
               <div class="row ">
                 <div class="col">
                     <h2 class="text-center text-title">Our Marketplace</h2>
@@ -377,7 +324,7 @@
             
             
 
-<div class="container-fluid">
+<div class="container-fluid section_c section_ab">
   <div class="row ">
                 <div class="col">
                     <h3 class="text-left text-title">Talents on FaceWork</h3>
@@ -391,8 +338,10 @@
                            <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
                             <a href="{{ Route('profile.show',  $user->id) }}" >
                             <div class="card">
-                              <div class="img" style="width: 125px; margin: 0 auto; padding-top: 20px;">
-                                  <img class="card-img-top rounded-circle"  src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}">
+                              <div class="img " style=" margin: 0 auto; padding-top: 20px;">
+                                  <img class="card-img-top rounded-circle"  style="width:4.5rem; height:4.5rem; border-radius: 50%;
+                                  box-shadow: inset 0px 0px 0px 6px rgba(212, 210, 210, 0.67);
+                                "  src="{{ $user->profile->image }}" alt="{{ $user->profile->name }}">
                               </div>
                              
                               <div class="card-body text-center">
@@ -424,14 +373,13 @@
               <div class="row">
                 <div class="col action pt-5 pb-3">
 
-                  
 
                   <div class="text-center">
-                    <h3>Join us now</h3>
+                    <h2>Join us now</h2>
                     <hr>
-                    <p>Meet other professionals on FaceWork. It is a platform for the right collaborations.</p>
+                    <h6>Meet other professionals on FaceWork. It is a platform for the right collaborations.</h6>
                     <br>
-                    <a href="{{ url('/register') }}" class="btn btn-secondary btn-lg">Get Started</a>
+                    <a href="{{ url('/register') }}" class="btn headline_btn  btn-secondary btn-lg">Get Started</a>
                   </div>
                  
                 </div>
@@ -443,43 +391,33 @@
 
               <div class="container-fluid">
                   
-                    <section class="row text-center placeholders">
+                    <section class="row  placeholders">
 
                       
-                      <div class="col-12 col-sm-4 placeholder">
+                      <div class="col-12 col-sm-8 placeholder">
                         
-                        <div class="text-center">
-                          <div class="counter rounded-circle"
-                            alt="Generic placeholder thumbnail">
-
-                            <h1 class="counter-text "><span class="count">400</span></h1>
+                        <div class="">
+                        
+                          <h4 class="pb-4 pl-md-5">About Facework</h4>
                           
-                          </div>
-                          <h4>Tasks Completed</h4>
+                          <p>
+Facework is a platform designed to help business ventures of any kind (Professional/Vocational) improve productivity and efficiency in the Nigerian market share. It's a platform to help business men and women interact with potential clients who are interested in the different services they offer.
+<br><br>
+It is a platform committed to solving a common problem of visibility faced by several businesses in Nigeria. It is also an avenue to help many young Nigerians create new profitable startups and acquire skills that can generate income and productivity for themselves.</p>
                         </div>
                       </div>
 
                       <div class="col-12 col-sm-4 placeholder">
-                        <div class="text-center">
-                          <div class="counter rounded-circle" alt="Generic placeholder thumbnail">
-
-                            <h1 class="counter-text"><span class="count">143</span></h1>
-
-                          </div>
-                          <h4>Active Professionals</h4>
-                        </div>
+                      {{-- Advert placemments here --}}
+                          @foreach ($adverts as $advert)
+                            <div class="advert">
+                                <img src="{{ $advert->featured_image }}" class="img-fluid" sizes="" srcset="">
+                            </div>  
+                          @endforeach
+                         
+                           
                       </div>
 
-                      <div class="col-12 col-sm-4 placeholder">
-                        <div class="text-center">
-                          <div class="counter rounded-circle" alt="Generic placeholder thumbnail">
-
-                            <h1 class="counter-text"><span class="count">543</span></h1>
-
-                          </div>
-                          <h4>Social Feeds</h4>
-                        </div>
-                      </div>
                       
                     
                     </section>

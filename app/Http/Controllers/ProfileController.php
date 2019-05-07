@@ -7,6 +7,7 @@ use App\User;
 use App\Profile;
 use App\Post;
 use Illuminate\Http\Request;
+use JD\Cloudder\Facades\Cloudder;
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -36,6 +37,10 @@ class ProfileController extends Controller
     public function create()
     {
         //
+         $profile = Auth()->user()->profile;
+         $posts = Post::orderby('id', 'desc')->paginate(10);
+         return view('profile.create', compact('profile','posts'));
+         
     }
 
     /**
@@ -123,21 +128,28 @@ class ProfileController extends Controller
     public function changeProfileImage(Request $request,Profile $profile, $id){
           
         $this->validate($request, [
-            'image' => 'required|image'
+            'image' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000'
         ]);
 
          $profile = Profile::find($id);
 
         if($request->hasFile('image')){
            
-            $image = $request->image;
+            $image = $request->file('image');
 
-            $image_new_name = time().$image->getClientOriginalName();
+            $name = $image->getClientOriginalName();
 
-            $image->move('uploads/userprofile/', $image_new_name);
+            $image_name =  $image->getRealPath();
+            
+            // uploads to cloudinary
+            Cloudder::upload($image_name, null);
+
+            list($width, $height) = getimagesize($image_name);
+            // gets image url from cloudinary
+            $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
 
 
-            $profile->image = '/uploads/userprofile/'.$image_new_name; 
+            $profile->image = $image_url; 
                
             $profile->save();
             
@@ -152,21 +164,28 @@ class ProfileController extends Controller
       public function changeCoverImage(Request $request,Profile $profile, $id){
           
         $this->validate($request, [
-            'coverImage' => 'required|image'
+            'coverImage' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000'
         ]);
 
          $profile = Profile::find($id);
 
         if($request->hasFile('coverImage')){
            
-            $image = $request->coverImage;
+            $image = $request->file('coverImage');
 
-            $image_new_name = time().$image->getClientOriginalName();
+            $name = $image->getClientOriginalName();
 
-            $image->move('uploads/usercover/', $image_new_name);
+            $image_name = $image->getRealPath();
+            
+            // uploads to cloudinary
+            Cloudder::upload($image_name, null);
+
+            list($width, $height) = getimagesize($image_name);
+            // gets image url from cloudinary
+            $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
 
 
-            $profile->coverImage = '/uploads/usercover/'.$image_new_name; 
+            $profile->coverImage = $image_url; 
                
             $profile->save();
             

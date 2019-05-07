@@ -15,42 +15,50 @@
 										</div>
 									
 									</div>
-									<div class="m-portlet__body">
-										<div class="m-widget3">
+									<div class="container-fluid">
+										<div class="row ">
                                              @foreach ($tasks as $task)
                                            
-											<div class="m-widget3__item" style="border-bottom: 0.07rem dashed #ebedf2;">
+											<div class="col-md-4 pt-3" style="border-bottom: 0.07rem dashed #ebedf2;">
 												<div class="m-widget3__header">
 													<div class="m-widget3__user-img">
-                                                    <img class="m-widget3__img" style="width:4.2rem; height:4.0rem" src="\uploads\userprofile\1527438963welcome-aebcdc.png" alt="">
+                                                        <img class="m-widget3__img" style="width:4.2rem; height:4.0rem" src="\uploads\userprofile\1527438963welcome-aebcdc.png" alt="">
+													     <span class="float-right">
+																<span class="m-widget3__username">
+																{{ $task->client_name }}
+															</span><br>
+																{{ $task->created_at->diffForHumans() }}
+														  </span>
 													</div>
-													<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															{{ $task->client_name }}
-														</span>
-														<br>
+													
+													<div class="col-md-4">
 														<span style="color:#222" class="m-widget3__time">
-															{{ $task->phone }}
+																<b>Phone: </b> {{ $task->phone }}
 														</span>
 													</div>
-													<span class="m-widget3__status m--font-info">
-														  {{ $task->created_at->diffForHumans() }}
-													</span>
+
+													
 												</div>
-												<div class="m-widget3__body">
+												<br>
+												<div class="col-md-4">
                                                     <p class="m-widget3__text">
-                                                       <b>{{ $task->title }}</b>
-                                                    </p>
+															<b>Title: </b>  {{ $task->title }}
+													</p>
+												</div>
+												<div class="col-md-4">
+
 													<p class="m-widget3__text">
                                                          
-														 {{  $task->description }} {{-- Limit teaser to 100 characters --}}
-                                                    </p>
+															<b>Description: </b> {{  $task->description }} {{-- Limit teaser to 100 characters --}}
+													</p>
+												</div>
+												<div class="col-md-4">
                                                     <p class="m-widget3__text">
-                                                        Timeline: {{ $task->date }}
+															<b>Timeline: </b> {{ $task->date }}
 
                                                     </p>
                                                     <p class="m-widget3__text">
-                                                        Address: {{ $task->location }}
+															<b>Address: </b> {{ $task->location }}
                                                     </p>
 												</div>
                                             </div>

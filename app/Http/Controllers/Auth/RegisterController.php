@@ -63,7 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+        $avatar = rand(1,800);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -79,7 +79,7 @@ class RegisterController extends Controller
              'phone' => '',
              'state' => '',
              'address' => '',
-             'image' => '\uploads\userprofile\1527438963welcome-aebcdc.png',
+             'image' => 'https://ui-avatars.com/api/?name='.$user->name.'?&rounded=true&background=FFFFFF',
              'coverImage' => ''
         ]);
 

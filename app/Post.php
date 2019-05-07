@@ -17,15 +17,22 @@ class Post extends Model implements LikeableContract
         'profile_id','title', 'body','featured'     
    ];
 
-
+    // A post belongs to a User uniquely
     public function profile(){
       return  $this->belongsTo('App\Profile');
     }
-
+    
+    // post can have as many likes as can be
     public function likes(){
         return $this->hasMany('App\Like');
     }
 
+    // post can have as many comments as can be
+    public function comments(){
+        return $this->hasMany('App\Comments');
+    }
+    
+    // Like method implementation
     public function is_liked_by_auth_user(){
        $id = Auth::id();
        $likers = array();

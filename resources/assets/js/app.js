@@ -16,5 +16,31 @@ require('./bootstrap');
 Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        message: []
+    },
+    mounted() {
+        this.fetchMessage();
+        Echo.private('chat')
+            .listen('MesssageSentEvent', (e) =>{
+                this.message.push({
+                    message: e.message.message,
+                    user: e.user
+                })
+            })
+    },
+    methods: {
+        addMessage(message) {
+            this.message.push(message)
+            axios.post('/messages', message).then(response => {
+                //
+            })
+        },
+        fetchMessages() {
+            axios.get('/messages').then(response => {
+                this.message = response.data
+            })
+        }
+    }
 });

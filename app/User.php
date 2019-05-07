@@ -19,15 +19,25 @@ class User extends Authenticatable implements LikerContract
         {   
             $this->attributes['password'] = bcrypt($password);
         }
-        
+    // user can only have one profile (relationship)   
     public function profile(){
         return $this->hasOne('App\Profile');
     }
-
+    
+    // user can have as many task as possible
     public function task(){
         return $this->hasMany('App\Task');
     }
 
+    /**
+     * 
+     *  Other relationships can be define here
+     */
+    // user can have as many message as possible
+    public function message(){
+        return $this->hasMany('App\Message');
+    }
+   
     
     /**
      * The attributes that are mass assignable.

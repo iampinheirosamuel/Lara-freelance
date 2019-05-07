@@ -2,51 +2,48 @@
 
 @section('content')
    
-            <div class="col-lg-7">
+            <div class="col-lg-12">
 
                 <div class="m-portlet m-portlet--full-height ">
 									<div class="m-portlet__head">
 										<div class="m-portlet__head-caption">
 											<div class="m-portlet__head-title">
 												<h3 class="m-portlet__head-text">
-													News Feeds
+													All recent posts
 												</h3>
 											</div>
 										</div>
 									
 									</div>
 									<div class="m-portlet__body">
-										<div class="m-widget3">
-                                             @foreach ($posts as $post)
-                                           <a href="{{ route('posts.show', $post->id ) }}">
-											<div class="m-widget3__item" style="border-bottom: 0.07rem dashed #ebedf2;">
-												<div class="m-widget3__header">
-													<div class="m-widget3__user-img">
-                                                    <img class="m-widget3__img" style="width:4.2rem; height:4.0rem" src="{{ $post->profile->image }}" alt="">
-													</div>
-													<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															{{ $post->profile->name }}
-														</span>
-														<br>
-														<span style="color:#222" class="m-widget3__time">
-															{{ $post->created_at->diffForHumans() }}
-														</span>
-													</div>
-													<span class="m-widget3__status m--font-info">
+										<div class="row">
+                                              @foreach ($posts as $post)
+
+												<div class="col-md-3" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
+													<a href="{{ route('posts.show', $post->id ) }}">
+
+													<div class="card">
+													<div class="card-img-top img-fluid" style="height: 200px; background: url({{ $post->featured }}) no-repeat;     background-size: cover;" >
 														
-													</span>
+														</div>
+														
+														<div class="card-body">
+														<h6 class="text-dark">	{{ $post->title }}</h6>
+														<p class="card-text"> </p>
+														<div class="full row">
+															<div class="col-2 pr-0"><img src="{{ $post->profile->image }}" class="img-rounded" alt="" srcset=""></div>
+															<div class="col-7 pl-2 mb-0"><p class="card-text"><small class="text-dark">{{ $post->profile->name }}</small></p>
+														</div>
+															<div class="col-3"><p class="card-text"><small class="text-muted"><i class="fa fa-thumbs-up pl-2"></i> <strong>{{ $post->likes->count() }}</strong></small></p></div>
+													</div>
+														
+														</div>
+													</div>
+
+													</a>
 												</div>
-												<div class="m-widget3__body">
-													<p class="m-widget3__text">
-                                                         
-														 {{  str_limit($post->body, 200) }} {{-- Limit teaser to 100 characters --}}
-													</p>
-												</div>
-                                            </div>
-                                           </a>
-                                           <br>
-                                             @endforeach
+
+												@endforeach
 											
 										</div>
 									</div>
