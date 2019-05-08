@@ -13,13 +13,20 @@
 
 
 Route::get('/test', function(){
-   return App\User::find(5)->task;
+   return App\Profile::all()->user;
 });
 
 Route::get('/search', function(){
-     $results = \App\Profile::where('service','like','%'. request('query_service') . '%')
-                            ->orWhere('state','like','%'. request('query_location') . '%' )->get();      
-     return view('search.search')->with('results',$results);
+    if(request('query_service') !== null && request('query_location') !== null){
+        $results = App\Profile::where('service','like','%'.request('query_service').'%')
+                                ->where('state','like','%'.request('query_location').'%' )
+                                ->get();      
+       return view('search.search')->with('results', $results);
+    } else {
+        $results = null;
+        return view('search.search')->with('results', $results);
+    }
+     
 });
 
 Route::get('/', 'PostController@home');
@@ -112,11 +119,6 @@ Route::get('/explore', [
    'uses' => 'PostController@explore',
    'as' => 'explore'
 ]);
-    
-Route::get('/test', function () {
-    event(new App\Events\PostLiked('Someone'));
-    return "Event has been sent!";
-});
 
 Route::get('/push', function () {
     return view("welcome");

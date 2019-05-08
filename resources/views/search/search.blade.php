@@ -13,57 +13,63 @@
               </div>
             @endif
           @endif
-           
-
-       
-             
-            
-            
-
+          
+  
 <div class="container-fluid">
+    @if($results !== null)
   <div class="row ">
+      
                 <div class="col">
-                <h3 class="text-left text-title">Found {{ count($results)}} search results</h3>
+                <h3 class="text-left text-title">Found {{ count($results) }} search results</h3>
                 </div> 
               </div>
               <div class="row">
                <div class="owl-carousel owl-theme">
+                   
                         @foreach ($results as $profile)
 
                         @if( $profile->user->roles()->pluck('name')->implode('') === 'Active')
 
-                              <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
-                                <div class="m-widget4">
-                                <a href="{{ Route('profile.show',  $profile->user->id) }}" >	
-                                  <img src="{{ $profile->image }}" alt="{{ $profile->name }}" style="padding:15px" class=" img-round" >
-                                <div class="m-widget4__item">                                 
-                                  <br>
-                                  <div class="m-widget4__info">
-                                    <span class="m-widget4__title">
-                                      {{ $profile->user->name }}
-                                    </span>
-                                    
-                                    <br>
-                                    <span class="m-widget4__sub" >
-                                    <i class="flaticon-suitcase" style="font-size: 12px;"></i>	{{ $profile->service }}
-                                    </span>
-                                    
-                                    <span class="m-widget4__sub" >
-                                    <i class="la la-map-marker" style="font-size: 12px;"></i> {{ $profile->state }}
-                                    </span>
-                             
-                                  </div>
-                                  
-                                </div>                                 
-                                  </a>
-                                </div>
+                        <div class="item" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
+                            <a href="{{ Route('profile.show',  $profile->id) }}" >
+                            <div class="card">
+                              <div class="img " style=" margin: 0 auto; padding-top: 20px;">
+                                  <img class="card-img-top rounded-circle"  style="width:4.5rem; height:4.5rem; border-radius: 50%;
+                                  box-shadow: inset 0px 0px 0px 6px rgba(212, 210, 210, 0.67);
+                                "  src="{{ $profile->image }}" alt="{{ $profile->name }}">
                               </div>
+                             
+                              <div class="card-body text-center">
+                                <h6 class="text-dark ">	  {{ $profile->user->name }}</h6>
+                                <p class="card-text"> </p>
+                                <div class="full row">
+                                    <div class="col-sm-12"><p class="card-text"><small class="text-dark"><i class="flaticon-suitcase" style="font-size: 12px;"></i>	{{ $profile->service }}</small></p>
+                                    </div>
+                                      <div class="col-sm-12"><p class="card-text"><small class="text-muted"> <i class="la la-map-marker" style="font-size: 12px;"></i> {{ $profile->state }}</small></p></div>
+                                </div>
+                                
+                              </div>
+                            </div>
+                           </a>
+                          </div>
                         @endif
-												@endforeach
+
+                        @endforeach
+                        
+                      
+                          
+                      @else
+                      <div class="row ">
+                          <div class="col">
+                             <h3 class="text-center text-title pt-5 pb-5 ">No results found for your search</h3>
+                          </div> 
+                        </div> 
+
+                      @endif
                     </div>
           
-  </div>
-  <div class="row ">
+                 </div>
+              <div class="row ">
                 <div class="col">
                    <div class="m-separator m-separator--dashed"></div>
                 </div>

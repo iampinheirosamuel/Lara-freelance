@@ -20,7 +20,6 @@ class Profile extends Model
     // A profile belongs to User uniquely
     public function user(){
         return $this->belongsTo('App\User');
-
     }
     
     // Users with unique profile can have as many post as can be
