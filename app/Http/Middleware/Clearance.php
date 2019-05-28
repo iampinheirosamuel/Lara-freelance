@@ -15,7 +15,7 @@ class ClearanceMiddleware {
      */
     public function handle($request, Closure $next) {        
         if (Auth::user()->hasPermissionTo('Administer roles & permissions')) //If user has this //permission
-    {
+        {
             return $next($request);
         }
 
@@ -45,7 +45,7 @@ class ClearanceMiddleware {
                 abort('401');
             } 
          else 
-         {
+           {
                 return $next($request);
             }
         }

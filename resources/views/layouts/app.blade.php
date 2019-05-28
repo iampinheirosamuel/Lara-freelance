@@ -84,7 +84,7 @@ ga('send', 'pageview');
   <div id="app" class="container">     
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       
-          <a class="navbar-brand" href="{{ url('/') }}"><img src="../../images/logo.png" alt=""></a>
+          <a class="navbar-brand pt-2" href="{{ url('/') }}"><img src="../../images/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
         aria-expanded="false" aria-label="Toggle navigation">
         <i style=" color: #222;" class="ion-navicon"></i>
@@ -210,7 +210,7 @@ ga('send', 'pageview');
                     <div class="alert alert-success  alert-dismissible fade show" style=" border-radius: 0 !important;
                     font-size: 12px;
                     padding: 5px;
-                    text-align: left;" role="alert">
+                    text-align: center;" role="alert">
                       <em> {!! session('flash_message') !!} </em>
                       <button type="button" class="close p-0" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
@@ -218,8 +218,11 @@ ga('send', 'pageview');
                     </div>
                   </div>
               
-                @endif 
+                @endif
+
                 @yield('content')
+
+                
              </div>
            </div>
             
@@ -241,9 +244,9 @@ ga('send', 'pageview');
                   <h6>Follow us</h6>
                    <br>
                     <ul class="" style="display:inline-flex; padding-right:10px;">
-                       <li class="" style="padding-right: 15px;"><a href="https://facebook.com/Facework.com.ng"><i class="ion-social-facebook-outline"></i></a></li><br>
-                       <li class="" style="padding-right: 15px;"><a href=""><i class="ion-social-twitter-outline"></i></a></li><br>
-                       <li class="" style="padding-right: 15px;"><a href=""><i class="ion-social-instagram-outline"></i></a></li><br>       
+                       <li class="" style="padding-right: 15px;"><a href="https://facebook.com/Facework.com.ng" target="_blank"><i class="font-lg  ion-social-facebook-outline"></i></a></li><br>
+                       <li class="" style="padding-right: 15px;"><a href="https://twitter.com/Facework13?s=08" target="_blank"><i class= "font-lg ion-social-twitter-outline"></i></a></li><br>
+                       <li class="" style="padding-right: 15px;"><a href="https://www.instagram.com/p/BxuTPeQhbXb/?igshid=1w1taf5rutxr5" target="_blank"><i class="font-lg ion-soci al-instagram-outline"></i></a></li><br>       
                     </ul>
                     </div>
                   <div class="col-md-4  col-sm-4 ">

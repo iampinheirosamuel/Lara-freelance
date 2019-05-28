@@ -45,6 +45,7 @@
           @endif
 
           {{-- Slider --}}
+
           
           <div class="container-fluid site-hero pt-3 pb-5">
               <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
@@ -82,9 +83,9 @@
                             <div class="col-md-6">
                               <div class="text-center">
                                  <h3 class="headline">
-                                   All services on one platform
+                                  WELCOME TO THE FUTURE OF WORK
                                  </h3>
-                                 <h5 class="text-muted headline_sub pb-4"> Face Work connects you with local talents in Nigeria.</h5>
+                                 <h5 class="text-muted headline_sub pb-4">Work at your convenience, provide any service from anywhere in Nigeria.</h5>
                                  <div class="actions">
                                     <a href="{{ Route('explore')}}" class="btn btn-primary headline_btn text-white" type="submit">Explore</a>
                                      <a href="/register" class="btn btn-primary-outline headline_btn_1 action_2 " type="submit">Get Started</a>
@@ -105,9 +106,9 @@
                             <div class="col-md-6">
                               <div class="text-center">
                                  <h3 class="headline">
-                                   All services on one platform
+                                  SELL ANYTHING
                                  </h3>
-                                 <h5 class="text-muted headline_sub pb-4"> Face Work connects you with local talents in Nigeria.</h5>
+                                 <h5 class="text-muted headline_sub pb-4"> photography, graphics design, fashion design, writing, painting, web design, branding… and lots more.</h5>
                                  <div class="actions">
                                     <a href="{{ Route('explore')}}" class="btn btn-primary headline_btn text-white" type="submit">Explore</a>
                                      <a href="/register" class="btn btn-primary-outline headline_btn_1 action_2 " type="submit">Get Started</a>
@@ -127,9 +128,9 @@
                             <div class="col-md-6">
                               <div class="text-center">
                                  <h3 class="headline">
-                                   All services on one platform
+                                  GET VISIBILITY
                                  </h3>
-                                 <h5 class="text-muted headline_sub pb-4"> Face Work connects you with local talents in Nigeria.</h5>
+                                 <h5 class="text-muted headline_sub pb-4"> Give your business the visibility you desire today.</h5>
                                  <div class="actions">
                                     <a href="{{ Route('explore')}}" class="btn btn-primary headline_btn text-white" type="submit">Explore</a>
                                      <a href="/register" class="btn btn-primary-outline headline_btn_1 action_2 " type="submit">Get Started</a>
@@ -152,9 +153,9 @@
                             <div class="col-md-6">
                               <div class="text-center">
                                  <h3 class="headline">
-                                   All services on one platform
+                                  NETWORK
                                  </h3>
-                                 <h5 class="text-muted headline_sub pb-4"> Face Work connects you with local talents in Nigeria.</h5>
+                                 <h5 class="text-muted headline_sub pb-4">Connect with a community of local talents and service providers… all on one platform.</h5>
                                  <div class="actions">
                                     <a href="{{ Route('explore')}}" class="btn btn-primary headline_btn text-white" type="submit">Explore</a>
                                      <a href="/register" class="btn btn-primary-outline headline_btn_1 action_2 " type="submit">Get Started</a>
@@ -396,7 +397,7 @@ It is a platform committed to solving a common problem of visibility faced by se
                     </section>
                 
               </div>
-
+{{-- 
             <div class="container-fluid section_ab">
               <div class="row m-auto pt-4 pb-4">
               
@@ -411,7 +412,7 @@ It is a platform committed to solving a common problem of visibility faced by se
                   </div>
                 
               </div>  
-            </div>          
+            </div>           --}}
 
 
 

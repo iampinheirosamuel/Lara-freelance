@@ -3,11 +3,6 @@
  */
 
 /* Links */
-a,
-a:focus,
-a:hover {
-  color: #fff;
-}
 
 .nav-item {
   padding-top: 0px;
@@ -129,7 +124,8 @@ html,
 body {
   height: 100%;
   background-color: #fff;
-  
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .form-control, .form-control-lg {
@@ -188,6 +184,10 @@ button {
 
 }
 
+.support li a {
+  color: #fdfdfd !important;
+}
+
 .support ul {
   padding: 0px;
 }
@@ -199,7 +199,7 @@ button {
 }
 
 .support li a:hover {
-   color: #8b8b8b;
+   color: #8b8b8b !important;
    text-decoration: none;
 }
 
@@ -415,7 +415,7 @@ h1 {
 }
 
 .footer a {
-  color: #fff;
+  color: #fff !important;
 }
 
 .footer p {
