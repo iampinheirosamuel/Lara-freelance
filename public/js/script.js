@@ -5,6 +5,7 @@
           const baseUrl = 'http://facework.com.ng';
           $.ajax({
             type: "get",
+            crossDomain: true,
             url: `${baseUrl}/api/skills`,
             success: function(data){
               autocompleteInit(data.data);              

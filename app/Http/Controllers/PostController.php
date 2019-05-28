@@ -12,6 +12,7 @@ use App\Post;
 use Auth;
 use Session;
 use App\User;
+use App\Jobs;
 use App\Like;
 use App\Setting;
 use App\Broadcast;
@@ -30,13 +31,14 @@ class PostController extends Controller {
      */
 
     public function home(){
+        $jobs = Jobs::orderby('id', 'desc')->paginate(6);
         $advert = Advert::orderby('id', 'desc')->paginate(1);
         $broadcasts = Broadcast::orderby('id', 'desc')->paginate(1);
         $profile = Profile::orderby('id', 'desc')->paginate(7);
         $posts = Post::orderby('id', 'desc')->paginate(7);
-        $users = User::orderby('id', 'desc')->paginate(7);
+        $users = User::orderby('id', 'desc')->paginate(10);
         $setting = Setting::first();
-        return view('index')->with('users', $users)->with('settings', $setting)->with('posts', $posts)->with('broadcasts', $broadcasts)->with('adverts', $advert);
+        return view('index')->with('users', $users)->with('settings', $setting)->with('posts', $posts)->with('broadcasts', $broadcasts)->with('adverts', $advert)->with('jobs', $jobs);
     }
 
      public function explore(){

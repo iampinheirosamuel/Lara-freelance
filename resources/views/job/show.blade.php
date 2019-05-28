@@ -15,8 +15,8 @@
                      
                      @foreach ($jobs as $job)
 
-                        <div class="col-md-3">
-                            <div class="card" >
+                        <div class="col-md-3 mt-3 mb-3">
+                            <div class="card" style="    border-left: 2px solid #3e3d93;" >
                                 <div class="card-body">
                                     <a href="{{ $job->job_type }}" target="_blank" class="card-link"> <h5 class="card-title text-dark"> {{$job->title}}</h5>
                                     

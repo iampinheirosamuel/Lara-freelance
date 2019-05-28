@@ -46,6 +46,15 @@ Route::resource('broadcast', 'BroadcastController');
 
 Route::resource('advert', 'AdvertController');
 
+Route::resource('job', 'JobsController');
+
+Route::get('/jobs',[
+    'uses' => 'JobsController@showAll',
+    'as' => 'job.show'
+]);
+
+Route::resource('job_category', 'JobsCategoryController');
+
 //Profile
 Route::post('/profile/changeProfileImage/{id}',[
     'uses' => 'ProfileController@changeProfileImage',
